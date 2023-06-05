@@ -1,4 +1,4 @@
-const values = {
+export const values = {
   year: [2022, 2002, 1969],
   color: ["white"],
   brand: ["TESTE TESTE", "volkswagen", "chevrolet", "toyota"],
