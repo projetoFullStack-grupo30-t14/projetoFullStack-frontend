@@ -4,11 +4,15 @@ interface FilterButtonProps {
   title: string;
   select: string;
   setReset: Dispatch<SetStateAction<boolean>>;
+  searchParams: string;
+  setSearchParams: Dispatch<SetStateAction<string>>;
 }
 export const FilterButtons = ({
   title,
   select,
   setReset,
+  searchParams,
+  setSearchParams,
 }: FilterButtonProps) => {
   const [active, setActive] = useState("");
   return (
@@ -24,7 +28,7 @@ export const FilterButtons = ({
             setReset(true);
             e.preventDefault();
             setActive("asc");
-            console.log(e.currentTarget.value);
+            setSearchParams(searchParams.concat(`${e.currentTarget.value}&`));
           }}
         >
           Mínimo
@@ -38,7 +42,7 @@ export const FilterButtons = ({
             e.preventDefault();
             setReset(true);
             setActive("desc");
-            console.log(e.currentTarget.value);
+            setSearchParams(searchParams.concat(`${e.currentTarget.value}`));
           }}
         >
           Máximo

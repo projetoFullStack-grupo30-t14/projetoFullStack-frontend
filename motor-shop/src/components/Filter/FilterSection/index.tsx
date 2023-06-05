@@ -5,6 +5,8 @@ interface FilterSectionProps {
   values: Array<string | number>;
   setReset: Dispatch<SetStateAction<boolean>>;
   searchKey: string;
+  searchParams: string;
+  setSearchParams: Dispatch<SetStateAction<string>>;
 }
 
 export const FilterSection = ({
@@ -12,6 +14,8 @@ export const FilterSection = ({
   values,
   setReset,
   searchKey,
+  searchParams,
+  setSearchParams,
 }: FilterSectionProps) => {
   let translated: string;
   const [render, setRender] = useState<Array<string | number>>(values);
@@ -32,11 +36,11 @@ export const FilterSection = ({
           <h3
             id={value.toString()}
             key={value}
-            className="capitalize text-gray-500 font-medium"
+            className="capitalize text-gray-500 font-medium max-w-min"
             onClick={() => {
               setRender([value]);
               setReset(true);
-              console.log(`${searchKey}=${value}`);
+              setSearchParams(searchParams.concat(`${searchKey}=${value}&`));
             }}
           >
             {translated ? translated : value}
