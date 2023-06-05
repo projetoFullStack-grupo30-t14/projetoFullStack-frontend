@@ -1,17 +1,24 @@
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 
 interface FilterSectionProps {
   title: string;
   values: Array<string | number>;
+  setReset: Dispatch<SetStateAction<boolean>>;
+  searchKey: string;
 }
 
-export const FilterSection = ({ title, values }: FilterSectionProps) => {
+export const FilterSection = ({
+  title,
+  values,
+  setReset,
+  searchKey,
+}: FilterSectionProps) => {
   let translated: string;
   const [render, setRender] = useState<Array<string | number>>(values);
 
   return (
-    <section className="filter-section mb-8">
-      <h2 className="text-2xl font-semibold text-black mb-7">{title}</h2>
+    <section className="filter-section">
+      <h2 className="filter-title">{title}</h2>
       {render.map((value: string | number) => {
         switch (value) {
           case "electric":
@@ -28,6 +35,8 @@ export const FilterSection = ({ title, values }: FilterSectionProps) => {
             className="capitalize text-gray-500 font-medium"
             onClick={() => {
               setRender([value]);
+              setReset(true);
+              console.log(`${searchKey}=${value}`);
             }}
           >
             {translated ? translated : value}
