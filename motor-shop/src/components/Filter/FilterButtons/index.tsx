@@ -28,7 +28,16 @@ export const FilterButtons = ({
             setReset(true);
             e.preventDefault();
             setActive("asc");
-            setSearchParams(searchParams.concat(`${e.currentTarget.value}&`));
+
+            if (searchParams.includes(`${select}By`)) {
+              setSearchParams(
+                searchParams
+                  .replace(`${select}By=`, " ")
+                  .concat(`${e.currentTarget.value}&`)
+              );
+            } else {
+              setSearchParams(searchParams.concat(`${e.currentTarget.value}&`));
+            }
           }}
         >
           Mínimo
@@ -42,7 +51,16 @@ export const FilterButtons = ({
             e.preventDefault();
             setReset(true);
             setActive("desc");
-            setSearchParams(searchParams.concat(`${e.currentTarget.value}`));
+
+            if (searchParams.includes(`${select}By`)) {
+              setSearchParams(
+                searchParams
+                  .replace(`${select}By=`, " ")
+                  .concat(`${e.currentTarget.value}&`)
+              );
+            } else {
+              setSearchParams(searchParams.concat(`${e.currentTarget.value}&`));
+            }
           }}
         >
           Máximo

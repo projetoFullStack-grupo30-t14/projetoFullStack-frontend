@@ -36,11 +36,14 @@ export const FilterSection = ({
           <h3
             id={value.toString()}
             key={value}
-            className="capitalize text-gray-500 font-medium max-w-min"
+            className="capitalize text-gray-500 font-medium"
             onClick={() => {
               setRender([value]);
               setReset(true);
-              setSearchParams(searchParams.concat(`${searchKey}=${value}&`));
+              if (searchParams.includes(`${searchKey}=${value}&`)) {
+              } else {
+                setSearchParams(searchParams.concat(`${searchKey}=${value}&`));
+              }
             }}
           >
             {translated ? translated : value}
