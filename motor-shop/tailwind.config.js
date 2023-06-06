@@ -67,8 +67,8 @@ module.exports = {
       inputLabel: ["14px", "17px"],
     },
     fontFamily: {
-      "lexend": ["lexend"],
-      "inter": ["inter"],
+      "lexend": ["lexend", "sans-serif"],
+      "inter": ["inter", "sans-serif"],
     },
     extend: {},
   },
