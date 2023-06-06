@@ -19,7 +19,7 @@ export const FilterBox = ({ className, setShow }: FilterBoxProps) => {
   }, [searchParams]);
   return (
     <section
-      className={`max-w-[80%] flex flex-col ${className} absolute top-0  overflow-auto`}
+      className={`max-w-[80%] flex flex-col ${className} absolute top-0 bg-grey-whiteFixed overflow-auto`}
       key={`${resetOn}`}
     >
       <section className="flex justify-between items-center mb-3 h-8 mt-2 lg:hidden md:hidden">

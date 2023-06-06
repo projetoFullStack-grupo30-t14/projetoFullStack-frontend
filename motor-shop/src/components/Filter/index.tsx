@@ -6,9 +6,9 @@ export const Filter = () => {
 
   return (
     <section
-      className={`flex max-w-xs bg-grey-whiteFixed ${
-        show && window.innerWidth < 641
-          ? "flex-col-reverse absolute z-10 top-20 w-screen h-4/5"
+      className={`flex max-w-screen bg-grey-whiteFixed ${
+        show
+          ? "flex-col-reverse sm:absolute z-10 top-1/2 left-1/2 translate-y-[-50%] translate-x-[-50%] w-screen h-4/5"
           : "flex-col"
       } justify-center items-center`}
     >
@@ -24,7 +24,7 @@ export const Filter = () => {
       </button>
       <FilterBox
         className={`${
-          show && window.innerWidth < 641 ? "h-5/6" : "hidden"
+          show ? "h-5/6" : "hidden"
         } md:block lg:block max-w-md min-w-[300px]`}
         setShow={setShow}
       />
