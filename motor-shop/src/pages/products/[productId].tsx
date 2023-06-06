@@ -1,3 +1,5 @@
+import { CommentList } from "@/components/commentList";
+import { NewComment } from "@/components/commentNew";
 import { useRouter } from "next/router";
 
 export default function Products () {
@@ -13,8 +15,8 @@ export default function Products () {
                 <div>Main car picture</div>
                 <div>Car info card</div>
                 <div>Car description card</div>
-                <ul>Lista com comentários</ul>
-                <div>Componente para fazer novos comentários</div>
+                <CommentList/>
+                <NewComment/>
                 <aside>
                     <div>Additional car pictures</div>
                     <div>

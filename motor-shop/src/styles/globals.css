@@ -2,60 +2,200 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  box-sizing: border-box;
-  font-size: 100%;
-  vertical-align: baseline;
-  font-family: "Inter", sans-serif;
-  list-style: none;
-}
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lexend:wght@500;600;700&display=swap");
 
-button {
-  cursor: pointer;
-}
-
-button:disabled {
-  cursor: not-allowed;
-}
-
-input:focus {
-  outline: none;
-  border: none;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-:root {
-}
-
+/* FONT SIZING, STYLES AND FAMILY */
 @layer components {
-  .filter-section {
-    @apply mx-4 mb-8;
+  .heading-1-700 {
+    @apply font-bold text-heading1;
   }
 
-  .large-button {
-    @apply text-base font-semibold text-gray-400 px-8 py-2 rounded;
+  .heading-2-600 {
+    @apply font-semibold text-heading2;
   }
 
-  .filter-gray-button {
-    @apply bg-gray-300 hover:bg-gray-400 hover:text-gray-200;
+  .heading-3-600 {
+    @apply font-semibold text-heading3;
   }
 
-  .filter-title {
-    @apply text-2xl font-semibold text-black mb-4 capitalize;
+  .heading-3-500 {
+    @apply font-medium text-heading3;
   }
 
-  .active-filter-gray-button {
-    @apply bg-black text-gray-50 hover:bg-gray-700 hover:text-gray-100;
+  .heading-4-600 {
+    @apply font-semibold text-heading4;
   }
 
-  .reset-button {
-    @apply bg-indigo-800 text-gray-50 hover:bg-indigo-600 self-center;
+  .heading-4-500 {
+    @apply font-medium text-heading4;
+  }
+
+  .heading-5-600 {
+    @apply font-semibold text-heading5;
+  }
+
+  .heading-5-500 {
+    @apply font-medium text-heading5;
+  }
+
+  .heading-6-600 {
+    @apply font-semibold text-heading6;
+  }
+
+  .heading-6-500 {
+    @apply font-medium text-heading6;
+  }
+
+  .heading-7-600 {
+    @apply font-semibold text-heading7;
+  }
+
+  .heading-7-500 {
+    @apply font-medium text-heading7;
+  }
+
+  .body-1-400 {
+    @apply font-normal text-body1;
+  }
+
+  .body-1-600 {
+    @apply font-bold text-body1;
+  }
+
+  .body-2-400 {
+    @apply font-normal text-body2;
+  }
+
+  .body-2-500 {
+    @apply font-medium text-body2;
+  }
+
+  .btn-big-text {
+    @apply font-semibold text-btnBig;
+  }
+
+  .btn-medium-text {
+    @apply font-semibold text-btnMedium;
+  }
+
+  .input-place-text {
+    @apply font-normal text-inputPlace;
+  }
+
+  .input-label-text {
+    @apply font-normal text-inputLabel;
+  }
+}
+
+/* BUTTONS */
+@layer components {
+  .btn-big {
+    @apply px-7 py-4 rounded font-inter btn-big-text;
+  }
+
+  .btn-big:disabled {
+    @apply bg-grey-5 text-grey-whiteFixed;
+  }
+
+  .btn-medium {
+    @apply px-5 py-3 rounded font-inter btn-medium-text;
+  }
+
+  .btn-grey1 {
+    @apply bg-grey-0 text-grey-whiteFixed;
+  }
+
+  .btn-grey1:hover {
+    @apply bg-grey-1;
+  }
+
+  .btn-negative {
+    @apply bg-grey-6 text-grey-2;
+  }
+
+  .btn-negative:hover {
+    @apply bg-grey-5;
+  }
+
+  .btn-brand1 {
+    @apply bg-brand-1 text-grey-whiteFixed;
+  }
+
+  .btn-brand1:hover {
+    @apply bg-brand-2;
+  }
+
+  .btn-brand1:disabled {
+    @apply bg-brand-3 text-brand-4;
+  }
+
+  .btn-brand-opacity {
+    @apply bg-brand-4 text-brand-1;
+  }
+
+  .btn-brand-light {
+    @apply bg-grey-10 text-grey-1;
+  }
+
+  .btn-brand-outline-light {
+    @apply border-2 border-grey-10 text-grey-10;
+  }
+
+  .btn-brand-outline-light:hover {
+    @apply bg-grey-10 text-grey-1;
+  }
+
+  .btn-brand-outline1 {
+    @apply border-2 border-grey-0 text-grey-0;
+  }
+
+  .btn-brand-outline1:hover {
+    @apply bg-grey-1 text-grey-10;
+  }
+
+  /* FIGMA SEEMS OFF ON THIS BUTTON
+    SWITCHING TO HOVER FOR OUTLINE1 */
+  /* .btn-big45 {
+        @apply bg-grey-1 text-grey-10
+    } */
+
+  .btn-brand-outline2 {
+    @apply border-2 border-grey-4 text-grey-0;
+  }
+
+  .btn-brand-outline2:hover {
+    @apply border-grey-1 bg-grey-1 text-grey-10;
+  }
+
+  .btn-brand-outline-brand1 {
+    @apply border-2 border-brand-1 text-brand-1;
+  }
+
+  .btn-brand-outline-brand1:hover {
+    @apply bg-brand-4;
+  }
+
+  .btn-link {
+    @apply text-grey-0 rounded-lg;
+  }
+
+  .btn-link:hover {
+    @apply text-grey-8;
+  }
+
+  .btn-alert {
+    @apply bg-alert-3 text-alert-1;
+  }
+
+  .btn-alert:hover {
+    @apply bg-alert-2;
+  }
+
+  .btn-success {
+    @apply bg-success-3 text-success-1;
+  }
+
+  .btn-success:hover {
+    @apply bg-success-2;
   }
 }
