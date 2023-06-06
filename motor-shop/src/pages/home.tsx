@@ -1,7 +1,10 @@
+import { Header } from "@/components/header/header"
+
 export default function HomePage () {
     return (
         <>
-            <header>The hader div</header>
+            <Header/>
+            {/* <header>The hader div</header> */}
             <main>
                 <header>A big image</header>
                 <main>
