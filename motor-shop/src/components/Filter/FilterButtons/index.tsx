@@ -17,7 +17,7 @@ export const FilterButtons = ({
   const [active, setActive] = useState("");
   return (
     <section className="filter-section flex flex-col">
-      <h2 className="filter-title">{title}</h2>
+      <h2 className="heading-4-600">{title}</h2>
       <section className="buttons flex justify-center items-center gap-5">
         <button
           className={`filter-gray-button large-button ${
