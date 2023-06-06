@@ -1,11 +1,19 @@
-export default function HomePage () {
+import CardCar from "@/components/cardCar";
+import { carsListMock } from "@/mocks/carList.mock";
+import { TCar } from "@/schemas/car.schema";
+
+export default function HomePage() {
     return (
         <>
             <header>The hader div</header>
             <main>
                 <header>A big image</header>
                 <main>
-                    <ul>The car list</ul>
+                    <ul className="flex gap-3 overflow-x-auto">
+                        {carsListMock.map((car: TCar) => (
+                            <CardCar key={car.id} car={car} />
+                        ))}
+                    </ul>
                     <aside>The aside div with the filters </aside>
                 </main>
                 <footer>The page navigator</footer>
