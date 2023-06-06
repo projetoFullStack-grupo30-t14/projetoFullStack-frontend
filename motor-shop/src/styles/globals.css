@@ -2,35 +2,104 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  box-sizing: border-box;
-  font-size: 100%;
-  vertical-align: baseline;
-  font-family: "Inter", sans-serif;
-  list-style: none;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lexend:wght@500;600;700&display=swap');
+
+
+@layer components {
+    /* FONT SIZING, STYLES AND FAMILY */
+
+    .heading-1-700 {
+        @apply font-bold text-heading1
+    }
+
+    .heading-2-600 {
+        @apply font-semibold text-heading2
+    }
+
+    .heading-3-600 {
+        @apply font-semibold text-heading3
+    }
+
+    .heading-3-500 {
+        @apply font-medium text-heading3
+    }
+
+    .heading-4-600 {
+        @apply font-semibold text-heading4
+    }
+
+    .heading-4-500 {
+        @apply font-medium text-heading4
+    }
+
+    .heading-5-600 {
+        @apply font-semibold text-heading5
+    }
+
+    .heading-5-500 {
+        @apply font-medium text-heading5
+    }
+
+    .heading-6-600 {
+        @apply font-semibold text-heading6
+    }
+
+    .heading-6-500 {
+        @apply font-medium text-heading6
+    }
+
+    .heading-7-600 {
+        @apply font-semibold text-heading7
+    }
+
+    .heading-7-500 {
+        @apply font-medium text-heading7
+    }
+
+    .body-1-400 {
+        @apply font-normal text-body1
+    }
+    
+    .body-1-600 {
+        @apply font-bold text-body1
+    }
+
+    .body-2-400 {
+        @apply font-normal text-body2
+    }
+
+    .body-2-500 {
+        @apply font-medium text-body2
+    }
+
+    .btn-big-text {
+        @apply font-semibold text-btnBig
+    }
+
+    .btn-Medium-text {
+        @apply font-semibold text-btnMedium
+    }
+
+    .input-place-text {
+        @apply font-normal text-inputPlace
+    }
+
+    .input-label-text {
+        @apply font-normal text-inputLabel
+    }
 }
 
-button{
-  cursor:pointer;
-} 
+@layer components {
+    /* BUTTONS */
+    .btn-big {
+        @apply px-7 py-3 font-inter text-btnBig
+    }
 
-button:disabled{
-  cursor: not-allowed;
-}
+    .btn-medium {
+        @apply px-5 py-3 font-inter text-btnMedium 
+    }
 
-input:focus{
-  outline:none;
-  border:none;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-:root {
-
+    .btn-grey1 {
+        @apply bg-grey-0 rounded text-grey-whiteFixed
+    }
 }
