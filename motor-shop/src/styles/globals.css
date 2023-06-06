@@ -5,8 +5,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lexend:wght@500;600;700&display=swap');
 
 
+/* FONT SIZING, STYLES AND FAMILY */
 @layer components {
-    /* FONT SIZING, STYLES AND FAMILY */
 
     .heading-1-700 {
         @apply font-bold text-heading1
@@ -76,7 +76,7 @@
         @apply font-semibold text-btnBig
     }
 
-    .btn-Medium-text {
+    .btn-medium-text {
         @apply font-semibold text-btnMedium
     }
 
@@ -89,17 +89,115 @@
     }
 }
 
+/* BUTTONS */
 @layer components {
-    /* BUTTONS */
     .btn-big {
-        @apply px-7 py-3 font-inter text-btnBig
+        @apply px-7 py-4 rounded font-inter btn-big-text
+    }
+
+    .btn-big:disabled {
+        @apply bg-grey-5 text-grey-whiteFixed
     }
 
     .btn-medium {
-        @apply px-5 py-3 font-inter text-btnMedium 
+        @apply px-5 py-3 rounded font-inter btn-medium-text
     }
 
     .btn-grey1 {
-        @apply bg-grey-0 rounded text-grey-whiteFixed
+        @apply bg-grey-0 text-grey-whiteFixed
+    }
+
+    .btn-grey1:hover {
+        @apply bg-grey-1
+    }
+
+    .btn-negative {
+        @apply bg-grey-6 text-grey-2
+    }
+
+    .btn-negative:hover {
+        @apply bg-grey-5
+    }
+
+    .btn-brand1 {
+        @apply bg-brand-1 text-grey-whiteFixed
+    }
+
+    .btn-brand1:hover {
+        @apply bg-brand-2
+    }
+
+    .btn-brand1:disabled {
+        @apply bg-brand-3 text-brand-4
+    }
+
+    .btn-brand-opacity {
+        @apply bg-brand-4 text-brand-1
+    }
+
+    .btn-brand-light {
+        @apply bg-grey-10 text-grey-1
+    }
+
+    .btn-brand-outline-light {
+        @apply border-2 border-grey-10 text-grey-10
+    }
+
+    .btn-brand-outline-light:hover {
+        @apply bg-grey-10 text-grey-1
+    }
+
+    .btn-brand-outline1 {
+        @apply border-2 border-grey-0 text-grey-0
+    }
+
+    .btn-brand-outline1:hover {
+        @apply bg-grey-1 text-grey-10
+    }
+
+    /* FIGMA SEEMS OFF ON THIS BUTTON
+    SWITCHING TO HOVER FOR OUTLINE1 */
+    /* .btn-big45 {
+        @apply bg-grey-1 text-grey-10
+    } */
+
+    .btn-brand-outline2 {
+        @apply border-2 border-grey-4 text-grey-0
+    }
+
+    .btn-brand-outline2:hover {
+        @apply border-grey-1 bg-grey-1 text-grey-10
+    }
+
+    .btn-brand-outline-brand1 {
+        @apply border-2 border-brand-1 text-brand-1
+    }
+
+    .btn-brand-outline-brand1:hover {
+        @apply bg-brand-4
+    }
+
+    .btn-link {
+        @apply text-grey-0 rounded-lg
+    }
+
+    .btn-link:hover {
+        @apply text-grey-8
+    }
+
+    .btn-alert {
+        @apply bg-alert-3 text-alert-1
+    }
+
+    .btn-alert:hover {
+        @apply bg-alert-2
+    }
+
+    .btn-success {
+        @apply bg-success-3 text-success-1
+    }
+
+    .btn-success:hover {
+        @apply bg-success-2
     }
 }
