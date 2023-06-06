@@ -1,6 +1,5 @@
+import { Filter } from "@/components/Filter";
 import { Header } from "@/components/header/header";
-
-import { FilterBox } from "@/components/Filter";
 
 export default function HomePage() {
   return (
@@ -12,7 +11,7 @@ export default function HomePage() {
         <main>
           <ul>The car list</ul>
           <aside>
-            <FilterBox />
+            <Filter />
           </aside>
         </main>
         <footer>The page navigator</footer>

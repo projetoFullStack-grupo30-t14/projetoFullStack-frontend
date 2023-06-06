@@ -1,88 +1,33 @@
-import { useEffect, useState } from "react";
-import { FilterInputs } from "./FilterInputs";
-import { FilterSection } from "./FilterSection";
-import { values } from "./mock";
+import { useState } from "react";
+import { FilterBox } from "./FilterBox";
 
-export const FilterBox = () => {
-  const [resetOn, setResetOn] = useState(false);
-  const [showButton, setShowButton] = useState(false);
-  const [searchParams, setSearchParams] = useState("?");
-  const { year, brand, color, model } = values;
-  const fuel = ["flex", "hybrid", "electric"];
+export const Filter = () => {
+  const [show, setShow] = useState(false);
 
-  useEffect(() => {
-    console.log(searchParams);
-  }, [searchParams]);
   return (
-    <section className="max-w-xs flex flex-col" key={`${resetOn}`}>
-      <form>
-        <FilterSection
-          setReset={setShowButton}
-          searchParams={searchParams}
-          setSearchParams={setSearchParams}
-          title="Marca"
-          values={brand}
-          searchKey={`brand`}
-        />
-        <FilterSection
-          setReset={setShowButton}
-          searchParams={searchParams}
-          setSearchParams={setSearchParams}
-          title="Modelo"
-          values={model}
-          searchKey={`model`}
-        />
-        <FilterSection
-          setReset={setShowButton}
-          searchParams={searchParams}
-          setSearchParams={setSearchParams}
-          title="Cor"
-          values={color}
-          searchKey={`color`}
-        />
-        <FilterSection
-          setReset={setShowButton}
-          searchParams={searchParams}
-          setSearchParams={setSearchParams}
-          title="Ano"
-          values={year}
-          searchKey={`year`}
-        />
-        <FilterSection
-          setReset={setShowButton}
-          searchParams={searchParams}
-          setSearchParams={setSearchParams}
-          title="Combustível"
-          values={fuel}
-          searchKey={`fuel`}
-        />
-        <FilterInputs
-          setReset={setShowButton}
-          searchParams={searchParams}
-          setSearchParams={setSearchParams}
-          title="km"
-          select="mileage"
-        />
-        <FilterInputs
-          setReset={setShowButton}
-          searchParams={searchParams}
-          setSearchParams={setSearchParams}
-          title="Preço"
-          select="price"
-        />
-      </form>
-      {showButton && (
-        <button
-          onClick={() => {
-            setResetOn(!resetOn);
-            setShowButton(false);
-            setSearchParams("?");
-          }}
-          className="reset-button large-button "
-        >
-          Limpar Filtros
-        </button>
-      )}
+    <section
+      className={`flex max-w-screen bg-grey-whiteFixed ${
+        show
+          ? "flex-col-reverse absolute z-10 top-1/2 left-1/2 translate-y-[-50%] translate-x-[-50%] w-screen h-4/5"
+          : "flex-col"
+      } justify-center items-center md:max-w-xs lg:max-w-xs lg:static`}
+    >
+      <button
+        className={`md:hidden lg:hidden btn-brand1 btn-big ${
+          show ? "absolute bottom-0" : ""
+        }`}
+        onClick={() => {
+          setShow(!show);
+        }}
+      >
+        {show ? "Ver anúncios" : "Filtros"}
+      </button>
+      <FilterBox
+        className={`${
+          show ? "h-5/6" : "hidden"
+        } md:block lg:block max-w-md min-w-[300px]`}
+        setShow={setShow}
+      />
     </section>
   );
 };
