@@ -78,7 +78,7 @@ export const FilterBox = () => {
             setShowButton(false);
             setSearchParams("?");
           }}
-          className="big-brand1 btn-big"
+          className="btn-brand1 btn-big"
         >
           Limpar Filtros
         </button>

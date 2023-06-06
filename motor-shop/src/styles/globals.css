@@ -199,3 +199,9 @@
     @apply bg-success-2;
   }
 }
+
+@layer components {
+  .filter-section {
+    @apply mx-4 mb-8;
+  }
+}
