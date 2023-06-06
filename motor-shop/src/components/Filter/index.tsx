@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { FilterButtons } from "./FilterButtons";
+import { FilterInputs } from "./FilterInputs";
 import { FilterSection } from "./FilterSection";
 import { values } from "./mock";
 
@@ -56,14 +56,14 @@ export const FilterBox = () => {
           values={fuel}
           searchKey={`fuel`}
         />
-        <FilterButtons
+        <FilterInputs
           setReset={setShowButton}
           searchParams={searchParams}
           setSearchParams={setSearchParams}
           title="km"
           select="mileage"
         />
-        <FilterButtons
+        <FilterInputs
           setReset={setShowButton}
           searchParams={searchParams}
           setSearchParams={setSearchParams}
