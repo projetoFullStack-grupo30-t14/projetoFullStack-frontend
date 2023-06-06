@@ -36,7 +36,7 @@ export const FilterSection = ({
           <h6
             id={value.toString()}
             key={value}
-            className="capitalize heading-6-500"
+            className="capitalize heading-6-500 text-grey-6"
             onClick={() => {
               setRender([value]);
               setReset(true);
