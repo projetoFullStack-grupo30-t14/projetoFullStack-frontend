@@ -17,12 +17,13 @@ export const FilterBox = ({ className, setShow }: FilterBoxProps) => {
   useEffect(() => {
     console.log(searchParams);
   }, [searchParams]);
+
   return (
     <section
       className={`sm:max-w-[80%] flex flex-col ${className} absolute top-0 bg-grey-whiteFixed overflow-auto md:contents lg:contents`}
       key={`${resetOn}`}
     >
-      <section className="flex justify-between items-center mb-3 h-8 mt-2 lg:hidden md:hidden">
+      <section className="flex justify-between items-center mb-3 h-8 mt-2 lg:hidden md:hidden w-[95%] self-center">
         <h6 className="heading-7-500 text-grey-1">Filtros</h6>
         <button
           onClick={() => {
