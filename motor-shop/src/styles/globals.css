@@ -38,24 +38,4 @@ a {
   .filter-section {
     @apply mx-4 mb-8;
   }
-
-  .large-button {
-    @apply text-base font-semibold text-gray-400 px-8 py-2 rounded;
-  }
-
-  .filter-gray-button {
-    @apply bg-gray-300 hover:bg-gray-400 hover:text-gray-200;
-  }
-
-  .filter-title {
-    @apply text-2xl font-semibold text-black mb-4 capitalize;
-  }
-
-  .active-filter-gray-button {
-    @apply bg-black text-gray-50 hover:bg-gray-700 hover:text-gray-100;
-  }
-
-  .reset-button {
-    @apply bg-indigo-800 text-gray-50 hover:bg-indigo-600 self-center;
-  }
 }
