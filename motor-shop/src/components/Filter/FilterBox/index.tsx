@@ -1,12 +1,13 @@
-import { useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { FilterButtons } from "../FilterButtons";
 import { FilterSection } from "../FilterSection";
 import { values } from "../mock";
 
 interface FilterBoxProps {
   className: string;
+  setShow: Dispatch<SetStateAction<boolean>>;
 }
-export const FilterBox = ({ className }: FilterBoxProps) => {
+export const FilterBox = ({ className, setShow }: FilterBoxProps) => {
   const [resetOn, setResetOn] = useState(false);
   const [showButton, setShowButton] = useState(false);
   const [searchParams, setSearchParams] = useState("?");
@@ -18,9 +19,20 @@ export const FilterBox = ({ className }: FilterBoxProps) => {
   }, [searchParams]);
   return (
     <section
-      className={`max-w-xs flex flex-col ${className}`}
+      className={`max-w-[80%] flex flex-col ${className} absolute top-0  overflow-auto`}
       key={`${resetOn}`}
     >
+      <section className="flex justify-between items-center mb-3 h-8 mt-2 lg:hidden md:hidden">
+        <h6 className="heading-7-500 text-grey-1">Filtros</h6>
+        <button
+          onClick={() => {
+            setShow(false);
+          }}
+          className="w-6 h-6"
+        >
+          X{/* {<MdClose/>} */}
+        </button>
+      </section>
       <form>
         <FilterSection
           setReset={setShowButton}
@@ -84,7 +96,7 @@ export const FilterBox = ({ className }: FilterBoxProps) => {
             setShowButton(false);
             setSearchParams("?");
           }}
-          className="btn-brand1 btn-big"
+          className="btn-brand1 btn-big w-4/5 self-center"
         >
           Limpar Filtros
         </button>
