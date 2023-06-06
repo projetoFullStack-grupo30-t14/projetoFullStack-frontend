@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { FilterButtons } from "../FilterButtons";
 import { FilterSection } from "../FilterSection";
 import { values } from "../mock";
+import { FilterInputs } from "../FilterInputs";
 
 interface FilterBoxProps {
   className: string;
@@ -75,14 +75,14 @@ export const FilterBox = ({ className, setShow }: FilterBoxProps) => {
           values={fuel}
           searchKey={`fuel`}
         />
-        <FilterButtons
+        <FilterInputs
           setReset={setShowButton}
           searchParams={searchParams}
           setSearchParams={setSearchParams}
           title="Km"
           select="mileage"
         />
-        <FilterButtons
+        <FilterInputs
           setReset={setShowButton}
           searchParams={searchParams}
           setSearchParams={setSearchParams}
