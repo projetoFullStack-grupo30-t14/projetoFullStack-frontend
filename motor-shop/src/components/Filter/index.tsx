@@ -8,9 +8,9 @@ export const Filter = () => {
     <section
       className={`flex max-w-screen bg-grey-whiteFixed ${
         show
-          ? "flex-col-reverse sm:absolute z-10 top-1/2 left-1/2 translate-y-[-50%] translate-x-[-50%] w-screen h-4/5"
+          ? "flex-col-reverse absolute z-10 top-1/2 left-1/2 translate-y-[-50%] translate-x-[-50%] w-screen h-4/5"
           : "flex-col"
-      } justify-center items-center`}
+      } justify-center items-center md:max-w-xs lg:max-w-xs lg:static`}
     >
       <button
         className={`md:hidden lg:hidden btn-brand1 btn-big ${
