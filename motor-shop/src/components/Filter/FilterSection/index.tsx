@@ -22,7 +22,7 @@ export const FilterSection = ({
 
   return (
     <section className="filter-section">
-      <h2 className="filter-title">{title}</h2>
+      <h4 className="heading-4-600">{title}</h4>
       {render.map((value: string | number) => {
         switch (value) {
           case "electric":
@@ -33,10 +33,10 @@ export const FilterSection = ({
             break;
         }
         return (
-          <h3
+          <h6
             id={value.toString()}
             key={value}
-            className="capitalize text-gray-500 font-medium"
+            className="capitalize heading-6-500"
             onClick={() => {
               setRender([value]);
               setReset(true);
@@ -47,7 +47,7 @@ export const FilterSection = ({
             }}
           >
             {translated ? translated : value}
-          </h3>
+          </h6>
         );
       })}
     </section>
