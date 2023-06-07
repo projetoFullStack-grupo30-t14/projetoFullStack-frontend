@@ -102,7 +102,7 @@
 
     .btn-small {
         @apply px-2 py-1 rounded w-max body-2-500 
-
+    }
 
     .btn-grey1 {
         @apply bg-grey-0 text-grey-whiteFixed w-max body-1-600 
