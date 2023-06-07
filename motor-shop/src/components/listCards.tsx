@@ -6,7 +6,9 @@ const ListCards = () => {
     return (
         <ul className="flex gap-3 ml-6 overflow-x-auto sm:flex-row md:flex-wrap lg:flex-wrap">
             {carsListMock.map((car: TCar) => (
-                <CardCar key={car.id} car={car} />
+                <div>
+                    <CardCar car={car} key={car.id}/>
+                </div>
             ))}
         </ul>
     )
