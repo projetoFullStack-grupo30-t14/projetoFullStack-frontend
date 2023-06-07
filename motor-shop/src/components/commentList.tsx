@@ -49,7 +49,7 @@ export const CommentList = () => {
   return (
     <div className="py-9 px-11 rounded-s">
       <h2 className="heading-6-600 mb-5">Comentários</h2>
-      <ul className="flex flex-col gap-5 max-h-[400px] overflow-y-auto mr-[-18px]">
+      <ul className="comment-list flex flex-col gap-5 max-h-[400px] overflow-y-auto mr-[-10px]">
         {mock && mock.length > 0 ? (
           mock.map((comment) => (
             <li>
