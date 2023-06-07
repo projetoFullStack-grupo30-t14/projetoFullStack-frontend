@@ -1,15 +1,44 @@
+import { useEffect, useState } from "react"
+
 export function Header () {
+    const [isOpen, setIsOpen] = useState(false)
+    function toggleMenu () {
+        setIsOpen(!isOpen)
+    }
+
+    useEffect(() => {
+        function closeMenuEvent (e: any) {
+            if (e.key === "Esc" || e.key === "Escape") {
+                setIsOpen(false)
+            }
+        }
+        window.addEventListener("keydown", closeMenuEvent)
+    }, [])
+    
     return (
-        <header className="my-10 font-inter body-1-400 justify-between w-full">
-            <div>Aqui fica a logo</div>
-            <div>Aqui fica o menu</div>
-            <input type="text" name="text" id="text" placeholder="this is a text"/>
-            <select name="select" id="select">
-                <option value="1">Uma opção qualquer</option>
-                <option value="2">Uma opção qualquer</option>
-            </select>
-            <button className="btn-big btn-success">Um botão</button>
-            <button className="btn-medium btn-grey1">Um botão</button>
-        </header>
+        <>
+            <header className="px-14 h-20 bg-grey-10 border-b-2 border-grey-6 flex justify-between items-center">
+                <figure>
+                    <img src="/Logo.png" alt="website logo" />
+                </figure>
+                <div className="relative" onClick={toggleMenu}>
+                    <figure className="relative z-10 cursor-pointer">
+                        <img src="/Hamburger_menu.png" alt="" />
+                    </figure>
+                </div>
+            </header>
+            {
+                isOpen &&
+                <>
+                    <button tabIndex={-1} onClick={() => setIsOpen(false)} className="fixed inset-0 h-full w-full cursor-default"></button>
+                    <div className="right-0 bg-grey-10 shadow-xl flex flex-col w-full">
+                        <a href="#" className="hover:bg-grey-0 hover:text-grey-10 py-4 pl-3 pr-5 ">Fazer login</a>
+                        <div className="pl-3 pr-5 pb-8 pt-4">
+                            <button className="btn-big btn-outline2">Cadastrar</button>
+                        </div>
+                    </div>
+                </>
+            }
+        </>
     )
 }

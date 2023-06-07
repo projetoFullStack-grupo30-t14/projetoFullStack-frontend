@@ -7,7 +7,9 @@ export default function HomePage () {
             <Header/>
             {/* <header>The hader div</header> */}
             <main>
-                <header>A big image</header>
+                <figure className="mb-12">
+                    <img src="/Home_top_image.png" alt="" />
+                </figure>
                 <main>
                     <ListCards/>
                     <aside>The aside div with the filters </aside>

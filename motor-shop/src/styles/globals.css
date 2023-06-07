@@ -145,13 +145,13 @@
     @apply bg-grey-10 text-grey-1;
   }
 
-  .btn-brand-outline1 {
-    @apply border-2 border-grey-0 text-grey-0;
-  }
+    .btn-outline1 {
+        @apply border-2 border-grey-0 text-grey-0
+    }
 
-  .btn-brand-outline1:hover {
-    @apply bg-grey-1 text-grey-10;
-  }
+    .btn-outline1:hover {
+        @apply bg-grey-1 text-grey-10
+    }
 
   /* FIGMA SEEMS OFF ON THIS BUTTON
     SWITCHING TO HOVER FOR OUTLINE1 */
@@ -159,13 +159,13 @@
         @apply bg-grey-1 text-grey-10
     } */
 
-  .btn-brand-outline2 {
-    @apply border-2 border-grey-4 text-grey-0;
-  }
+    .btn-outline2 {
+        @apply border-2 border-grey-4 text-grey-0
+    }
 
-  .btn-brand-outline2:hover {
-    @apply border-grey-1 bg-grey-1 text-grey-10;
-  }
+    .btn-outline2:hover {
+        @apply border-grey-1 bg-grey-1 text-grey-10
+    }
 
   .btn-brand-outline-brand1 {
     @apply border-2 border-brand-1 text-brand-1;
