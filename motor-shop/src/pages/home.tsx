@@ -1,5 +1,6 @@
 import { Filter } from "@/components/Filter";
 import { Header } from "@/components/header/header";
+import ListCards from "@/components/listCards";
 
 export default function HomePage() {
   return (
@@ -9,7 +10,7 @@ export default function HomePage() {
       <main>
         <header>A big image</header>
         <main>
-          <ul>The car list</ul>
+          <ListCards />
           <aside>
             <Filter />
           </aside>

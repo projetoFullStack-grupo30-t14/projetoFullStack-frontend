@@ -79,26 +79,22 @@
   }
 
   .input-place-text {
-    @apply font-normal text-inputPlace;
+    @apply font-normal text-inputPlace text-grey-3;
   }
 
   .input-label-text {
-    @apply font-normal text-inputLabel;
+    @apply font-normal text-inputLabel text-grey-1;
   }
 }
 
 /* BUTTONS */
 @layer components {
   .btn-big {
-    @apply px-7 py-4 rounded font-inter btn-big-text;
-  }
-
-  .btn-big:disabled {
-    @apply bg-grey-5 text-grey-whiteFixed;
+    @apply px-7 h-12 rounded font-inter btn-big-text;
   }
 
   .btn-medium {
-    @apply px-5 py-3 rounded font-inter btn-medium-text;
+    @apply px-5 h-9 rounded font-inter btn-medium-text;
   }
 
   .btn-grey1 {
@@ -198,48 +194,43 @@
   .btn-success:hover {
     @apply bg-success-2;
   }
+
+  .btn-big:disabled {
+    @apply bg-grey-5 text-grey-whiteFixed;
+  }
+
+  .btn-medium:disabled {
+    @apply bg-grey-5 text-grey-whiteFixed;
+  }
 }
 
+/* INPUTS */
 @layer components {
-  .filter-section {
-    @apply mx-4 mb-8 w-72;
+  .label {
+    @apply font-inter input-label-text;
   }
 
-  .filter-input {
-    @apply bg-grey-5 placeholder:heading-7-600 max-w-[44%] px-8 py-2;
-  }
-}
-
-@layer base {
-  input[type="number"]::-webkit-inner-spin-button,
-  input[type="number"]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-}
-
-@layer utilities {
-  .scrollbar {
-    scroll-behavior: smooth;
+  input {
+    @apply border-2 rounded border-grey-7 outline-none pl-4 h-12;
   }
 
-  .scrollbar::-webkit-scrollbar {
-    width: 0.5rem;
-    height: 0.5rem;
+  input::placeholder {
+    @apply input-place-text;
   }
 
-  .scrollbar::-webkit-scrollbar-track {
-    border-radius: 100vh;
-    @apply bg-grey-whiteFixed;
+  input:focus {
+    @apply outline-none border-brand-1;
   }
 
-  .scrollbar::-webkit-scrollbar-thumb {
-    @apply bg-brand-1;
-    border-radius: 100vh;
-    border: 3px solid #fff;
+  input:disabled {
+    @apply outline-none bg-grey-8 border-grey-7;
   }
 
-  .scrollbar::-webkit-scrollbar-thumb:hover {
-    @apply bg-brand-3;
+  select {
+    @apply rounded border-2 border-grey-7 px-4 h-12 input-place-text bg-grey-whiteFixed;
+  }
+
+  select:focus {
+    @apply bg-grey-9;
   }
 }
