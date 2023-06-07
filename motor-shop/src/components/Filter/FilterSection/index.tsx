@@ -22,7 +22,7 @@ export const FilterSection = ({
 
   return (
     <section className="filter-section">
-      <h4 className="heading-4-600">{title}</h4>
+      <h4 className="heading-4-600 mb-4">{title}</h4>
       <section className="overflow-auto max-h-[7.75rem] min-h-[3rem] scroll-smooth scrollbar">
         {render.map((value: string | number) => {
           switch (value) {
@@ -37,7 +37,7 @@ export const FilterSection = ({
             <h6
               id={value.toString()}
               key={value}
-              className="capitalize heading-6-500 text-grey-6"
+              className="capitalize heading-6-500 text-grey-6 ml-3"
               onClick={() => {
                 setRender([value]);
                 setReset(true);
