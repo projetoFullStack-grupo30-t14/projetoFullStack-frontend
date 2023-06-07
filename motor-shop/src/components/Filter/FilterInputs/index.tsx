@@ -31,11 +31,13 @@ export const FilterInputs = ({
             setActive("asc");
 
             if (searchParams.includes(`${select}Min`)) {
-              setSearchParams(
-                searchParams
-                  .replace(`${select}Min=`, "")
-                  .concat(`${e.currentTarget.id}=${e.currentTarget.value}&`)
-              );
+              e.currentTarget.value == ""
+                ? setSearchParams(searchParams.replace(`${select}Min=`, ""))
+                : setSearchParams(
+                    searchParams
+                      .replace(`${select}Min=`, "")
+                      .concat(`${e.currentTarget.id}=${e.currentTarget.value}&`)
+                  );
             } else {
               setSearchParams(
                 searchParams.concat(
@@ -57,11 +59,13 @@ export const FilterInputs = ({
             setActive("asc");
 
             if (searchParams.includes(`${select}Max`)) {
-              setSearchParams(
-                searchParams
-                  .replace(`${select}Max=`, "")
-                  .concat(`${e.currentTarget.id}=${e.currentTarget.value}&`)
-              );
+              e.currentTarget.value == ""
+                ? setSearchParams(searchParams.replace(`${select}Max=`, ""))
+                : setSearchParams(
+                    searchParams
+                      .replace(`${select}Max=`, "")
+                      .concat(`${e.currentTarget.id}=${e.currentTarget.value}&`)
+                  );
             } else {
               setSearchParams(
                 searchParams.concat(
