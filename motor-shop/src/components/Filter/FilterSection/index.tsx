@@ -23,33 +23,37 @@ export const FilterSection = ({
   return (
     <section className="filter-section">
       <h4 className="heading-4-600">{title}</h4>
-      {render.map((value: string | number) => {
-        switch (value) {
-          case "electric":
-            translated = "elétrico";
-            break;
-          case "hybrid":
-            translated = "híbrido";
-            break;
-        }
-        return (
-          <h6
-            id={value.toString()}
-            key={value}
-            className="capitalize heading-6-500 text-grey-6"
-            onClick={() => {
-              setRender([value]);
-              setReset(true);
-              if (searchParams.includes(`${searchKey}=${value}&`)) {
-              } else {
-                setSearchParams(searchParams.concat(`${searchKey}=${value}&`));
-              }
-            }}
-          >
-            {translated ? translated : value}
-          </h6>
-        );
-      })}
+      <section className="overflow-auto max-h-[7.75rem] min-h-[3rem] scroll-smooth scrollbar">
+        {render.map((value: string | number) => {
+          switch (value) {
+            case "electric":
+              translated = "elétrico";
+              break;
+            case "hybrid":
+              translated = "híbrido";
+              break;
+          }
+          return (
+            <h6
+              id={value.toString()}
+              key={value}
+              className="capitalize heading-6-500 text-grey-6"
+              onClick={() => {
+                setRender([value]);
+                setReset(true);
+                if (searchParams.includes(`${searchKey}=${value}&`)) {
+                } else {
+                  setSearchParams(
+                    searchParams.concat(`${searchKey}=${value}&`)
+                  );
+                }
+              }}
+            >
+              {translated ? translated : value}
+            </h6>
+          );
+        })}
+      </section>
     </section>
   );
 };

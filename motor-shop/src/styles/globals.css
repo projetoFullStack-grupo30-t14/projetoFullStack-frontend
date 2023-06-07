@@ -217,3 +217,25 @@
     margin: 0;
   }
 }
+
+@layer utilities {
+  .scrollbar::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.5rem;
+  }
+
+  .scrollbar::-webkit-scrollbar-track {
+    border-radius: 100vh;
+    @apply bg-grey-whiteFixed;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-brand-1;
+    border-radius: 100vh;
+    border: 3px solid #fff;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb:hover {
+    @apply bg-brand-3;
+  }
+}
