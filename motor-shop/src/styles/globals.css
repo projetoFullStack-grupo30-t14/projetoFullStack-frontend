@@ -209,3 +209,11 @@
     @apply bg-grey-5 placeholder:heading-7-600 max-w-[44%] px-8 py-2;
   }
 }
+
+@layer base {
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
