@@ -268,14 +268,13 @@
   }
 
   @layer components {
-    /* Firefox */
     .comment-list {
       scrollbar-width: auto;
-      scrollbar-color: #8f54a0 #ffffff;
+      scrollbar-color: #4529e6 #ffffff;
     }
 
     .comment-list::-webkit-scrollbar {
-      @apply w-[10px];
+      width: 10px;
     }
 
     .comment-list::-webkit-scrollbar-track {
