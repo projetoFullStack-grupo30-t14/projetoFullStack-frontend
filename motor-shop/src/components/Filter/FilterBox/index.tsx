@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction, useState } from "react";
 import { FilterSection } from "../FilterSection";
-import { values } from "../mock";
+import { values } from "../../../mocks/filterMock";
 import { FilterInputs } from "../FilterInputs";
 
 interface FilterBoxProps {
