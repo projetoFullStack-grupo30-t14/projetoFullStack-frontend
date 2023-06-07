@@ -234,3 +234,47 @@
     @apply bg-grey-9;
   }
 }
+
+@layer components {
+  .filter-section {
+    @apply mx-4 mb-8 w-72;
+  }
+
+  .filter-input {
+    @apply bg-grey-5 placeholder:heading-7-600 max-w-[44%] px-8 py-2;
+  }
+}
+
+@layer base {
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
+@layer utilities {
+  .scrollbar {
+    scroll-behavior: smooth;
+  }
+
+  .scrollbar::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.5rem;
+  }
+
+  .scrollbar::-webkit-scrollbar-track {
+    border-radius: 100vh;
+    @apply bg-grey-whiteFixed;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-brand-1;
+    border-radius: 100vh;
+    border: 3px solid #fff;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb:hover {
+    @apply bg-brand-3;
+  }
+}
