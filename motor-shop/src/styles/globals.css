@@ -204,4 +204,8 @@
   .filter-section {
     @apply mx-4 mb-8 w-72;
   }
+
+  .filter-input {
+    @apply bg-grey-5 placeholder:heading-7-600 max-w-[44%] px-8 py-2;
+  }
 }

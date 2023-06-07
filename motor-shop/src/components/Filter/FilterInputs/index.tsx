@@ -21,6 +21,7 @@ export const FilterInputs = ({
       <section className="buttons flex justify-center items-center gap-5">
         <input
           type="number"
+          className="filter-input"
           name={`${select}Min`}
           id={`${select}Min`}
           placeholder="Mínimo"
@@ -46,6 +47,7 @@ export const FilterInputs = ({
         />
         <input
           type="number"
+          className="filter-input"
           name={`${select}Max`}
           id={`${select}Max`}
           placeholder="Máximo"
