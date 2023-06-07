@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 export function Header () {
     const [isOpen, setIsOpen] = useState(false)
@@ -6,12 +6,15 @@ export function Header () {
         setIsOpen(!isOpen)
     }
 
-    function closeMenuEvent (e: any) {
-        if (e.key === "Esc" || e.key === "Escape") {
-            setIsOpen(false)
+    useEffect(() => {
+        function closeMenuEvent (e: any) {
+            if (e.key === "Esc" || e.key === "Escape") {
+                setIsOpen(false)
+            }
         }
-    }
-    document.addEventListener("keydown", closeMenuEvent)
+        window.addEventListener("keydown", closeMenuEvent)
+    }, [])
+    
     return (
         <>
             <header className="px-14 h-20 bg-grey-10 border-b-2 border-grey-6 flex justify-between items-center">
