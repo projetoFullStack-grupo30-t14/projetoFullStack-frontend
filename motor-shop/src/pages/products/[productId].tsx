@@ -19,7 +19,7 @@ export default function Products () {
                                 <ProductDetail />
                                 <Aside />
                             </section>
-                            <div className="bg-grey-10">
+                            <div>
                                 <CommentList/>
                                 <NewComment/>
                             </div>
