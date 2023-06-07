@@ -17,7 +17,7 @@ export const FilterInputs = ({
   const [active, setActive] = useState("");
   return (
     <section className="filter-section flex flex-col">
-      <h2 className="filter-title">{title}</h2>
+      <h2 className="heading-4-600 mb-4">{title}</h2>
       <section className="buttons flex justify-center items-center gap-5">
         <input
           type="number"
