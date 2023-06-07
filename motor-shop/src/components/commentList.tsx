@@ -1,12 +1,12 @@
-import dayjs from "dayjs";
-import relativeTime from "dayjs/plugin/relativeTime"
-import customParseFormat from 'dayjs/plugin/customParseFormat'
-import ptBr from 'dayjs/locale/pt-br'
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
+import ptBr from 'dayjs/locale/pt-br';
 
 export const CommentList = () => {
   // dayjs.extend(customParseFormat)
-  dayjs.extend(relativeTime)
-  
+  dayjs.extend(relativeTime);
+
   const mock = [
     {
       avatar: '',
@@ -45,11 +45,10 @@ export const CommentList = () => {
     },
   ];
 
-
   return (
-    <div className="py-9 px-11 rounded-s">
+    <div className="py-9 px-11 rounded-[4px] mb-8 bg-grey-whiteFixed">
       <h2 className="heading-6-600 mb-5">Comentários</h2>
-      <ul className="flex flex-col gap-5 max-h-[400px] overflow-y-auto mr-[-18px]">
+      <ul className="comment-list flex flex-col gap-5 max-h-[400px] overflow-y-auto mr-[-10px]">
         {mock && mock.length > 0 ? (
           mock.map((comment) => (
             <li>

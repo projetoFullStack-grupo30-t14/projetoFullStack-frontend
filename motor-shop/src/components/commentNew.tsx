@@ -5,7 +5,7 @@ export const NewComment = () => {
   const [inputValue, setInputValue] = useState('');
 
   return (
-    <div className="py-9 px-11 bg-slate-100 rounded-s mt-8">
+    <div className="py-9 px-11 bg-slate-100 rounded-[4px] bg-grey-whiteFixed">
       <div className="flex gap-5 items-center mb-4">
         <div className="bg-random-1 w-7 h-7 rounded-full">
           {mock.avatar}

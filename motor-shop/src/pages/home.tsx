@@ -7,16 +7,16 @@ export default function HomePage() {
     <>
       <Header />
       {/* <header>The hader div</header> */}
-      <header>A big image</header>
-      <>
+      <main>
+        <figure className="mb-12">
+          <img src="/Home_top_image.png" alt="" />
+        </figure>
         <main>
           <ListCards />
+          <aside>The aside div with the filters </aside>
         </main>
-        <aside>
-          <Filter />
-        </aside>
         <footer>The page navigator</footer>
-      </>
+      </main>
       <footer>This is the footer div</footer>
     </>
   );
