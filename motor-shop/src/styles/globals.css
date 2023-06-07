@@ -201,3 +201,34 @@
         @apply bg-success-2
     }
 }
+
+@layer components {
+    .custom-scrollbar {
+      scrollbar-width: thin;
+    }
+  
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 4px;
+      height: 5px;
+      background-color: transparent;
+    }
+    @media (max-width: 500px) {
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+            height: 0px;
+            background-color: transparent;
+          }
+    }
+  
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background-color: transparent;
+    }
+  
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background-color: rgba(0, 0, 0, 0.3);
+    }
+  
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+  }
