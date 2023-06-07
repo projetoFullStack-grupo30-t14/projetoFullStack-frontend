@@ -219,6 +219,10 @@
 }
 
 @layer utilities {
+  .scrollbar {
+    scroll-behavior: smooth;
+  }
+
   .scrollbar::-webkit-scrollbar {
     width: 0.5rem;
     height: 0.5rem;
