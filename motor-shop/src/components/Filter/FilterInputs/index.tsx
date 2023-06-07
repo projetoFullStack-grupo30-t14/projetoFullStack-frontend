@@ -1,20 +1,17 @@
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 
 interface FilterButtonProps {
   title: string;
   select: string;
-  setReset: Dispatch<SetStateAction<boolean>>;
   searchParams: string;
   setSearchParams: Dispatch<SetStateAction<string>>;
 }
 export const FilterInputs = ({
   title,
   select,
-  setReset,
   searchParams,
   setSearchParams,
 }: FilterButtonProps) => {
-  const [active, setActive] = useState("");
   return (
     <section className="filter-section flex flex-col">
       <h2 className="heading-4-600 mb-4">{title}</h2>
@@ -26,9 +23,7 @@ export const FilterInputs = ({
           id={`${select}Min`}
           placeholder="Mínimo"
           onInput={(e) => {
-            setReset(true);
             e.preventDefault();
-            setActive("asc");
 
             if (searchParams.includes(`${select}Min`)) {
               e.currentTarget.value == ""
@@ -54,9 +49,7 @@ export const FilterInputs = ({
           id={`${select}Max`}
           placeholder="Máximo"
           onInput={(e) => {
-            setReset(true);
             e.preventDefault();
-            setActive("asc");
 
             if (searchParams.includes(`${select}Max`)) {
               e.currentTarget.value == ""

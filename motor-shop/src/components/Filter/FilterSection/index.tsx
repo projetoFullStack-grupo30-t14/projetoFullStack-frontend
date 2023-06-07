@@ -3,7 +3,6 @@ import { Dispatch, SetStateAction, useState } from "react";
 interface FilterSectionProps {
   title: string;
   values: Array<string | number>;
-  setReset: Dispatch<SetStateAction<boolean>>;
   searchKey: string;
   searchParams: string;
   setSearchParams: Dispatch<SetStateAction<string>>;
@@ -12,7 +11,6 @@ interface FilterSectionProps {
 export const FilterSection = ({
   title,
   values,
-  setReset,
   searchKey,
   searchParams,
   setSearchParams,
@@ -40,7 +38,6 @@ export const FilterSection = ({
               className="capitalize heading-6-500 text-grey-6 ml-3"
               onClick={() => {
                 setRender([value]);
-                setReset(true);
                 if (searchParams.includes(`${searchKey}=${value}&`)) {
                 } else {
                   setSearchParams(
