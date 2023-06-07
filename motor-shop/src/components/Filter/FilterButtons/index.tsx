@@ -17,10 +17,10 @@ export const FilterButtons = ({
   const [active, setActive] = useState("");
   return (
     <section className="filter-section flex flex-col">
-      <h2 className="heading-4-600">{title}</h2>
+      <h2 className="heading-4-600 mb-4">{title}</h2>
       <section className="buttons flex justify-center items-center gap-5">
         <button
-          className={`filter-gray-button large-button ${
+          className={`filter-gray-button btn-big btn-negative ${
             active == "asc" ? "active-filter-gray-button" : ""
           }`}
           value={`${select}By=asc`}
@@ -43,7 +43,7 @@ export const FilterButtons = ({
           Mínimo
         </button>
         <button
-          className={`filter-gray-button large-button ${
+          className={`filter-gray-button btn-big btn-negative ${
             active == "desc" ? "active-filter-gray-button" : ""
           }`}
           value={`${select}By=desc`}
