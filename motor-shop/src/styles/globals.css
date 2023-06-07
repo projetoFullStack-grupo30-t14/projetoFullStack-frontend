@@ -41,7 +41,7 @@
     }
 
     .heading-6-600 {
-        @apply font-semibold text-heading6
+        @apply font-semibold text-heading6 
     }
 
     .heading-6-500 {
@@ -93,14 +93,19 @@
 @layer components {
     .btn-big {
         @apply px-7 h-12 rounded font-inter btn-big-text
+
     }
 
     .btn-medium {
-        @apply px-5 h-9 rounded font-inter btn-medium-text
+        @apply px-5 py-2 rounded btn-medium-text w-max 
     }
 
+    .btn-small {
+        @apply px-2 py-1 rounded w-max body-2-500 
+
+
     .btn-grey1 {
-        @apply bg-grey-0 text-grey-whiteFixed
+        @apply bg-grey-0 text-grey-whiteFixed w-max body-1-600 
     }
 
     .btn-grey1:hover {
@@ -116,7 +121,7 @@
     }
 
     .btn-brand1 {
-        @apply bg-brand-1 text-grey-whiteFixed
+        @apply bg-brand-1 text-grey-whiteFixed body-1-600 
     }
 
     .btn-brand1:hover {
@@ -235,9 +240,7 @@
     select:focus {
         @apply bg-grey-9
     }
-}
 
-@layer components {
     .custom-scrollbar {
       scrollbar-width: thin;
     }
@@ -267,3 +270,4 @@
       background-color: rgba(0, 0, 0, 0.5);
     }
   }
+
