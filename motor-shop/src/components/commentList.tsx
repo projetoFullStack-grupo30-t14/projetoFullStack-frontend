@@ -1,37 +1,45 @@
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime"
+import customParseFormat from 'dayjs/plugin/customParseFormat'
+import ptBr from 'dayjs/locale/pt-br'
+
 export const CommentList = () => {
+  // dayjs.extend(customParseFormat)
+  dayjs.extend(relativeTime)
+  
   const mock = [
     {
       avatar: '',
       name: 'Julia Lima',
-      date: '21/04/2023',
+      date: '2023-06-06 14:03:12.983433',
       commentary:
         'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
     },
     {
       avatar: '',
       name: 'Marcos Antônio',
-      date: '04/05/2023',
+      date: '06-06-2023',
       commentary:
         'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
     },
     {
       avatar: '',
       name: 'Camila Silva',
-      date: '01/05/2023',
+      date: '01-05-2023',
       commentary:
         'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
     },
     {
       avatar: '',
       name: 'Marcos Antônio',
-      date: '04/05/2023',
+      date: '05-01-2023',
       commentary:
         'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
     },
     {
       avatar: '',
       name: 'Camila Silva',
-      date: '01/05/2023',
+      date: '01-05-2023',
       commentary:
         'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
     },
@@ -52,7 +60,7 @@ export const CommentList = () => {
                 <p className="body-2-500">{comment.name}</p>
                 <p className="text-grey-4">•</p>
                 <p className="text-grey-3 body-2-400">
-                  {comment.date}
+                  {dayjs(comment.date).locale(ptBr).fromNow()}
                 </p>
               </div>
               <p className="text-grey-2 body-2-400 text-justify mt-4 mr-2">
