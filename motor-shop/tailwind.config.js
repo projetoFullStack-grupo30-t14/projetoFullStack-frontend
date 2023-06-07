@@ -57,7 +57,7 @@ module.exports = {
       heading3: ["32px", "40px"],
       heading4: ["28px", "35px"],
       heading5: ["24px", "30px"],
-      heading6: ["20x", "25px"],
+      heading6: ["20px", "25px"],
       heading7: ["16px", "20px"],
       body1: ["16px", "28px"],
       body2: ["14px", "24px"],
