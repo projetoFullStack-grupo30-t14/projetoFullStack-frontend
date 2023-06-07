@@ -1,5 +1,8 @@
+import Aside from "@/components/aside";
 import { CommentList } from "@/components/commentList";
 import { NewComment } from "@/components/commentNew";
+import { Header } from "@/components/header/header";
+import ProductDetail from "@/components/productDetail";
 import { useRouter } from "next/router";
 
 export default function Products () {
@@ -10,20 +13,14 @@ export default function Products () {
         <>
             {/* Top Background = Blue
             Bottom background = Grey? */}
-            <header>Same as homepage</header>
+            <header>header</header>
             <main>
-                <div>Main car picture</div>
-                <div>Car info card</div>
-                <div>Car description card</div>
+                <section className="md:flex md:justify-between">
+                    <ProductDetail />
+                    <Aside />
+                </section>
                 <CommentList/>
                 <NewComment/>
-                <aside>
-                    <div>Additional car pictures</div>
-                    <div>
-                        <div>Announcer info</div>
-                        <button>All announcer's products</button>
-                    </div>
-                </aside>
             </main>
             <footer>Same as homepage</footer>
         </>
