@@ -11,12 +11,17 @@ export default function HomePage() {
         <figure className="mb-12">
           <img src="/Home_top_image.png" alt="" />
         </figure>
-        <main>
-          <ListCards />
+        <section
+          // style={{ backgroundColor: "red" }}
+          className="lg:flex md:flex flex-row-reverse lg:gap-x-12"
+        >
+          <main className="">
+            <ListCards />
+          </main>
           <aside>
             <Filter />
           </aside>
-        </main>
+        </section>
         <footer>The page navigator</footer>
       </>
       <footer>This is the footer div</footer>
