@@ -25,6 +25,8 @@ module.exports = {
         9: "#F8F9FA",
         10: "#FDFDFD",
         whiteFixed: "#FFFFFF",
+        black29: "rgb(0, 0, 0, 0.29)",
+        black100: "#000",
       },
       alert: {
         1: "#CD2B31",
