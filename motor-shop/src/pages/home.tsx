@@ -13,7 +13,7 @@ export default function HomePage() {
         </figure>
         <section
           // style={{ backgroundColor: "red" }}
-          className="flex flex-col gap-8 md:flex-row-reverse lg:flex-row-reverse lg:gap-x-12"
+          className="flex flex-col gap-y-8 md:flex-row-reverse lg:flex-row-reverse md:gap-x-4 lg:gap-x-8"
         >
           <main>
             <ListCards />
