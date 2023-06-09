@@ -11,10 +11,7 @@ export default function HomePage() {
         <figure className="mb-12">
           <img src="/Home_top_image.png" alt="" />
         </figure>
-        <section
-          // style={{ backgroundColor: "red" }}
-          className="flex flex-col gap-y-8 md:flex-row-reverse lg:flex-row-reverse md:gap-x-4 lg:gap-x-8"
-        >
+        <section className="flex flex-col gap-y-8 md:flex-row-reverse lg:flex-row-reverse md:gap-x-4 lg:gap-x-8">
           <main>
             <ListCards />
           </main>

@@ -98,7 +98,7 @@
   }
 
   .btn-small {
-    @apply px-2 py-1 rounded w-max body-2-500 ;
+    @apply px-2 py-1 rounded w-max body-2-500;
   }
 
   .btn-grey1 {
@@ -292,6 +292,17 @@
 
   .filter-input {
     @apply bg-grey-5 placeholder:heading-7-600 max-w-[44%] px-8 py-2;
+  }
+
+  .background-branding {
+    background: linear-gradient(
+      180deg,
+      #4529e6 clamp(250px, 40%, 350px),
+      #f1f3f5 clamp(250px, 40%, 350px),
+      #f1f3f5 100%
+    );
+
+    /* @apply bg-gradient-to-b from-brand-1 via-grey-8 to-grey-8; */
   }
 }
 
