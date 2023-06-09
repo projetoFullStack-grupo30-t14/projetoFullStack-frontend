@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lexend:wght@500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lexend:wght@500;600;700&display=swap");
 
 /* FONT SIZING, STYLES AND FAMILY */
 @layer components {
@@ -145,13 +145,13 @@
     @apply bg-grey-10 text-grey-1;
   }
 
-    .btn-outline1 {
-        @apply border-2 border-grey-0 text-grey-0
-    }
+  .btn-outline1 {
+    @apply border-2 border-grey-0 text-grey-0;
+  }
 
-    .btn-outline1:hover {
-        @apply bg-grey-1 text-grey-10
-    }
+  .btn-outline1:hover {
+    @apply bg-grey-1 text-grey-10;
+  }
 
   /* FIGMA SEEMS OFF ON THIS BUTTON
     SWITCHING TO HOVER FOR OUTLINE1 */
@@ -159,13 +159,13 @@
         @apply bg-grey-1 text-grey-10
     } */
 
-    .btn-outline2 {
-        @apply border-2 border-grey-4 text-grey-0
-    }
+  .btn-outline2 {
+    @apply border-2 border-grey-4 text-grey-0;
+  }
 
-    .btn-outline2:hover {
-        @apply border-grey-1 bg-grey-1 text-grey-10
-    }
+  .btn-outline2:hover {
+    @apply border-grey-1 bg-grey-1 text-grey-10;
+  }
 
   .btn-brand-outline-brand1 {
     @apply border-2 border-brand-1 text-brand-1;
@@ -284,5 +284,47 @@
     .comment-list::-webkit-scrollbar-thumb {
       @apply bg-brand-1 rounded-lg border-solid border-[3px] border-grey-whiteFixed;
     }
+  }
+
+  .filter-section {
+    @apply mx-4 mb-8 w-72;
+  }
+
+  .filter-input {
+    @apply bg-grey-5 placeholder:heading-7-600 max-w-[44%] px-8 py-2;
+  }
+}
+
+@layer base {
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
+@layer utilities {
+  .scrollbar {
+    scroll-behavior: smooth;
+  }
+
+  .scrollbar::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.5rem;
+  }
+
+  .scrollbar::-webkit-scrollbar-track {
+    border-radius: 100vh;
+    @apply bg-grey-whiteFixed;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-brand-1;
+    border-radius: 100vh;
+    border: 3px solid #fff;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb:hover {
+    @apply bg-brand-3;
   }
 }
