@@ -1,5 +1,6 @@
 import { Filter } from "@/components/Filter";
-import { Header } from "@/components/header/header";
+import { Footer } from "@/components/headerAndFooter/footer";
+import { Header } from "@/components/headerAndFooter/header";
 import ListCards from "@/components/listCards";
 
 export default function HomePage() {
@@ -29,7 +30,7 @@ export default function HomePage() {
         </section>
         <footer>The page navigator</footer>
       </>
-      <footer>This is the footer div</footer>
+      <Footer/>
     </>
   );
 }

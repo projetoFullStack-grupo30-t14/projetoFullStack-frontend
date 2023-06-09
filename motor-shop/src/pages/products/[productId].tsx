@@ -1,6 +1,8 @@
 import Aside from "@/components/aside";
 import { CommentList } from "@/components/commentList";
 import { NewComment } from "@/components/commentNew";
+import { Footer } from "@/components/headerAndFooter/footer";
+import { Header } from "@/components/headerAndFooter/header";
 import ProductDetail from "@/components/productDetail";
 import { useRouter } from "next/router";
 
@@ -10,7 +12,7 @@ export default function Products() {
 
   return (
     <>
-      <header>header</header>
+      <Header/>
       <main className="bg-grey-8 h-screen">
         <div className="bg-brand-1 h-96 absolute">
           <div className="lg:px-44">
@@ -25,7 +27,7 @@ export default function Products() {
           </div>
         </div>
       </main>
-      <footer>Same as homepage</footer>
+      <Footer/>
     </>
   );
 }
