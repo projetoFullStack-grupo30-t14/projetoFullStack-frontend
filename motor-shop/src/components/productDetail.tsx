@@ -21,10 +21,10 @@ const ProductDetail = () => {
           </h3>
           <div className="flex justify-between ">
             <div className="flex gap-2">
-              <p className="btn-brand-opacity btn-small"> 2013 </p>
-              <p className="btn-brand-opacity btn-small"> 0 KM </p>
+              <span className="btn-brand-opacity btn-small"> 2013 </span>
+              <span className="btn-brand-opacity btn-small"> 0 KM </span>
             </div>
-            <p className="heading-7-500">R$ 00.000,00</p>
+            <p className="heading-7-500 text-grey-1 ">R$ 00.000,00</p>
           </div>
           <button className="btn-brand1 btn-medium">Comprar</button>
         </div>
