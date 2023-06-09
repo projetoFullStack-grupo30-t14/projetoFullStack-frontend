@@ -98,7 +98,7 @@
   }
 
   .btn-small {
-    @apply px-2 py-1 rounded w-max body-2-500 ;
+    @apply px-2 py-1 rounded w-max body-2-500;
   }
 
   .btn-grey1 {
@@ -300,6 +300,11 @@
   input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
+  }
+
+  input[type="number"] {
+    appearance: none;
+    -moz-appearance: textfield;
   }
 }
 
