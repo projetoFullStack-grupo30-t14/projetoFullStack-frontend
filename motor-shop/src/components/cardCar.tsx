@@ -4,11 +4,13 @@ const CardCar = ({ car }: { car: TCar }) => {
   return (
     <div className="relative flex flex-col gap-4 max-w-xs mx-auto bg-white overflow-hidden min-w-[312px] min-h-[350px]">
       <div className="flex-shrink-0 flex-grow-0 h-152 bg-grey-7">
-        <img
-          src={car.cover_image}
-          alt={car.model}
-          className="w-full h-48 object-contain"
-        />
+          <div className="group border-2 border-grey-7 hover:border-brand-1 hover:border-2">
+            <img
+              src={car.cover_image}
+              alt={car.model}
+              className="w-full h-48 object-contain transform hover:scale-110 transition-transform"
+            />
+          </div>
       </div>
       <div className="pt-4 pb-4 flex-col gap-4">
         <h3 className="font-lexend heading-7-600 text-grey-1 mb-4">
@@ -32,9 +34,9 @@ const CardCar = ({ car }: { car: TCar }) => {
             <span className="btn-small btn-brand-opacity">{car.mileage} KM</span>
             <span className="btn-small btn-brand-opacity">{car.year}</span>
           </div>
-            <span className="text-grey-1 heading-7-500 ">
-              R${car.price.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
-            </span>
+          <span className="text-grey-1 heading-7-500 ">
+            R${car.price.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
+          </span>
         </div>
       </div>
     </div>
