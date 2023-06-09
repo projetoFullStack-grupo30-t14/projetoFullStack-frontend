@@ -41,7 +41,7 @@ export function Header () {
                     <img src="/Logo.png" alt="website logo" />
                 </figure>
                 <div className="relative sm:hidden w-10 h-10 flex items-center justify-center" onClick={toggleMenu}>
-                    <figure className="relative z-30 cursor-pointer">
+                    <figure className="relative cursor-pointer z-10">
                         {
                             isHamburgerOpen ?
                             <img src="/xmark.png" alt="" />
@@ -52,7 +52,7 @@ export function Header () {
                 </div>
                 {
                     isLoggedIn ?
-                    <div  onClick={toggleLoginMenu} className="relative z-40 hidden sm:flex gap-2 border-l-2 border-grey-6 py-6 pl-11 cursor-pointer">
+                    <div  onClick={toggleLoginMenu} className="relative hidden sm:flex gap-2 border-l-2 border-grey-6 py-6 pl-11 cursor-pointer">
                         <div className="bg-random-1 w-7 h-7 rounded-full">
                             {mock.avatar}
                         </div>
@@ -60,8 +60,8 @@ export function Header () {
                         {
                             isLoginOpen &&
                             <>
-                                <button tabIndex={-1} onClick={() => setIsLoginOpen(false)} className="fixed z-10 inset-0 h-full w-full cursor-default"></button>
-                                <div className="absolute z-40 right-0 top-14 w-48 bg-grey-10 rounded shadow-xl flex flex-col">
+                                <button tabIndex={-1} onClick={() => setIsLoginOpen(false)} className="fixed inset-0 h-full w-full cursor-default"></button>
+                                <div className="absolute z-10 right-0 top-14 w-48 bg-grey-10 rounded shadow-xl flex flex-col">
                                     <a href="#" className="font-inter hover:bg-grey-0 hover:text-grey-10 py-4 pl-3 pr-5 ">Editar Perfil</a>
                                     <a href="#" className="font-inter hover:bg-grey-0 hover:text-grey-10 py-4 pl-3 pr-5 ">Editar endereço</a>
                                     {
@@ -74,18 +74,18 @@ export function Header () {
                         }
                     </div>
                     :
-                    <div className="relative hidden sm:block border-l-2 border-grey-6 py-4">
-                        <button tabIndex={-1} onClick={() => setIsLoginOpen(false)} className="fixed z-20 inset-0 h-full w-full cursor-default"></button>
-                        <a href="#" onClick={() => setIsLoggedIn(true)} className="relative z-20 rounded font-inter hover:bg-brand-1 hover:text-grey-10 text-brand-1 font-semibold py-4 ml-14 pl-5 pr-5">Fazer login</a>
-                        <button className="relative z-20 btn-big btn-outline2 ml-10">Cadastrar</button>
+                    <div className="relative z-10 hidden sm:block border-l-2 border-grey-6 py-4">
+                        <button tabIndex={-1} onClick={() => setIsLoginOpen(false)} className="fixed inset-0 h-full w-full cursor-default"></button>
+                        <a href="#" onClick={() => setIsLoggedIn(true)} className="relative rounded font-inter hover:bg-brand-1 hover:text-grey-10 text-brand-1 font-semibold py-4 ml-14 pl-5 pr-5">Fazer login</a>
+                        <button className="relative btn-big btn-outline2 ml-10">Cadastrar</button>
                     </div>
                 }
             </header>
             {
                 isHamburgerOpen &&
                 <>
-                    <button tabIndex={-1} onClick={() => setIsHamburgerOpen(false)} className="fixed z-10 inset-0 h-full w-full cursor-default"></button>
-                    <div className="absolute z-20 right-0 sm:hidden bg-grey-10 shadow-xl flex flex-col w-full">
+                    <button tabIndex={-1} onClick={() => setIsHamburgerOpen(false)} className="fixed inset-0 h-full w-full cursor-default"></button>
+                    <div className="absolute z-10 right-0 sm:hidden bg-grey-10 shadow-xl flex flex-col w-full">
                         {
                             isLoggedIn ?
                             <>

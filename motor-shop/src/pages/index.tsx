@@ -24,7 +24,7 @@ export default function HomePage() {
           <main>
             <ListCards />
           </main>
-          <aside>
+          <aside className="relative z-10">
             <Filter />
           </aside>
         </section>
