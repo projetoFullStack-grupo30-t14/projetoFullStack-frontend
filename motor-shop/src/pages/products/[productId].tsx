@@ -13,19 +13,17 @@ export default function Products() {
   return (
     <>
       <Header/>
-      <main className="bg-grey-8 h-screen">
-        <div className="bg-brand-1 h-96 absolute">
+      <main className="pb-11 bg-gradient-to-b from-brand-1 from-30% to-grey-8 to-30%">
           <div className="lg:px-44">
-            <section className="md:flex md:justify-between py-9 gap-5">
+            <section className="relative z-10 md:flex md:justify-between py-9 gap-5">
               <ProductDetail />
               <Aside />
             </section>
-            <div>
+            <div className="relative z-10">
               <CommentList />
               <NewComment />
             </div>
           </div>
-        </div>
       </main>
       <Footer/>
     </>

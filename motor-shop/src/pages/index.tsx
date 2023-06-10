@@ -5,16 +5,22 @@ import ListCards from "@/components/listCards";
 
 export default function HomePage() {
   return (
-    <>
+    <div>
       <Header />
-      <>
-        <div className="relative mb-12 w-full bg-gradient-to-b from-grey-black29 to-grey-black100 flex justify-center items-center">
-          <figure>
-            <img className="object-cover w-full h-96" src="/big_car_img.png" alt="" />
-          </figure>
+      <div className="pb-11">
+        <div className="relative mb-12 w-full flex justify-center items-center">
+            <figure className="bg-no-repeat bg-center"
+              style={{
+                backgroundImage: "url(/big_car_img_unfilter.png)",
+                height: "500px",
+                width: "100%"
+              }}
+            >
+              <div className="bg-gradient-to-b from-grey-black29 to-grey-black100 w-full h-full"></div>
+            </figure>
           <div className="absolute text-center">
-            <p className="heading-3-500 sm:heading-1-700 text-grey-10">Motors Shop</p>
-            <p className="heading-5-500 pb-40 sm:heading-2-600 sm:pb-0 text-grey-10">A melhor plataforma de anúncios do país</p>
+            <p className="heading-3-500 mb-3 font-lexend sm:heading-1-700 text-grey-10">Motors Shop</p>
+            <p className="heading-5-500 pb-80 px-6 font-lexend sm:heading-2-600 sm:pb-0 text-grey-10">A melhor plataforma de anúncios do país</p>
           </div>
         </div>
         <section
@@ -28,9 +34,9 @@ export default function HomePage() {
             <Filter />
           </aside>
         </section>
-        <footer>The page navigator</footer>
-      </>
+        {/* <footer>The page navigator</footer> */}
+      </div>
       <Footer/>
-    </>
+    </div>
   );
 }

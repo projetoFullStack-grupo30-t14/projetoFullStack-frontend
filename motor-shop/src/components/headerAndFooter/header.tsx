@@ -1,3 +1,4 @@
+import Link from "next/link"
 import { useEffect, useState } from "react"
 
 export function Header () {
@@ -37,9 +38,9 @@ export function Header () {
     return (
         <>
             <header className="px-8 h-20 bg-grey-10 border-b-2 border-grey-6 flex justify-between items-center">
-                <figure>
+                <Link href="/" className="relative z-20 cursor-pointer">
                     <img src="/Logo.png" alt="website logo" />
-                </figure>
+                </Link>
                 <div className="relative sm:hidden w-10 h-10 flex items-center justify-center" onClick={toggleMenu}>
                     <figure className="relative cursor-pointer z-10">
                         {
@@ -61,7 +62,7 @@ export function Header () {
                             isLoginOpen &&
                             <>
                                 <button tabIndex={-1} onClick={() => setIsLoginOpen(false)} className="fixed inset-0 h-full w-full cursor-default"></button>
-                                <div className="absolute z-10 right-0 top-14 w-48 bg-grey-10 rounded shadow-xl flex flex-col">
+                                <div className="absolute z-20 right-0 top-14 w-48 bg-grey-10 rounded shadow-xl flex flex-col">
                                     <a href="#" className="font-inter hover:bg-grey-0 hover:text-grey-10 py-4 pl-3 pr-5 ">Editar Perfil</a>
                                     <a href="#" className="font-inter hover:bg-grey-0 hover:text-grey-10 py-4 pl-3 pr-5 ">Editar endereço</a>
                                     {
