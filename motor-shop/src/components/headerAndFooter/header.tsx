@@ -1,10 +1,12 @@
 import Link from "next/link"
+import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 
 export function Header () {
     const [isHamburgerOpen, setIsHamburgerOpen] = useState(false)
     const [isLoginOpen, setIsLoginOpen] = useState(false)
     const [isLoggedIn, setIsLoggedIn] = useState(false)
+    const router = useRouter()
 
     useEffect(() => {
         function closeMenuEvent (e: any) {
@@ -77,8 +79,8 @@ export function Header () {
                     :
                     <div className="relative z-10 hidden sm:block border-l-2 border-grey-6 py-4">
                         <button tabIndex={-1} onClick={() => setIsLoginOpen(false)} className="fixed inset-0 h-full w-full cursor-default"></button>
-                        <a href="#" onClick={() => setIsLoggedIn(true)} className="relative rounded font-inter hover:bg-brand-1 hover:text-grey-10 text-brand-1 font-semibold py-4 ml-14 pl-5 pr-5">Fazer login</a>
-                        <button className="relative btn-big btn-outline2 ml-10">Cadastrar</button>
+                        <a href="" onClick={() => router.push("/login")} className="relative rounded font-inter hover:bg-brand-1 hover:text-grey-10 text-brand-1 font-semibold py-4 ml-14 pl-5 pr-5">Fazer login</a>
+                        <button onClick={() => router.push("/register")} className="relative btn-big btn-outline2 ml-10">Cadastrar</button>
                     </div>
                 }
             </header>
@@ -100,9 +102,9 @@ export function Header () {
                             </>
                             :
                             <>
-                                <a href="#" onClick={() => setIsLoggedIn(true)} className="font-inter hover:bg-grey-0 hover:text-grey-10 py-4 pl-3 pr-5 ">Fazer login</a>
+                                <a href="#" onClick={() => router.push("/login")} className="font-inter hover:bg-grey-0 hover:text-grey-10 py-4 pl-3 pr-5 ">Fazer login</a>
                                 <div className="pl-3 pr-5 pb-8 pt-4">
-                                    <button className="btn-big btn-outline2 w-full">Cadastrar</button>
+                                    <button onClick={() => router.push("/register")} className="btn-big btn-outline2 w-full">Cadastrar</button>
                                 </div>
                             </>
 
