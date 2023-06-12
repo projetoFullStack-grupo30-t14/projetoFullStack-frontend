@@ -746,6 +746,7 @@ doctrine@^3.0.0:
   dependencies:
     esutils "^2.0.2"
 
+
 electron-to-chromium@^1.4.411:
   version "1.4.419"
   resolved "https://registry.npmjs.org/electron-to-chromium/-/electron-to-chromium-1.4.419.tgz"
