@@ -43,11 +43,6 @@ export function AuthProvider({ children }: Props) {
         path: "/",
       });
 
-      setCookie(null, "motorShop.userName", data.data.user.name, {
-        maxAge: 60 * 30,
-        path: "/",
-      });
-
       setToken(data.data.token);
 
       router.push("/");
