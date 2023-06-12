@@ -1,16 +1,19 @@
 import { Footer } from "@/components/headerAndFooter/footer";
 import { Header } from "@/components/headerAndFooter/header";
+import InfoSellerProfile from "@/components/infoSellerProfile";
 
-export default function LoginPage() {
+const ProfilePage = () => {
     return (
         <>
-            <Header/>
-            <main>
-                <div className="flex justify-center items-center bg-grey-8 h-96 w-full">
-                    <h1>User information</h1>
+            <Header />
+            <main className="pb-11 bg-gradient-to-b from-brand-1 from-30% to-grey-8 to-30%">
+                <div className="lg:px-44 py-9">
+                    <InfoSellerProfile/>
                 </div>
             </main>
-            <Footer/>
+            <Footer />
         </>
     )
 }
+
+export default ProfilePage;
