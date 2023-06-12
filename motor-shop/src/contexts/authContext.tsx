@@ -4,10 +4,6 @@ import { useRouter } from "next/router";
 import { TLogin } from "@/schemas/login.schema";
 import { api } from "@/services";
 
-interface User {
-  id: string;
-}
-
 interface Props {
   children: ReactNode;
 }
@@ -17,7 +13,6 @@ interface AuthProviderData {
   login: (userData: TLogin) => void;
   register: (userData: TLogin) => Promise<void>;
   token: string | undefined;
-  user: User | null;
 }
 
 export const AuthContext = createContext<AuthProviderData>(
@@ -26,7 +21,6 @@ export const AuthContext = createContext<AuthProviderData>(
 
 export function AuthProvider({ children }: Props) {
   const [token, setToken] = useState<string>();
-  const [user, setUser] = useState<User | null>(null);
 
   const router = useRouter();
 
@@ -55,16 +49,15 @@ export function AuthProvider({ children }: Props) {
       });
 
       setToken(data.data.token);
-      setUser(data.data.user);
 
       router.push("/");
     } catch (error) {
       console.error(error);
     }
   };
-  //   )
+
   return (
-    <AuthContext.Provider value={{ login, register, user, token, setToken }}>
+    <AuthContext.Provider value={{ login, register, token, setToken }}>
       {children}
     </AuthContext.Provider>
   );
