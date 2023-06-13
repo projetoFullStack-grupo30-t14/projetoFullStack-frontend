@@ -1,5 +1,5 @@
 import { ReactNode, createContext, useContext, useState } from "react";
-import { setCookie } from "nookies";
+import { destroyCookie, setCookie } from "nookies";
 import { useRouter } from "next/router";
 import { TLogin } from "@/schemas/login.schema";
 import { api } from "@/services";
@@ -12,6 +12,7 @@ interface AuthProviderData {
   setToken: (value: string) => void;
   login: (userData: TLogin) => void;
   register: (userData: TLogin) => Promise<void>;
+  logout: () => void;
   token: string | undefined;
 }
 
@@ -26,7 +27,7 @@ export function AuthProvider({ children }: Props) {
 
   const register = async (userData: TLogin) => {
     try {
-      await api.post("users");
+      await api.post("users", userData);
 
       router.push("/login");
     } catch (error) {
@@ -51,8 +52,14 @@ export function AuthProvider({ children }: Props) {
     }
   };
 
+  const logout = () => {
+    destroyCookie(null, "motorShop.token");
+    setToken(undefined);
+    router.push("/");
+  };
+
   return (
-    <AuthContext.Provider value={{ login, register, token, setToken }}>
+    <AuthContext.Provider value={{ login, register, logout, token, setToken }}>
       {children}
     </AuthContext.Provider>
   );
