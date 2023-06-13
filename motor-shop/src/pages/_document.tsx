@@ -1,4 +1,3 @@
-import { AuthProvider } from "@/contexts/authContext";
 import { Html, Head, Main, NextScript } from "next/document";
 
 export default function Document() {
@@ -6,10 +5,8 @@ export default function Document() {
     <Html lang="en">
       <Head />
       <body>
-        <AuthProvider>
-          <Main />
-          <NextScript />
-        </AuthProvider>
+        <Main />
+        <NextScript />
       </body>
     </Html>
   );

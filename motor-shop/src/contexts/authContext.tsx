@@ -1,6 +1,6 @@
+import { useRouter } from "next/router";
 import { ReactNode, createContext, useContext, useState } from "react";
 import { destroyCookie, setCookie } from "nookies";
-import { useRouter } from "next/router";
 import { TLogin } from "@/schemas/login.schema";
 import { api } from "@/services";
 
@@ -21,9 +21,8 @@ export const AuthContext = createContext<AuthProviderData>(
 );
 
 export function AuthProvider({ children }: Props) {
-  const [token, setToken] = useState<string>();
-
   const router = useRouter();
+  const [token, setToken] = useState<string>();
 
   const register = async (userData: TLogin) => {
     try {
@@ -56,6 +55,12 @@ export function AuthProvider({ children }: Props) {
     destroyCookie(null, "motorShop.token");
     setToken(undefined);
     router.push("/");
+  };
+
+  const protect = () => {
+    if (!token) {
+      router.push("/");
+    }
   };
 
   return (
