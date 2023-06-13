@@ -1,10 +1,10 @@
 import { Footer } from "@/components/headerAndFooter/footer";
 import { Header } from "@/components/headerAndFooter/header";
-import { AuthContext } from "@/contexts/authContext";
-import { useContext, useEffect } from "react";
+import { useAuth } from "@/contexts/authContext";
+import { useEffect } from "react";
 
 export default function LoginPage() {
-  const { protect } = useContext(AuthContext);
+  const { protect } = useAuth();
 
   useEffect(() => {
     protect();
