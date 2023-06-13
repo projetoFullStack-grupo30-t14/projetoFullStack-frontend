@@ -14,6 +14,7 @@ interface AuthProviderData {
   register: (userData: TLogin) => Promise<void>;
   logout: () => void;
   token: string | undefined;
+  protect: () => void;
 }
 
 export const AuthContext = createContext<AuthProviderData>(
@@ -64,7 +65,9 @@ export function AuthProvider({ children }: Props) {
   };
 
   return (
-    <AuthContext.Provider value={{ login, register, logout, token, setToken }}>
+    <AuthContext.Provider
+      value={{ login, register, logout, token, setToken, protect }}
+    >
       {children}
     </AuthContext.Provider>
   );
