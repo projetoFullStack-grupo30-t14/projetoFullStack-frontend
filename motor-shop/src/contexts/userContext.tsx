@@ -1,6 +1,8 @@
 import { ReactNode, createContext, useState } from "react";
 import { api } from "@/services";
 import { UpdateUser, UserType } from "@/schemas";
+import { useAuth } from "./authContext";
+import { parseCookies } from "nookies";
 
 interface Props {
   children: ReactNode;
@@ -19,14 +21,13 @@ export const UserContext = createContext<UserContextProviderData>(
 
 export function UserProvider({ children }: Props) {
   const [currUser, setCurrUser] = useState<UserType | null>(null);
+  const { logout } = useAuth();
 
-  let parseCookies = (boolean: null, other: string) => {
-    return "provisional string to avoid double install";
-  };
+  const token = parseCookies(null, "motorShop.token")["motorShop.token"];
 
   const headers = {
     headers: {
-      authorization: `Bearer ${parseCookies(null, "motorShop.token")}`,
+      authorization: `Bearer ${token}`,
     },
   };
 
@@ -57,6 +58,7 @@ export function UserProvider({ children }: Props) {
   const deleteSelf = async (id: string) => {
     try {
       await api.delete(`users/${id}`, headers);
+      logout();
     } catch (error) {
       console.error(error);
     }
