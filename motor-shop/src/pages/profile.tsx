@@ -10,8 +10,8 @@ const ProfilePage = () => {
     return (
         <>
             <Header />
-            <main className="pb-11 bg-gradient-to-b from-brand-1 from-30% to-grey-8 to-30%">
-                <div className="lg:px-44 pt-20">
+            <main className="pb-11 bg-gradient-to-b from-brand-1 from-20% to-grey-8 to-20%">
+                <div className="lg:px-44 pt-20 mb-14">
                     <InfoSellerProfile />
                 </div>
                 <div className="md:pl-20 sm:pl-4 py-6 w-full">
