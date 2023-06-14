@@ -9,7 +9,7 @@ import Modal from "../modal/modal"
 export function Header () {
     const [isHamburgerOpen, setIsHamburgerOpen] = useState(false)
     const [isLoginOpen, setIsLoginOpen] = useState(false)
-    const [isLoggedIn, setIsLoggedIn] = useState(false)
+    const [isLoggedIn, setIsLoggedIn] = useState(true)
     const { showModal, stateModal } = useModal()
     const router = useRouter()
 
