@@ -1,11 +1,16 @@
+import { useModal } from "@/contexts/modalContext"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
+import TestForm from "../modal/testForm"
+import Modal from "../modal/modal"
+
 
 export function Header () {
     const [isHamburgerOpen, setIsHamburgerOpen] = useState(false)
     const [isLoginOpen, setIsLoginOpen] = useState(false)
     const [isLoggedIn, setIsLoggedIn] = useState(false)
+    const { showModal, stateModal } = useModal()
     const router = useRouter()
 
     useEffect(() => {
@@ -39,6 +44,7 @@ export function Header () {
     
     return (
         <>
+            {stateModal && <Modal/>}
             <header className="px-8 h-20 bg-grey-10 border-b-2 border-grey-6 flex justify-between items-center">
                 <Link href="/" className="relative z-20 cursor-pointer">
                     <img src="/Logo.png" alt="website logo" />
@@ -65,13 +71,13 @@ export function Header () {
                             <>
                                 <button tabIndex={-1} onClick={() => setIsLoginOpen(false)} className="fixed inset-0 h-full w-full cursor-default"></button>
                                 <div className="absolute z-20 right-0 top-14 w-48 bg-grey-10 rounded shadow-xl flex flex-col">
-                                    <a href="#" className="font-inter hover:bg-grey-0 hover:text-grey-10 py-4 pl-3 pr-5 ">Editar Perfil</a>
-                                    <a href="#" className="font-inter hover:bg-grey-0 hover:text-grey-10 py-4 pl-3 pr-5 ">Editar endereço</a>
+                                    <button onClick={() => showModal(<TestForm/>, "Editar perfil")} className="text-left font-inter hover:bg-grey-0 hover:text-grey-10 py-4 pl-3 pr-5 ">Editar Perfil</button>
+                                    <button onClick={() => showModal(<TestForm/>, "Editar endereço")} className="text-left font-inter hover:bg-grey-0 hover:text-grey-10 py-4 pl-3 pr-5 ">Editar endereço</button>
                                     {
                                         mockAnnounc.length > 0 &&
-                                        <a href="#" className="font-inter hover:bg-grey-0 hover:text-grey-10 py-4 pl-3 pr-5 ">Meus Anúncios</a>
+                                        <Link href="/profile" className="text-left font-inter hover:bg-grey-0 hover:text-grey-10 py-4 pl-3 pr-5 ">Meus Anúncios</Link>
                                     }
-                                    <a onClick={() => setIsLoggedIn(false)} href="#" className="font-inter hover:bg-grey-0 hover:text-grey-10 py-4 pl-3 pr-5 ">Sair</a>
+                                    <a onClick={() => setIsLoggedIn(false)} href="#" className="text-left font-inter hover:bg-grey-0 hover:text-grey-10 py-4 pl-3 pr-5 ">Sair</a>
                                 </div>
                             </>
                         }
@@ -92,11 +98,11 @@ export function Header () {
                         {
                             isLoggedIn ?
                             <>
-                                <a href="#" className="font-inter hover:bg-grey-0 hover:text-grey-10 py-4 pl-3 pr-5 ">Editar Perfil</a>
-                                <a href="#" className="font-inter hover:bg-grey-0 hover:text-grey-10 py-4 pl-3 pr-5 ">Editar endereço</a>
+                                <button onClick={() => showModal(<TestForm/>, "Editar perfil")} className="text-left font-inter hover:bg-grey-0 hover:text-grey-10 py-4 pl-3 pr-5 ">Editar Perfil</button>
+                                <button onClick={() => showModal(<TestForm/>, "Editar endereço")} className="text-left font-inter hover:bg-grey-0 hover:text-grey-10 py-4 pl-3 pr-5 ">Editar endereço</button>
                                 {
                                     mockAnnounc.length > 0 &&
-                                    <a href="#" className="font-inter hover:bg-grey-0 hover:text-grey-10 py-4 pl-3 pr-5 ">Meus Anúncios</a>
+                                    <Link href="/profile" className="text-left font-inter hover:bg-grey-0 hover:text-grey-10 py-4 pl-3 pr-5 ">Meus Anúncios</Link>
                                 }
                                 <a onClick={() => setIsLoggedIn(false)} href="#" className="font-inter hover:bg-grey-0 hover:text-grey-10 py-4 pl-3 pr-5 ">Sair</a>
                             </>
