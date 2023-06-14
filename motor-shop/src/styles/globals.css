@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lexend:wght@500;600;700&display=swap");
-
 /* FONT SIZING, STYLES AND FAMILY */
 @layer components {
   .heading-1-700 {
@@ -295,17 +293,20 @@
   }
 }
 
-@layer base {
-  input[type="number"]::-webkit-inner-spin-button,
-  input[type="number"]::-webkit-outer-spin-button {
+/* Scrollbars and number input*/
+@layer utilities {
+  input[type='number']::-webkit-outer-spin-button,
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number'] {
     -webkit-appearance: none;
     margin: 0;
+    -moz-appearance: textfield !important;
   }
-}
 
-@layer utilities {
   .scrollbar {
     scroll-behavior: smooth;
+    scrollbar-color: rgb(69,41,230) rgba(0,0,0,0);
+    scrollbar-width: thin;
   }
 
   .scrollbar::-webkit-scrollbar {
