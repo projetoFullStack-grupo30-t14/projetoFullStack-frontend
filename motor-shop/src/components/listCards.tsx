@@ -1,15 +1,16 @@
-import CardCar from "@/components/cardCar";
-import { carsListMock } from "@/mocks/carList.mock";
 import { TCar } from "@/schemas/car.schema";
 
-const ListCards = () => {
+interface ListCardsProps {
+    carList: Array<TCar>;
+    children: (car: TCar) => JSX.Element;
+}
+
+const ListCards = ({ carList, children }: ListCardsProps) => {
     return (
-        <ul className="flex gap-3 ml-6 overflow-x-auto sm:flex-row md:flex-wrap lg:flex-wrap custom-scrollbar">
-            {carsListMock.map((car: TCar) => (
-
-                <div  key={car.id} className="cursor-pointer">
-                    <CardCar car={car}/>
-
+        <ul className="flex gap-3 md:gap-12 ml-18 overflow-x-auto sm:flex-row md:flex-wrap lg:flex-wrap custom-scrollbar justify-start items-start">
+            {carList.map((car: TCar) => (
+                <div key={car.id} className="cursor-pointer">
+                    {children(car)}
                 </div>
             ))}
         </ul>
