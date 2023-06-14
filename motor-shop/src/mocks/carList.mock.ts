@@ -14,7 +14,7 @@ export const carsListMock: TCar[] = [
       price: 56175,
       description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem...',
       cover_image: '/carro1.png',
-      is_active: true,
+      is_active: false,
       created_at: new Date('2023-06-05T12:30:00.000Z'),
       car_gallery: [
         {
