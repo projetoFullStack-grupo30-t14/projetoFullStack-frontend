@@ -2,9 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lexend:wght@500;600;700&display=swap');
-
 
 /* FONT SIZING, STYLES AND FAMILY */
 @layer components {
@@ -155,12 +153,6 @@
     @apply bg-grey-1 text-grey-10;
   }
 
-  /* FIGMA SEEMS OFF ON THIS BUTTON
-    SWITCHING TO HOVER FOR OUTLINE1 */
-  /* .btn-big45 {
-        @apply bg-grey-1 text-grey-10
-    } */
-
   .btn-outline2 {
     @apply border-2 border-grey-4 text-grey-0;
   }
@@ -216,19 +208,23 @@
     @apply font-inter input-label-text;
   }
 
-  textarea,  input {
+  textarea,
+  input {
     @apply border-2 rounded border-grey-7 outline-none pl-4 h-12;
   }
 
-  texarea::placeholder,  input::placeholder {
+  texarea::placeholder,
+  input::placeholder {
     @apply input-place-text;
   }
 
-  textarea:focus,  input:focus {
+  textarea:focus,
+  input:focus {
     @apply outline-none border-brand-1;
   }
 
-  textarea:disabled,  input:disabled {
+  textarea:disabled,
+  input:disabled {
     @apply outline-none bg-grey-8 border-grey-7;
   }
 
@@ -297,8 +293,7 @@
   }
 }
 
-
-/* Scrollbars and number input*/
+/* SCROLLBAR E INPUT TIPO NUMBER */
 @layer utilities {
   input[type='number']::-webkit-outer-spin-button,
   input[type='number']::-webkit-inner-spin-button,
@@ -310,7 +305,7 @@
 
   .scrollbar {
     scroll-behavior: smooth;
-    scrollbar-color: rgb(69,41,230) rgba(0,0,0,0);
+    scrollbar-color: rgb(69, 41, 230) rgba(0, 0, 0, 0);
     scrollbar-width: thin;
   }
 
@@ -333,35 +328,22 @@
   .scrollbar::-webkit-scrollbar-thumb:hover {
     @apply bg-brand-3;
   }
-  
-  @layer utilities {
-    /* placeholder do input type date*/
-    ::-webkit-datetime-edit-text, 
-    ::-webkit-datetime-edit-day-field[aria-valuetext=blank],
-    ::-webkit-datetime-edit-month-field[aria-valuetext=blank],
-    ::-webkit-datetime-edit-year-field[aria-valuetext=blank] {
-      @apply input-place-text;
-    }
-
-    /* valor do input type date */
-    input[type='date'].date-input--has-value::-webkit-datetime-edit-text,
-    input[type='date'].date-input--has-value::-webkit-datetime-edit-month-field,
-    input[type='date'].date-input--has-value::-webkit-datetime-edit-day-field,
-    input[type='date'].date-input--has-value::-webkit-datetime-edit-year-field {
-      @apply input-place-text;
-    }
-  }
 
   input[type='date']::-webkit-calendar-picker-indicator {
-    /* cor do icone de calendario */
-    filter: invert(61%) sepia(2%) saturate(1322%) hue-rotate(169deg)
-      brightness(91%) contrast(92%);
-    @apply mr-3;
+    /* COR DO ÍCONE DE CALENDÁRIO DO INPUT TIPO DATE */
+    filter: invert(20%) sepia(94%) saturate(2948%) hue-rotate(245deg)
+      brightness(85%) contrast(116%);
+    @apply mr-3 hover:cursor-pointer;
+  }
+
+  input[type='date']:invalid::-webkit-datetime-edit {
+    /* PLACEHOLDER DO INPUT TIPO DATE */
+    @apply font-normal text-grey-3;
   }
 
   @layer components {
     .error {
-      @apply text-alert-1 -mt-8 mb-3 text-[12px] animate-pulse
+      @apply text-alert-1 -mt-8 mb-3 text-[12px] animate-pulse;
     }
   }
 }

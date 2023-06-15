@@ -7,7 +7,7 @@ import {
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { RegisterInput } from '@/components/registerInput';
+import { UserInput } from '@/components/userInput';
 import { api } from '@/services';
 import { useAuth } from '@/contexts/authContext';
 
@@ -44,6 +44,10 @@ export default function RegisterPage() {
     console.log(data);
     const { confirm, ...registerData } = data;
     registerData.seller = seller;
+    registerData.date_of_birth = registerData.date_of_birth
+      .split('-')
+      .reverse()
+      .join('-');
     console.log(registerData);
     registerRequest(registerData);
   };
@@ -62,23 +66,25 @@ export default function RegisterPage() {
               className="flex flex-col"
               onSubmit={handleSubmit(onSubmit)}
             >
-              <RegisterInput
+              <UserInput
                 label="Nome"
                 type="text"
                 placeholder="Nome completo"
                 register={register}
                 db_field="name"
+                onChange={(e) => setValue('name', e.target.value)}
               />
               {errors.name && (
                 <small className="error">{errors.name.message}</small>
               )}
 
-              <RegisterInput
+              <UserInput
                 label="Email"
                 type="text"
                 placeholder="endereço@email.com.br"
                 register={register}
                 db_field="email"
+                onChange={(e) => setValue('email', e.target.value)}
               />
               {errors.email && (
                 <small className="error">
@@ -86,24 +92,26 @@ export default function RegisterPage() {
                 </small>
               )}
 
-              <RegisterInput
+              <UserInput
                 label="CPF"
                 type="text"
                 placeholder="000.000.000-00"
                 register={register}
                 db_field="cpf"
+                onChange={(e) => setValue('cpf', e.target.value)}
                 maxLength={14}
               />
               {errors.cpf && (
                 <small className="error">{errors.cpf.message}</small>
               )}
 
-              <RegisterInput
+              <UserInput
                 label="Celular"
                 type="text"
                 placeholder="12 12345-6789"
                 register={register}
                 db_field="phone"
+                onChange={(e) => setValue('phone', e.target.value)}
                 maxLength={13}
               />
               {errors.phone && (
@@ -112,12 +120,15 @@ export default function RegisterPage() {
                 </small>
               )}
 
-              <RegisterInput
+              <UserInput
                 label="Data de nascimento"
                 type="date"
                 placeholder="endereço@email.com.br"
                 register={register}
                 db_field="date_of_birth"
+                onChange={(e) =>
+                  setValue('date_of_birth', e.target.value)
+                }
                 max={`${new Date().toISOString().split('T')[0]}`}
               />
               {errors.date_of_birth && (
@@ -133,6 +144,7 @@ export default function RegisterPage() {
                 placeholder="Digitar descrição"
                 className="mb-8 py-2 px-4 resize-none h-20"
                 {...register('description')}
+                onChange={(e) => setValue('name', e.target.value)}
               />
               {errors.description && (
                 <small className="error">
@@ -144,7 +156,7 @@ export default function RegisterPage() {
                 Informações de endereço
               </p>
 
-              <RegisterInput
+              <UserInput
                 label="CEP"
                 type="text"
                 placeholder="12345-678"
@@ -152,6 +164,7 @@ export default function RegisterPage() {
                 db_field="address.cep"
                 maxLength={9}
                 onChange={async (e) => {
+                  setValue('address.cep', e.target.value);
                   if (e.currentTarget.value.length == 9) {
                     try {
                       const cep = e.currentTarget.value
@@ -197,7 +210,7 @@ export default function RegisterPage() {
 
               <div className="flex w-fit gap-2 flex-1 box-border">
                 <div className="flex flex-col">
-                  <RegisterInput
+                  <UserInput
                     label="Estado"
                     type="text"
                     placeholder="Seu Estado"
@@ -207,7 +220,7 @@ export default function RegisterPage() {
                   />
                 </div>
                 <div className="flex flex-col">
-                  <RegisterInput
+                  <UserInput
                     label="Cidade"
                     type="text"
                     placeholder="Sua Cidade"
@@ -218,7 +231,7 @@ export default function RegisterPage() {
                 </div>
               </div>
 
-              <RegisterInput
+              <UserInput
                 label="Endereço"
                 type="text"
                 placeholder="Logradouro e bairro"
@@ -229,12 +242,15 @@ export default function RegisterPage() {
 
               <div className="flex w-fit gap-2 flex-1 box-border">
                 <div className="flex flex-col">
-                  <RegisterInput
+                  <UserInput
                     label="Número"
                     type="text"
                     placeholder="Ex: 22-A"
                     register={register}
                     db_field="address.number"
+                    onChange={(e) =>
+                      setValue('address.number', e.target.value)
+                    }
                     maxLength={5}
                   />
                   {errors.address?.number && (
@@ -245,12 +261,15 @@ export default function RegisterPage() {
                 </div>
 
                 <div className="flex flex-col">
-                  <RegisterInput
+                  <UserInput
                     label="Complemento"
                     type="text"
                     placeholder="Ex: apart 307"
                     register={register}
                     db_field="address.complement"
+                    onChange={(e) =>
+                      setValue('address.complement', e.target.value)
+                    }
                     maxLength={10}
                   />
                 </div>
@@ -284,12 +303,13 @@ export default function RegisterPage() {
                 </button>
               </div>
 
-              <RegisterInput
+              <UserInput
                 label="Senha"
                 type="password"
                 placeholder="Digitar senha"
                 register={register}
                 db_field="password"
+                onChange={(e) => setValue('password', e.target.value)}
               />
               {errors.password && (
                 <small className="error">
@@ -297,12 +317,13 @@ export default function RegisterPage() {
                 </small>
               )}
 
-              <RegisterInput
+              <UserInput
                 label="Confirmar senha"
                 type="password"
                 placeholder="Digitar senha"
                 register={register}
                 db_field="confirm"
+                onChange={(e) => setValue('confirm', e.target.value)}
               />
               {errors.confirm && (
                 <small className="error">

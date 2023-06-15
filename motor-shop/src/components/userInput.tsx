@@ -1,12 +1,14 @@
+import { TLogin } from '@/schemas/login.schema';
 import { tUserRegister } from '@/schemas/user.register.schema';
 import { ChangeEvent } from 'react';
-import { FieldErrors, UseFormRegister } from 'react-hook-form';
+import { UseFormRegister } from 'react-hook-form';
 
 interface iProps {
   label?: string;
   type: string;
   placeholder: string;
-  register: UseFormRegister<tUserRegister>;
+  register?: UseFormRegister<tUserRegister>;
+  registerLogin?: UseFormRegister<TLogin>;
   db_field:
     | 'name'
     | 'email'
@@ -28,11 +30,12 @@ interface iProps {
   disabled?: boolean;
 }
 
-export const RegisterInput = ({
+export const UserInput = ({
   label,
   type,
   placeholder,
   register,
+  registerLogin,
   db_field,
   max,
   maxLength,
@@ -52,13 +55,15 @@ export const RegisterInput = ({
         placeholder={placeholder}
         className={`mb-8 ${
           db_field?.includes('address') ? 'w-full' : ''
-        } ${type == 'date' ? 'date-input--has-value' : ''}`}
-        {...register(db_field)}
+        } ${type == 'date' ? 'date-input--has-value' : ''} shadow-webkit`}
+        {...register?.(db_field)}
+        {...registerLogin?.(type === 'password' ? 'password' : 'email')}
         max={max}
         maxLength={maxLength}
         onChange={onChange}
         disabled={disabled ? disabled : false}
         autoComplete={db_field}
+        required={type === 'date'? true : false}
       />
     </>
   );
