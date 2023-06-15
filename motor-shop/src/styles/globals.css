@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lexend:wght@500;600;700&display=swap');
+
+
 /* FONT SIZING, STYLES AND FAMILY */
 @layer components {
   .heading-1-700 {
@@ -96,7 +100,7 @@
   }
 
   .btn-small {
-    @apply px-2 py-1 rounded w-max body-2-500 ;
+    @apply px-2 py-1 rounded w-max body-2-500;
   }
 
   .btn-grey1 {
@@ -212,19 +216,19 @@
     @apply font-inter input-label-text;
   }
 
-  input {
+  textarea,  input {
     @apply border-2 rounded border-grey-7 outline-none pl-4 h-12;
   }
 
-  input::placeholder {
+  texarea::placeholder,  input::placeholder {
     @apply input-place-text;
   }
 
-  input:focus {
+  textarea:focus,  input:focus {
     @apply outline-none border-brand-1;
   }
 
-  input:disabled {
+  textarea:disabled,  input:disabled {
     @apply outline-none bg-grey-8 border-grey-7;
   }
 
@@ -293,6 +297,7 @@
   }
 }
 
+
 /* Scrollbars and number input*/
 @layer utilities {
   input[type='number']::-webkit-outer-spin-button,
@@ -327,5 +332,36 @@
 
   .scrollbar::-webkit-scrollbar-thumb:hover {
     @apply bg-brand-3;
+  }
+  
+  @layer utilities {
+    /* placeholder do input type date*/
+    ::-webkit-datetime-edit-text, 
+    ::-webkit-datetime-edit-day-field[aria-valuetext=blank],
+    ::-webkit-datetime-edit-month-field[aria-valuetext=blank],
+    ::-webkit-datetime-edit-year-field[aria-valuetext=blank] {
+      @apply input-place-text;
+    }
+
+    /* valor do input type date */
+    input[type='date'].date-input--has-value::-webkit-datetime-edit-text,
+    input[type='date'].date-input--has-value::-webkit-datetime-edit-month-field,
+    input[type='date'].date-input--has-value::-webkit-datetime-edit-day-field,
+    input[type='date'].date-input--has-value::-webkit-datetime-edit-year-field {
+      @apply input-place-text;
+    }
+  }
+
+  input[type='date']::-webkit-calendar-picker-indicator {
+    /* cor do icone de calendario */
+    filter: invert(61%) sepia(2%) saturate(1322%) hue-rotate(169deg)
+      brightness(91%) contrast(92%);
+    @apply mr-3;
+  }
+
+  @layer components {
+    .error {
+      @apply text-alert-1 -mt-8 mb-3 text-[12px] animate-pulse
+    }
   }
 }

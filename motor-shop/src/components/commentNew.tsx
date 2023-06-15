@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Footer } from './headerAndFooter/footer';
 
 export const NewComment = () => {
   const mock = { name: 'Samuel Leão', avatar: '' };
