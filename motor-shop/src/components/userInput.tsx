@@ -55,15 +55,18 @@ export const UserInput = ({
         placeholder={placeholder}
         className={`mb-8 ${
           db_field?.includes('address') ? 'w-full' : ''
-        } ${type == 'date' ? 'date-input--has-value' : ''} shadow-webkit`}
+        } ${type == 'date' ? 'date-input--has-value' : ''} ${
+          !disabled && 'shadow-webkit'
+        }`}
         {...register?.(db_field)}
-        {...registerLogin?.(type === 'password' ? 'password' : 'email')}
+        {...registerLogin?.(
+          type === 'password' ? 'password' : 'email'
+        )}
         max={max}
         maxLength={maxLength}
         onChange={onChange}
         disabled={disabled ? disabled : false}
-        autoComplete={db_field}
-        required={type === 'date'? true : false}
+        required={type === 'date' ? true : false}
       />
     </>
   );
