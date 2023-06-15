@@ -44,6 +44,10 @@ export default function RegisterPage() {
     console.log(data);
     const { confirm, ...registerData } = data;
     registerData.seller = seller;
+    registerData.date_of_birth = registerData.date_of_birth
+      .split('-')
+      .reverse()
+      .join('-');
     console.log(registerData);
     registerRequest(registerData);
   };
