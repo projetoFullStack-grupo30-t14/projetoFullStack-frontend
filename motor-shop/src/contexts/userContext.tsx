@@ -1,18 +1,27 @@
-import { ReactNode, createContext, useState } from "react";
+import { ReactNode, createContext, useEffect, useState } from "react";
 import { api } from "@/services";
 import { UpdateUser, UserType } from "@/schemas";
 import { useAuth } from "./authContext";
-import { parseCookies } from "nookies";
+import { AxiosError } from "axios";
+import { toast } from "react-toastify";
+import jwtDecode from "jwt-decode";
 
 interface Props {
   children: ReactNode;
 }
 
 interface UserContextProviderData {
-  listSelf: (id: string) => Promise<UserType | undefined>;
+  listOne: (id: string) => Promise<UserType | undefined>;
   deleteSelf: (id: string) => Promise<void>;
   updateSelf: (id: string, data: UpdateUser) => Promise<UserType | undefined>;
   currUser: UserType | null;
+}
+
+interface DecodeObj {
+  email: string;
+  iat: number;
+  exp: number;
+  sub: string;
 }
 
 export const UserContext = createContext<UserContextProviderData>(
@@ -23,7 +32,7 @@ export function UserProvider({ children }: Props) {
   const [currUser, setCurrUser] = useState<UserType | null>(null);
   const { logout } = useAuth();
 
-  const token = parseCookies(null, "motorShop.token")["motorShop.token"];
+  const { token } = useAuth();
 
   const headers = {
     headers: {
@@ -31,14 +40,27 @@ export function UserProvider({ children }: Props) {
     },
   };
 
-  const listSelf = async (id: string) => {
+  useEffect(() => {
+    if (token) {
+      const id = jwtDecode<DecodeObj>(token).sub;
+
+      listOne(id);
+    }
+  }, [token]);
+
+  const listOne = async (id: string) => {
     try {
       const userData: UserType = (await api.get(`users/${id}`, headers)).data;
 
       setCurrUser(userData);
       return userData;
     } catch (error) {
-      console.error(error);
+      if (error instanceof AxiosError) {
+        toast.error(`${error.response?.data.message}`);
+        console.log(error);
+      } else {
+        console.error(error);
+      }
     }
   };
 
@@ -51,7 +73,12 @@ export function UserProvider({ children }: Props) {
       setCurrUser(updatedUser);
       return updatedUser;
     } catch (error) {
-      console.error(error);
+      if (error instanceof AxiosError) {
+        toast.error(`${error.response?.data.message}`);
+        console.log(error);
+      } else {
+        console.error(error);
+      }
     }
   };
 
@@ -60,14 +87,17 @@ export function UserProvider({ children }: Props) {
       await api.delete(`users/${id}`, headers);
       logout();
     } catch (error) {
-      console.error(error);
+      if (error instanceof AxiosError) {
+        toast.error(`${error.response?.data.message}`);
+        console.log(error);
+      } else {
+        console.error(error);
+      }
     }
   };
 
   return (
-    <UserContext.Provider
-      value={{ listSelf, deleteSelf, updateSelf, currUser }}
-    >
+    <UserContext.Provider value={{ listOne, deleteSelf, updateSelf, currUser }}>
       {children}
     </UserContext.Provider>
   );
