@@ -30,14 +30,10 @@ export function AuthProvider({ children }: Props) {
     parseCookies(null, "motorShop.token")["motorShop.token"]
   );
 
-  console.log(token);
-
   const register = async (userData: tUserRequest) => {
     try {
       await api.post("users", userData);
       toast.success("Usuário cadastrado!");
-
-      router.push("/login");
     } catch (error) {
       if (error instanceof AxiosError) {
         toast.error(`${error.response?.data.message}`);
