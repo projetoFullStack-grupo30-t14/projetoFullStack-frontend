@@ -61,7 +61,12 @@ export function AuthProvider({ children }: Props) {
 
       router.push("/");
     } catch (error) {
-      console.error(error);
+      if (error instanceof AxiosError) {
+        toast.error(`${error.response?.data.message}`);
+        console.log(error);
+      } else {
+        console.error(error);
+      }
     }
   };
 

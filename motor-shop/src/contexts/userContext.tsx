@@ -3,6 +3,8 @@ import { api } from "@/services";
 import { UpdateUser, UserType } from "@/schemas";
 import { useAuth } from "./authContext";
 import { parseCookies } from "nookies";
+import { AxiosError } from "axios";
+import { toast } from "react-toastify";
 
 interface Props {
   children: ReactNode;
@@ -38,7 +40,12 @@ export function UserProvider({ children }: Props) {
       setCurrUser(userData);
       return userData;
     } catch (error) {
-      console.error(error);
+      if (error instanceof AxiosError) {
+        toast.error(`${error.response?.data.message}`);
+        console.log(error);
+      } else {
+        console.error(error);
+      }
     }
   };
 
@@ -51,7 +58,12 @@ export function UserProvider({ children }: Props) {
       setCurrUser(updatedUser);
       return updatedUser;
     } catch (error) {
-      console.error(error);
+      if (error instanceof AxiosError) {
+        toast.error(`${error.response?.data.message}`);
+        console.log(error);
+      } else {
+        console.error(error);
+      }
     }
   };
 
@@ -60,7 +72,12 @@ export function UserProvider({ children }: Props) {
       await api.delete(`users/${id}`, headers);
       logout();
     } catch (error) {
-      console.error(error);
+      if (error instanceof AxiosError) {
+        toast.error(`${error.response?.data.message}`);
+        console.log(error);
+      } else {
+        console.error(error);
+      }
     }
   };
 
