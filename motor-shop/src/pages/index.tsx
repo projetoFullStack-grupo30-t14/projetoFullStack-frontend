@@ -3,10 +3,9 @@ import { Footer } from "@/components/headerAndFooter/footer";
 import { Header } from "@/components/headerAndFooter/header";
 import ListCards from "@/components/listCards";
 import CardCar from "@/components/cardCar";
-import { carsListMock } from "@/mocks/carList.mock";
 import { TCar } from "@/schemas/car.schema";
-import { useContext, useEffect } from "react";
-import { CarContext, useCars } from "@/contexts/carContext";
+import { useEffect } from "react";
+import { useCars } from "@/contexts/carContext";
 
 export default function HomePage() {
   const { getAllCars, listCars } = useCars();
@@ -47,10 +46,7 @@ export default function HomePage() {
             </p>
           </div>
         </div>
-        <section
-          // style={{ backgroundColor: "red" }}
-          className="flex flex-col gap-y-8 md:flex-row-reverse lg:flex-row-reverse md:gap-x-4 lg:gap-x-8"
-        >
+        <section className="flex flex-col gap-y-8 md:flex-row-reverse lg:flex-row-reverse md:gap-x-4 lg:gap-x-8">
           <main>
             <ListCards carList={listCars}>
               {(car: TCar) => <CardCar car={car} />}
@@ -60,7 +56,6 @@ export default function HomePage() {
             <Filter />
           </aside>
         </section>
-        {/* <footer>The page navigator</footer> */}
       </div>
       <Footer />
     </div>
