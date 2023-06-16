@@ -57,7 +57,7 @@ export default function RegisterPage() {
       <Header />
       <main className="bg-grey-8 py-12">
         <div className="flex justify-center items-center h-full">
-          <div className="z-50 py-11 px-12 h-full w-[410px] font-medium bg-grey-whiteFixed space-y-8 rounded">
+          <div className="z-10 py-11 px-12 h-full w-[410px] font-medium bg-grey-whiteFixed space-y-8 rounded">
             <h3 className="text-heading5 font-lexend">Cadastro</h3>
             <p className="text-body2 font-inter">
               Informações pessoais
