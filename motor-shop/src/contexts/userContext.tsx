@@ -1,10 +1,10 @@
-import { ReactNode, createContext, useState } from "react";
+import { ReactNode, createContext, useEffect, useState } from "react";
 import { api } from "@/services";
 import { UpdateUser, UserType } from "@/schemas";
 import { useAuth } from "./authContext";
-import { parseCookies } from "nookies";
 import { AxiosError } from "axios";
 import { toast } from "react-toastify";
+import jwtDecode from "jwt-decode";
 
 interface Props {
   children: ReactNode;
@@ -15,6 +15,13 @@ interface UserContextProviderData {
   deleteSelf: (id: string) => Promise<void>;
   updateSelf: (id: string, data: UpdateUser) => Promise<UserType | undefined>;
   currUser: UserType | null;
+}
+
+interface DecodeObj {
+  email: string;
+  iat: number;
+  exp: number;
+  sub: string;
 }
 
 export const UserContext = createContext<UserContextProviderData>(
@@ -32,6 +39,14 @@ export function UserProvider({ children }: Props) {
       authorization: `Bearer ${token}`,
     },
   };
+
+  useEffect(() => {
+    if (token) {
+      const id = jwtDecode<DecodeObj>(token).sub;
+
+      listOne(id);
+    }
+  }, [token]);
 
   const listOne = async (id: string) => {
     try {
