@@ -1,7 +1,7 @@
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { FilterSection } from "../FilterSection";
-import { values } from "../../../mocks/filterMock";
 import { FilterInputs } from "../FilterInputs";
+import { useCars } from "@/contexts/carContext";
 
 interface FilterBoxProps {
   className: string;
@@ -11,8 +11,20 @@ export const FilterBox = ({ className, setShow }: FilterBoxProps) => {
   const [resetOn, setResetOn] = useState(false);
   const [buttonText, setButtonText] = useState(false);
   const [searchParams, setSearchParams] = useState("?");
-  const { year, brand, color, model } = values;
   const fuel = ["flex", "hybrid", "electric"];
+  const { values, getAllCars, getValues } = useCars();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        await getValues();
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <section
@@ -35,36 +47,46 @@ export const FilterBox = ({ className, setShow }: FilterBoxProps) => {
         onSubmit={(e) => {
           e.preventDefault();
           console.log(searchParams);
+
+          getAllCars(searchParams);
         }}
       >
-        <FilterSection
-          searchParams={searchParams}
-          setSearchParams={setSearchParams}
-          title="Marca"
-          values={brand}
-          searchKey={`brand`}
-        />
-        <FilterSection
-          searchParams={searchParams}
-          setSearchParams={setSearchParams}
-          title="Modelo"
-          values={model}
-          searchKey={`model`}
-        />
-        <FilterSection
-          searchParams={searchParams}
-          setSearchParams={setSearchParams}
-          title="Cor"
-          values={color}
-          searchKey={`color`}
-        />
-        <FilterSection
-          searchParams={searchParams}
-          setSearchParams={setSearchParams}
-          title="Ano"
-          values={year}
-          searchKey={`year`}
-        />
+        {Object.keys(values).length > 0 && (
+          <FilterSection
+            searchParams={searchParams}
+            setSearchParams={setSearchParams}
+            title="Marca"
+            values={values.brand}
+            searchKey={`brand`}
+          />
+        )}
+        {Object.keys(values).length > 0 && (
+          <FilterSection
+            searchParams={searchParams}
+            setSearchParams={setSearchParams}
+            title="Modelo"
+            values={values.model}
+            searchKey={`model`}
+          />
+        )}
+        {Object.keys(values).length > 0 && (
+          <FilterSection
+            searchParams={searchParams}
+            setSearchParams={setSearchParams}
+            title="Cor"
+            values={values.color}
+            searchKey={`color`}
+          />
+        )}
+        {Object.keys(values).length > 0 && (
+          <FilterSection
+            searchParams={searchParams}
+            setSearchParams={setSearchParams}
+            title="Ano"
+            values={values.year}
+            searchKey={`year`}
+          />
+        )}
         <FilterSection
           searchParams={searchParams}
           setSearchParams={setSearchParams}
@@ -92,6 +114,7 @@ export const FilterBox = ({ className, setShow }: FilterBoxProps) => {
                 e.preventDefault();
                 setSearchParams("?");
                 setResetOn(!resetOn);
+                getAllCars("");
               }
 
               setButtonText(!buttonText);

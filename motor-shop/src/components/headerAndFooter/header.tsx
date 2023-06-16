@@ -4,12 +4,13 @@ import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 import TestForm from "../modal/testForm"
 import Modal from "../modal/modal"
+import { useAuth } from "@/contexts/authContext"
 
 
 export function Header () {
     const [isHamburgerOpen, setIsHamburgerOpen] = useState(false)
     const [isLoginOpen, setIsLoginOpen] = useState(false)
-    const [isLoggedIn, setIsLoggedIn] = useState(true)
+    const { token, logout } = useAuth()
     const { showModal, stateModal } = useModal()
     const router = useRouter()
 
@@ -60,7 +61,7 @@ export function Header () {
                     </figure>
                 </div>
                 {
-                    isLoggedIn ?
+                    token ?
                     <div  onClick={toggleLoginMenu} className="relative hidden sm:flex gap-2 border-l-2 border-grey-6 py-6 pl-11 cursor-pointer">
                         <div className="bg-random-1 w-7 h-7 rounded-full">
                             {mock.avatar}
@@ -77,7 +78,7 @@ export function Header () {
                                         mockAnnounc.length > 0 &&
                                         <Link href="/profile" className="text-left font-inter hover:bg-grey-0 hover:text-grey-10 py-4 pl-3 pr-5 ">Meus Anúncios</Link>
                                     }
-                                    <a onClick={() => setIsLoggedIn(false)} href="#" className="text-left font-inter hover:bg-grey-0 hover:text-grey-10 py-4 pl-3 pr-5 ">Sair</a>
+                                    <a onClick={logout} href="#" className="text-left font-inter hover:bg-grey-0 hover:text-grey-10 py-4 pl-3 pr-5 ">Sair</a>
                                 </div>
                             </>
                         }
@@ -94,9 +95,9 @@ export function Header () {
                 isHamburgerOpen &&
                 <>
                     <button tabIndex={-1} onClick={() => setIsHamburgerOpen(false)} className="fixed inset-0 h-full w-full cursor-default"></button>
-                    <div className="absolute z-10 right-0 sm:hidden bg-grey-10 shadow-xl flex flex-col w-full">
+                    <div className="absolute z-20 right-0 sm:hidden bg-grey-10 shadow-xl flex flex-col w-full">
                         {
-                            isLoggedIn ?
+                            token ?
                             <>
                                 <button onClick={() => showModal(<TestForm/>, "Editar perfil")} className="text-left font-inter hover:bg-grey-0 hover:text-grey-10 py-4 pl-3 pr-5 ">Editar Perfil</button>
                                 <button onClick={() => showModal(<TestForm/>, "Editar endereço")} className="text-left font-inter hover:bg-grey-0 hover:text-grey-10 py-4 pl-3 pr-5 ">Editar endereço</button>
@@ -104,7 +105,7 @@ export function Header () {
                                     mockAnnounc.length > 0 &&
                                     <Link href="/profile" className="text-left font-inter hover:bg-grey-0 hover:text-grey-10 py-4 pl-3 pr-5 ">Meus Anúncios</Link>
                                 }
-                                <a onClick={() => setIsLoggedIn(false)} href="#" className="font-inter hover:bg-grey-0 hover:text-grey-10 py-4 pl-3 pr-5 ">Sair</a>
+                                <a onClick={logout} href="#" className="font-inter hover:bg-grey-0 hover:text-grey-10 py-4 pl-3 pr-5 ">Sair</a>
                             </>
                             :
                             <>
