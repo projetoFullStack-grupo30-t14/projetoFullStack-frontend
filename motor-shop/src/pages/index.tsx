@@ -52,7 +52,7 @@ export default function HomePage() {
               {(car: TCar) => <CardCar car={car} />}
             </ListCards>
           </main>
-          <aside className="relative z-10">
+          <aside className="lg:relative z-10">
             <Filter />
           </aside>
         </section>
