@@ -11,7 +11,7 @@ interface Props {
 }
 
 interface UserContextProviderData {
-  listSelf: (id: string) => Promise<UserType | undefined>;
+  listOne: (id: string) => Promise<UserType | undefined>;
   deleteSelf: (id: string) => Promise<void>;
   updateSelf: (id: string, data: UpdateUser) => Promise<UserType | undefined>;
   currUser: UserType | null;
@@ -25,7 +25,7 @@ export function UserProvider({ children }: Props) {
   const [currUser, setCurrUser] = useState<UserType | null>(null);
   const { logout } = useAuth();
 
-  const token = parseCookies(null, "motorShop.token")["motorShop.token"];
+  const { token } = useAuth();
 
   const headers = {
     headers: {
@@ -33,7 +33,7 @@ export function UserProvider({ children }: Props) {
     },
   };
 
-  const listSelf = async (id: string) => {
+  const listOne = async (id: string) => {
     try {
       const userData: UserType = (await api.get(`users/${id}`, headers)).data;
 
@@ -82,9 +82,7 @@ export function UserProvider({ children }: Props) {
   };
 
   return (
-    <UserContext.Provider
-      value={{ listSelf, deleteSelf, updateSelf, currUser }}
-    >
+    <UserContext.Provider value={{ listOne, deleteSelf, updateSelf, currUser }}>
       {children}
     </UserContext.Provider>
   );
