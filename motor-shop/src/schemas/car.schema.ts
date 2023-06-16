@@ -23,4 +23,12 @@ export const carSchema = z.object({
     ),
   });
 
+  export const carDataSchema = carSchema.omit({
+    created_at: true,
+    is_active: true,
+    price_FIPE: true,
+    id: true,
+  })
+
+  export type TCarData = z.infer<typeof carDataSchema>
   export type TCar = z.infer<typeof carSchema>

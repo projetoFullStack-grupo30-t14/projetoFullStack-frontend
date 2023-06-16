@@ -5,8 +5,24 @@ import ListCards from "@/components/listCards";
 import CardCar from "@/components/cardCar";
 import { carsListMock } from "@/mocks/carList.mock";
 import { TCar } from "@/schemas/car.schema";
+import { useContext, useEffect } from "react";
+import { CarContext, useCars } from "@/contexts/carContext";
 
 export default function HomePage() {
+  const { getAllCars, listCars } = useCars();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        await getAllCars();
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <div>
       <Header />
@@ -31,7 +47,7 @@ export default function HomePage() {
           className="flex flex-col gap-y-8 md:flex-row-reverse lg:flex-row-reverse md:gap-x-4 lg:gap-x-8"
         >
           <main>
-            <ListCards carList={carsListMock}>
+            <ListCards carList={listCars}>
               {(car: TCar) => (
                 <CardCar car={car} />
               )}
