@@ -6,6 +6,8 @@ import TestForm from "../modal/testForm"
 import Modal from "../modal/modal"
 import { useAuth } from "@/contexts/authContext"
 import { UserContext } from "@/contexts/userContext"
+import UpdateUserForm from "../forms/updateUserForm"
+import UpdateAddressForm from "../forms/updateAddressForm"
 
 
 export function Header () {
@@ -89,8 +91,8 @@ export function Header () {
                             <>
                                 <button tabIndex={-1} onClick={() => setIsLoginOpen(false)} className="fixed inset-0 h-full w-full cursor-default"></button>
                                 <div className="absolute z-20 right-0 top-14 w-48 bg-grey-10 rounded shadow-xl flex flex-col">
-                                    <button onClick={() => showModal(<TestForm/>, "Editar perfil")} className="text-left font-inter hover:bg-grey-0 hover:text-grey-10 py-4 pl-3 pr-5 ">Editar Perfil</button>
-                                    <button onClick={() => showModal(<TestForm/>, "Editar endereço")} className="text-left font-inter hover:bg-grey-0 hover:text-grey-10 py-4 pl-3 pr-5 ">Editar endereço</button>
+                                    <button onClick={() => showModal(<UpdateUserForm/>, "Editar perfil")} className="text-left font-inter hover:bg-grey-0 hover:text-grey-10 py-4 pl-3 pr-5 ">Editar Perfil</button>
+                                    <button onClick={() => showModal(<UpdateAddressForm/>, "Editar endereço")} className="text-left font-inter hover:bg-grey-0 hover:text-grey-10 py-4 pl-3 pr-5 ">Editar endereço</button>
                                     {
                                         mockAnnounc.length > 0 &&
                                         <Link href="/profile" className="text-left font-inter hover:bg-grey-0 hover:text-grey-10 py-4 pl-3 pr-5 ">Meus Anúncios</Link>
@@ -116,8 +118,8 @@ export function Header () {
                         {
                             token ?
                             <>
-                                <button onClick={() => showModal(<TestForm/>, "Editar perfil")} className="text-left font-inter hover:bg-grey-0 hover:text-grey-10 py-4 pl-3 pr-5 ">Editar Perfil</button>
-                                <button onClick={() => showModal(<TestForm/>, "Editar endereço")} className="text-left font-inter hover:bg-grey-0 hover:text-grey-10 py-4 pl-3 pr-5 ">Editar endereço</button>
+                                <button onClick={() => showModal(<UpdateUserForm/>, "Editar perfil")} className="text-left font-inter hover:bg-grey-0 hover:text-grey-10 py-4 pl-3 pr-5 ">Editar Perfil</button>
+                                <button onClick={() => showModal(<UpdateAddressForm/>, "Editar endereço")} className="text-left font-inter hover:bg-grey-0 hover:text-grey-10 py-4 pl-3 pr-5 ">Editar endereço</button>
                                 {
                                     mockAnnounc.length > 0 &&
                                     <Link href="/profile" className="text-left font-inter hover:bg-grey-0 hover:text-grey-10 py-4 pl-3 pr-5 ">Meus Anúncios</Link>

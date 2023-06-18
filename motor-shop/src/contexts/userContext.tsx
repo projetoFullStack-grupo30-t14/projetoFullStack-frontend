@@ -64,7 +64,7 @@ export function UserProvider({ children }: Props) {
     }
   };
 
-  const updateSelf = async (id: string, data: UpdateUser) => {
+  const updateSelf = async (id: string | null, data: UpdateUser) => {
     try {
       const updatedUser: UserType = (
         await api.patch(`users/${id}`, data, headers)

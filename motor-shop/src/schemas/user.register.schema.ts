@@ -1,3 +1,4 @@
+import { DeepPartial } from 'react-hook-form';
 import { z } from 'zod';
 
 const addressSchema = z.object({
@@ -52,6 +53,13 @@ export const userSchema = z.object({
   seller: z.boolean().default(false),
 });
 
+export const userUpdateSRequestchema = userSchema.omit({
+  address: true,
+  password: true
+})
+
+export const userUpdateSchema = userUpdateSRequestchema.partial()
+
 export const userRegisterSchema = userSchema
   .extend({
     confirm: z
@@ -69,6 +77,10 @@ export const userRegisterSchema = userSchema
   });
 
 export type tUserRequest = z.infer<typeof userSchema>;
+
+export type tUserUpdate = z.infer<typeof userUpdateSchema>
+
+export type tUserUpdateRequest = DeepPartial<tUserUpdate>
 
 export type tUserRegister = z.infer<typeof userRegisterSchema>;
 
