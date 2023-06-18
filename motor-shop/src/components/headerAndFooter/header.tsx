@@ -1,16 +1,18 @@
 import { useModal } from "@/contexts/modalContext"
 import Link from "next/link"
 import { useRouter } from "next/router"
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import TestForm from "../modal/testForm"
 import Modal from "../modal/modal"
 import { useAuth } from "@/contexts/authContext"
+import { UserContext } from "@/contexts/userContext"
 
 
 export function Header () {
     const [isHamburgerOpen, setIsHamburgerOpen] = useState(false)
     const [isLoginOpen, setIsLoginOpen] = useState(false)
     const { token, logout } = useAuth()
+    const { currUser } = useContext(UserContext)
     const { showModal, stateModal } = useModal()
     const router = useRouter()
 
@@ -30,6 +32,21 @@ export function Header () {
     function toggleLoginMenu () {
         setIsLoginOpen(!isLoginOpen)
     }
+
+    function getInitials (name: string | undefined): string | undefined {
+        const nameParts = name?.split(' ')
+        let initials: string[] = [];
+  
+        if (nameParts && nameParts.length > 0) {
+            initials.push(nameParts[0].charAt(0));
+            
+            if (nameParts.length > 1) {
+            initials.push(nameParts[nameParts.length - 1].charAt(0));
+            }
+        }
+        return initials?.join('')
+    }
+    const iconName = getInitials(currUser?.name)
 
     const mockAnnounc = [{}]
 
@@ -63,10 +80,10 @@ export function Header () {
                 {
                     token ?
                     <div  onClick={toggleLoginMenu} className="relative hidden sm:flex gap-2 border-l-2 border-grey-6 py-6 pl-11 cursor-pointer">
-                        <div className="bg-random-1 w-7 h-7 rounded-full">
-                            {mock.avatar}
+                        <div className="bg-random-1 w-8 h-8 flex items-center justify-center rounded-full text-grey-whiteFixed font-inter font-bold">
+                            {iconName}
                         </div>
-                        <p>{mock.name}</p>
+                        <p>{currUser?.name}</p>
                         {
                             isLoginOpen &&
                             <>
