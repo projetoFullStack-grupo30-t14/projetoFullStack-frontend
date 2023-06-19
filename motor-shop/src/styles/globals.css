@@ -94,11 +94,11 @@
   }
 
   .btn-medium {
-    @apply px-5 py-2 rounded btn-medium-text w-max;
+    @apply px-5 py-2 rounded btn-medium-text ;
   }
 
   .btn-small {
-    @apply px-2 py-1 rounded w-max body-2-500;
+    @apply px-2 py-1 rounded  body-2-500;
   }
 
   .btn-grey1 {
