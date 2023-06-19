@@ -14,7 +14,7 @@ export default function Modal () {
   }, [])
 
     return (
-        <div className="fixed z-20 inset-0 flex justify-center items-center">
+        <div className="fixed z-30 inset-0 flex justify-center items-center">
           <div className="fixed inset-0 bg-grey-0 opacity-50" />
           <div className="w-full max-h-max sm:w-max p-5 rounded-lg bg-grey-whiteFixed relative -top-32">
             <div className="flex items-center justify-between mb-4">
