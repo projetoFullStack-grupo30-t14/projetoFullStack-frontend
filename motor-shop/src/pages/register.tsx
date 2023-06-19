@@ -10,6 +10,9 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { UserInput } from '@/components/userInput';
 import { api } from '@/services';
 import { useAuth } from '@/contexts/authContext';
+import { useModal } from '@/contexts/modalContext';
+import Modal from '@/components/modal/modal';
+import TestForm from '@/components/modal/testForm';
 
 interface iAddressResponse {
   bairro: string;
@@ -39,7 +42,8 @@ export default function RegisterPage() {
   });
 
   const { register: registerRequest } = useAuth();
-  // console.log(errors)
+  const { showModal, stateModal } = useModal();
+  
   const onSubmit = (data: tUserRegister) => {
     console.log(data);
     const { confirm, ...registerData } = data;
@@ -49,15 +53,19 @@ export default function RegisterPage() {
       .reverse()
       .join('-');
     console.log(registerData);
-    registerRequest(registerData);
+    registerRequest(registerData)
+    //   .then(() =>
+    //   showModal(<TestForm />, 'Editar perfil')
+    // );
   };
 
   return (
     <>
       <Header />
-      <main className="bg-grey-8 py-12">
+      {stateModal && <Modal />}
+      <main className="bg-grey-8 py-12 px-4 w-screen">
         <div className="flex justify-center items-center h-full">
-          <div className="z-10 py-11 px-12 h-full w-[410px] font-medium bg-grey-whiteFixed space-y-8 rounded">
+          <div className="z-10 py-11 px-[8%] h-full sm:px-12 max-w-[410px] font-medium bg-grey-whiteFixed space-y-8 rounded">
             <h3 className="text-heading5 font-lexend">Cadastro</h3>
             <p className="text-body2 font-inter">
               Informações pessoais
@@ -144,7 +152,7 @@ export default function RegisterPage() {
                 placeholder="Digitar descrição"
                 className="mb-8 py-2 px-4 resize-none h-20"
                 {...register('description')}
-                onChange={(e) => setValue('name', e.target.value)}
+                onChange={(e) => setValue('description', e.target.value)}
               />
               {errors.description && (
                 <small className="error">
@@ -280,7 +288,7 @@ export default function RegisterPage() {
                 <button
                   className={`${
                     selected == 1 ? 'btn-brand1' : 'btn-outline2'
-                  } btn-big w-1/2 rounded font-semibold transition ease-in-out`}
+                  } btn-big w-[50%] px-0 rounded font-semibold transition ease-in-out`}
                   onClick={(e) => {
                     setSelected(1);
                     setSeller(false);
@@ -292,7 +300,7 @@ export default function RegisterPage() {
                 <button
                   className={`${
                     selected == 2 ? 'btn-brand1' : 'btn-outline2'
-                  } btn-big w-1/2 rounded font-semibold transition ease-in-out`}
+                  } btn-big w-[50%] px-0 rounded font-semibold transition ease-in-out`}
                   onClick={(e) => {
                     setSelected(2);
                     setSeller(true);
