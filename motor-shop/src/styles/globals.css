@@ -90,7 +90,7 @@
 /* BUTTONS */
 @layer components {
   .btn-big {
-    @apply px-7 h-12 rounded font-inter btn-big-text;
+    @apply px-7 h-12 rounded font-inter btn-big-text min-w-min;
   }
 
   .btn-medium {
