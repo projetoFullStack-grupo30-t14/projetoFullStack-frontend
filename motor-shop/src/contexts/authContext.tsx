@@ -6,6 +6,8 @@ import { api } from "@/services";
 import { tUserRequest } from "@/schemas/user.register.schema";
 import { toast } from "react-toastify";
 import { AxiosError } from "axios";
+import { useModal } from "./modalContext";
+import { RegisterSuccess } from "@/components/modal/registerSuccess";
 
 interface Props {
   children: ReactNode;
@@ -26,6 +28,7 @@ export const AuthContext = createContext<AuthProviderData>(
 
 export function AuthProvider({ children }: Props) {
   const router = useRouter();
+  const { showModal } = useModal();
   const [token, setToken] = useState<string | undefined>(
     parseCookies(null, "motorShop.token")["motorShop.token"]
   );
@@ -33,7 +36,7 @@ export function AuthProvider({ children }: Props) {
   const register = async (userData: tUserRequest) => {
     try {
       await api.post("users", userData);
-      toast.success("Usuário cadastrado!");
+      showModal(<RegisterSuccess />, 'Sucesso!');
     } catch (error) {
       if (error instanceof AxiosError) {
         toast.error(`${error.response?.data.message}`);

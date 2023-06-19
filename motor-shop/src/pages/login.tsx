@@ -9,7 +9,7 @@ import { useContext } from "react";
 import { useForm } from "react-hook-form";
 
 export default function LoginPage() {
-    const {login} = useContext(AuthContext);
+  const { login } = useContext(AuthContext);
   const {
     handleSubmit,
     register,
@@ -21,7 +21,7 @@ export default function LoginPage() {
   });
 
   const onSubmit = (data: TLogin) => {
-    login(data)
+    login(data);
   };
   return (
     <>
@@ -50,7 +50,6 @@ export default function LoginPage() {
                 registerLogin={register}
                 db_field="password"
                 onChange={(e) => setValue("password", e.target.value)}
-                
               />
               {errors.password && (
                 <small className="error">{errors.password.message}</small>
@@ -60,13 +59,19 @@ export default function LoginPage() {
               </a>
 
               <div className="space-y-5">
-                <button type="submit" className="w-full btn-big btn-brand1 transition ease-in-out">
+                <button
+                  type="submit"
+                  className="w-full btn-big btn-brand1 transition ease-in-out"
+                >
                   Entrar
                 </button>
                 <p className="body-2-400 text-grey-2 text-center">
                   Ainda não possui conta?
                 </p>
-                <button onClick={() => router.push("/register")}className="w-full btn-big btn-outline2 transition ease-in-out">
+                <button
+                  onClick={() => router.push("/register")}
+                  className="w-full btn-big btn-outline2 transition ease-in-out"
+                >
                   Cadastrar
                 </button>
               </div>
