@@ -1,4 +1,5 @@
 import { TCar } from "@/schemas/car.schema";
+import Link from "next/link";
 
 const CardCarSeller = ({ car }: { car: TCar }) => {
     return (
@@ -35,7 +36,7 @@ const CardCarSeller = ({ car }: { car: TCar }) => {
                 </div>
                 <div className="mt-3 flex gap-4">
                     <button className="btn-outline1 rounded px-5 py-3 font-inter">Editar</button>
-                    <button className="btn-outline1 rounded px-5 py-3 font-inter">Ver detalhes</button>
+                    <Link href={`/products/${car.id}`} className="btn-outline1 rounded px-5 py-3 font-inter">Ver detalhes</Link>
                 </div>
             </div>
         </div>
