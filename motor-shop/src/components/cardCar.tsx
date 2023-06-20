@@ -17,11 +17,11 @@ const CardCar = ({ car }: { car: TCar }) => {
         <h3 className="font-lexend heading-7-600 text-grey-1 mb-4">
           {car.brand} - {car.model}
         </h3>
-        <p className="text-grey-2 font-inter body-2-400">
+        <p className="text-grey-2 font-inter body-2-400 truncate">
           {car.description}
         </p>
         <div className="flex items-center mt-4">
-          <Link href={`/profile/${car.userId}`} className="text-grey-2 body-2-500 font-inter">
+          <Link href={`/profiles/${car.usersId}`} className="text-grey-2 body-2-500 font-inter">
             <div className="bg-brand-1 w-7 h-7 rounded-full flex items-center justify-center">
               <span className="text-brand-4 font-inter text-body1">AN</span>
             </div>

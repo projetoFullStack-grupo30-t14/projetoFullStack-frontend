@@ -14,6 +14,7 @@ interface UserContextProviderData {
   listOne: (id: string) => Promise<UserType | undefined>;
   deleteSelf: (id: string) => Promise<void>;
   updateSelf: (id: string, data: UpdateUser) => Promise<UserType | undefined>;
+  listAll: () => Promise<UserType[] | undefined>;
   currUser: UserType | null;
 }
 
@@ -47,6 +48,20 @@ export function UserProvider({ children }: Props) {
       listOne(id);
     }
   }, [token]);
+
+  const listAll = async () => {
+    try {
+      const users: Array<UserType> = (await api.get('users', headers)).data;
+      return users;
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        toast.error(`${error.response?.data.message}`);
+        console.log(error);
+      } else {
+        console.error(error);
+      }
+    }
+  }
 
   const listOne = async (id: string) => {
     try {
@@ -97,7 +112,7 @@ export function UserProvider({ children }: Props) {
   };
 
   return (
-    <UserContext.Provider value={{ listOne, deleteSelf, updateSelf, currUser }}>
+    <UserContext.Provider value={{ listOne, deleteSelf, updateSelf, currUser, listAll }}>
       {children}
     </UserContext.Provider>
   );

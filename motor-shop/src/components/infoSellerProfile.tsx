@@ -1,7 +1,15 @@
 import { UserType } from "@/schemas";
 import { getInitials } from "./utils";
 
-const InfoSellerProfile = (userData: UserType) => {
+interface InfoSellerProps{
+    userData: UserType;
+    children: JSX.Element;
+}
+const InfoSellerProfile = ({userData, children}: InfoSellerProps) => {
+    if (!userData){
+        return null
+    }
+
     const initials = getInitials(userData.name);
 
     return (
@@ -15,9 +23,7 @@ const InfoSellerProfile = (userData: UserType) => {
                     <span className="flex items-center bg-brand-4 rounded p-1 font-inter text-brand-1 text-body2-500"> Anunciante </span>
                 </div>
                 <p className="text-body1 font-inter text-grey-2">{userData.description}</p>
-                <div className="text-left">
-                    <button className='btn-brand-outline-brand1 rounded py-3 px-4 font-inter'>Criar Anúncio</button>
-                </div>
+                {children}
             </div>
         </div>
     )
