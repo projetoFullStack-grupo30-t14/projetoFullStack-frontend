@@ -47,12 +47,12 @@ export default function HomePage() {
           </div>
         </div>
         <section className="flex flex-col gap-y-8 md:flex-row-reverse lg:flex-row-reverse md:gap-x-4 lg:gap-x-8">
-          <main>
-            <ListCards carList={listCars}>
-              {(car: TCar) => <CardCar car={car} />}
-            </ListCards>
+          <main className="w-full md:w-3/3">
+              <ListCards carList={listCars}>
+                {(car: TCar) => <CardCar car={car} />}
+              </ListCards>
           </main>
-          <aside className="lg:relative z-10">
+          <aside className="lg:relative z-10 w-full md:w-1/3">
             <Filter />
           </aside>
         </section>

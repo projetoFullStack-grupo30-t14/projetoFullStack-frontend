@@ -14,6 +14,7 @@ export const carSchema = z.object({
     cover_image: z.string(),
     is_active: z.boolean(),
     created_at: z.date(),
+    userId: z.string(),
     car_gallery: z.array(
       z.object({
         id: z.string(),
