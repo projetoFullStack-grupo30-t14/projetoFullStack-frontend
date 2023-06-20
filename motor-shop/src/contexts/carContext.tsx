@@ -29,9 +29,11 @@ interface CarContextProviderData {
   getValues: () => Promise<void>;
   patchOneCar: (id: number) => Promise<void | null>;
   deleteOneCar: (id: number) => Promise<void | null>;
+  getCarsByOwner: () => Promise<TCar[] | null>;
   listCars: TCar[];
   listOneCar?: TCar;
   values: Values;
+  listCarsOwner: TCar[];
 }
 
 export const CarContext = createContext<CarContextProviderData>(
@@ -42,6 +44,7 @@ export const CarProvider = ({ children }: Props) => {
   const [listCars, setListCars] = useState<TCar[]>([]);
   const [listOneCar, setListOneCar] = useState<TCar>();
   const [values, setValues] = useState<Values>({} as Values);
+  const [listCarsOwner, setListCarsOwner] = useState<TCar[]>([]);
   const token = parseCookies(null)["motorShop.token"];
 
   const createCar = async (data: TCarData) => {
@@ -74,7 +77,7 @@ export const CarProvider = ({ children }: Props) => {
 
   const getOneCar = async (id: number) => {
     try {
-      const response = await api.get(`car/${id}`, {
+      const response = await api.get(`cars/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -85,6 +88,20 @@ export const CarProvider = ({ children }: Props) => {
       console.log(error);
     }
   };
+
+  const getCarsByOwner = async () => {
+    try {
+      const response = await api.get(`cars/access/owner`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setListCarsOwner(response.data);
+      return response.data;
+    }catch (error) {
+      console.log(error);
+    };
+  }
 
   const getValues = async () => {
     try {
@@ -97,7 +114,7 @@ export const CarProvider = ({ children }: Props) => {
 
   const patchOneCar = async (id: number) => {
     try {
-      const response = await api.patch(`car/${id}`, {
+      const response = await api.patch(`cars/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -116,7 +133,7 @@ export const CarProvider = ({ children }: Props) => {
 
   const deleteOneCar = async (id: number) => {
     try {
-      const response = await api.delete(`car/${id}`, {
+      const response = await api.delete(`cars/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -142,9 +159,11 @@ export const CarProvider = ({ children }: Props) => {
         getValues,
         patchOneCar,
         deleteOneCar,
+        getCarsByOwner,
         listCars,
         listOneCar,
         values,
+        listCarsOwner
       }}
     >
       {children}
