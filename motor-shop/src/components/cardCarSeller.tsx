@@ -22,7 +22,7 @@ const CardCarSeller = ({ car }: { car: TCar }) => {
                 <h3 className="font-lexend heading-7-600 text-grey-1 mb-4">
                     {car.brand} - {car.model}
                 </h3>
-                <p className="text-grey-2 font-inter body-2-400">
+                <p className="text-grey-2 font-inter body-2-400 truncate">
                     {car.description}
                 </p>
                 <div className="flex justify-between items-center mt-4">

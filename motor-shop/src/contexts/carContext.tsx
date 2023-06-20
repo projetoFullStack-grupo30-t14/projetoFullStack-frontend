@@ -33,7 +33,7 @@ interface CarContextProviderData {
   listCars: TCar[];
   listOneCar?: TCar;
   values: Values;
-  listCarsOwner: TCar[];
+  listCarsByOwner: TCar[];
 }
 
 export const CarContext = createContext<CarContextProviderData>(
@@ -44,7 +44,7 @@ export const CarProvider = ({ children }: Props) => {
   const [listCars, setListCars] = useState<TCar[]>([]);
   const [listOneCar, setListOneCar] = useState<TCar>();
   const [values, setValues] = useState<Values>({} as Values);
-  const [listCarsOwner, setListCarsOwner] = useState<TCar[]>([]);
+  const [listCarsByOwner, setListCarsByOwner] = useState<TCar[]>([]);
   const token = parseCookies(null)["motorShop.token"];
 
   const createCar = async (data: TCarData) => {
@@ -96,7 +96,7 @@ export const CarProvider = ({ children }: Props) => {
           Authorization: `Bearer ${token}`,
         },
       });
-      setListCarsOwner(response.data);
+      setListCarsByOwner(response.data);
       return response.data;
     }catch (error) {
       console.log(error);
@@ -163,7 +163,7 @@ export const CarProvider = ({ children }: Props) => {
         listCars,
         listOneCar,
         values,
-        listCarsOwner
+        listCarsByOwner
       }}
     >
       {children}
