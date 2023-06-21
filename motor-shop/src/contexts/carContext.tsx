@@ -34,6 +34,8 @@ interface CarContextProviderData {
   listOneCar?: TCar;
   values: Values;
   listCarsByOwner: TCar[];
+  nextPage: string | null;
+  previousPage: string | null;
 }
 
 export const CarContext = createContext<CarContextProviderData>(
@@ -45,6 +47,8 @@ export const CarProvider = ({ children }: Props) => {
   const [listOneCar, setListOneCar] = useState<TCar>();
   const [values, setValues] = useState<Values>({} as Values);
   const [listCarsByOwner, setListCarsByOwner] = useState<TCar[]>([]);
+  const [nextPage, setNext] = useState<string | null>(null);
+  const [previousPage, setPrevious] = useState<string | null>(null);
   const token = parseCookies(null)["motorShop.token"];
 
   const createCar = async (data: TCarData) => {
@@ -68,8 +72,10 @@ export const CarProvider = ({ children }: Props) => {
   const getAllCars = async (searchParams: string = "") => {
     try {
       const response = await api.get(`cars${searchParams}`);
-      setListCars(response.data);
-      return response.data;
+      setListCars(response.data.data);
+      setNext(response.data.nextPage);
+      setPrevious(response.data.previousPage);
+      return response.data.data;
     } catch (error) {
       console.log(error);
     }
@@ -98,10 +104,10 @@ export const CarProvider = ({ children }: Props) => {
       });
       setListCarsByOwner(response.data);
       return response.data;
-    }catch (error) {
+    } catch (error) {
       console.log(error);
-    };
-  }
+    }
+  };
 
   const getValues = async () => {
     try {
@@ -163,7 +169,9 @@ export const CarProvider = ({ children }: Props) => {
         listCars,
         listOneCar,
         values,
-        listCarsByOwner
+        listCarsByOwner,
+        nextPage,
+        previousPage,
       }}
     >
       {children}
