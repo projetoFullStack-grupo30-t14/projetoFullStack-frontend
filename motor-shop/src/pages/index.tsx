@@ -52,8 +52,8 @@ export default function HomePage() {
             <ListCards carList={listCars}>
               {(car: TCar) => <CardCar car={car} />}
             </ListCards>
-            <Navigation perPage={12} />
           </main>
+          <Navigation perPage={12} className="lg:relative z-10 min-h-[158px]" />
           <aside className="lg:relative z-10 w-full md:w-1/3">
             <Filter />
           </aside>
