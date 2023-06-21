@@ -1,8 +1,13 @@
 import { UserType } from "@/schemas";
 import { getInitials } from "./utils";
 
+interface UserCars {
+    name: string;
+    id: string;
+    description: string;
+}
 interface InfoSellerProps{
-    userData: UserType;
+    userData: UserType | UserCars | null;
     children: JSX.Element;
 }
 const InfoSellerProfile = ({userData, children}: InfoSellerProps) => {
