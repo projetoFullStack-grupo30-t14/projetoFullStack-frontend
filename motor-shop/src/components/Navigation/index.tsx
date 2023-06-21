@@ -36,7 +36,10 @@ export const Navigation = ({ perPage }: any) => {
           {"< Anterior"}
         </button>
       )}
-      <p>{(currPage || "1") + " de " + maxPages}</p>
+      <p className="heading-5-600 text-grey-3 text-opacity-50">
+        <span className="text-grey-3">{currPage || "1"}</span>
+        {" de " + maxPages}
+      </p>
       {nextPage && (
         <button
           className="btn-brand-outline-brand1 border-none btn-big heading-5-600"
