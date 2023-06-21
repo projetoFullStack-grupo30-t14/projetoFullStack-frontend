@@ -25,9 +25,10 @@ export const Navigation = ({ perPage }: any) => {
   }
 
   return (
-    <section className="flex flex-row gap-4 relative z-30">
+    <section className="flex flex-row justify-center items-center gap-4 relative z-30">
       {previousPage && (
         <button
+          className="btn-brand-outline-brand1 border-none btn-big heading-5-600"
           onClick={() => {
             getAllCars(previousPage.slice(index));
           }}
@@ -38,6 +39,7 @@ export const Navigation = ({ perPage }: any) => {
       <p>{(currPage || "1") + " de " + maxPages}</p>
       {nextPage && (
         <button
+          className="btn-brand-outline-brand1 border-none btn-big heading-5-600"
           onClick={() => {
             getAllCars(nextPage.slice(index));
           }}
