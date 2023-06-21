@@ -6,6 +6,7 @@ import CardCar from "@/components/cardCar";
 import { TCar } from "@/schemas/car.schema";
 import { useEffect } from "react";
 import { useCars } from "@/contexts/carContext";
+import { Navigation } from "@/components/Navigation";
 
 export default function HomePage() {
   const { getAllCars, listCars } = useCars();
@@ -48,14 +49,18 @@ export default function HomePage() {
         </div>
         <section className="flex flex-col gap-y-8 md:flex-row-reverse lg:flex-row-reverse md:gap-x-4 lg:gap-x-8">
           <main className="w-full md:w-3/3">
-              <ListCards carList={listCars}>
-                {(car: TCar) => <CardCar car={car} />}
-              </ListCards>
+            <ListCards carList={listCars}>
+              {(car: TCar) => <CardCar car={car} />}
+            </ListCards>
           </main>
           <aside className="lg:relative z-10 w-full md:w-1/3">
             <Filter />
           </aside>
         </section>
+        <Navigation
+          perPage={12}
+          className="lg:relative z-10 min-h-[158px] mt-10"
+        />
       </div>
       <Footer />
     </div>
