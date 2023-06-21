@@ -1,6 +1,10 @@
 import { useCars } from "@/contexts/carContext";
 
-export const Navigation = ({ perPage }: any) => {
+interface NavigationProps {
+  perPage: number;
+}
+
+export const Navigation = ({ perPage }: NavigationProps) => {
   const { nextPage, previousPage, count, getAllCars } = useCars();
   const index = nextPage?.indexOf("?") || previousPage?.indexOf("?");
   const currPage =
@@ -25,7 +29,7 @@ export const Navigation = ({ perPage }: any) => {
   }
 
   return (
-    <section className="flex flex-row justify-center items-center gap-4 relative z-30">
+    <section className="flex flex-col lg:flex-row justify-center items-center gap-4 relative z-30">
       {previousPage && (
         <button
           className="btn-brand-outline-brand1 border-none btn-big font-semibold text-heading5"
