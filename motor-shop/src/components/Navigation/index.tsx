@@ -28,7 +28,7 @@ export const Navigation = ({ perPage }: any) => {
     <section className="flex flex-row justify-center items-center gap-4 relative z-30">
       {previousPage && (
         <button
-          className="btn-brand-outline-brand1 border-none btn-big heading-5-600"
+          className="btn-brand-outline-brand1 border-none btn-big font-semibold text-heading5"
           onClick={() => {
             getAllCars(previousPage.slice(index));
           }}
@@ -42,7 +42,7 @@ export const Navigation = ({ perPage }: any) => {
       </p>
       {nextPage && (
         <button
-          className="btn-brand-outline-brand1 border-none btn-big heading-5-600"
+          className="btn-brand-outline-brand1 border-none btn-big font-semibold text-heading5"
           onClick={() => {
             getAllCars(nextPage.slice(index));
           }}
