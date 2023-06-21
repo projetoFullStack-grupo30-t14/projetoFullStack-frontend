@@ -29,37 +29,39 @@ export const Navigation = ({ perPage, className }: NavigationProps) => {
     maxPages += 1;
   }
 
-  return (
-    <section
-      className={
-        className +
-        " flex flex-col lg:flex-row justify-center items-center gap-4 relative z-30"
-      }
-    >
-      {previousPage && (
-        <button
-          className="btn-brand-outline-brand1 border-none btn-big font-semibold text-heading5"
-          onClick={() => {
-            getAllCars(previousPage.slice(index));
-          }}
-        >
-          {"< Anterior"}
-        </button>
-      )}
-      <p className="heading-5-600 text-grey-3 text-opacity-50">
-        <span className="text-grey-3">{currPage || "1"}</span>
-        {" de " + maxPages}
-      </p>
-      {nextPage && (
-        <button
-          className="btn-brand-outline-brand1 border-none btn-big font-semibold text-heading5"
-          onClick={() => {
-            getAllCars(nextPage.slice(index));
-          }}
-        >
-          {"Seguinte >"}
-        </button>
-      )}
-    </section>
-  );
+  if (count) {
+    return (
+      <section
+        className={
+          className +
+          " flex flex-col lg:flex-row justify-center items-center gap-4 relative z-30"
+        }
+      >
+        {previousPage && (
+          <button
+            className="btn-brand-outline-brand1 border-none btn-big font-semibold text-heading5"
+            onClick={() => {
+              getAllCars(previousPage.slice(index));
+            }}
+          >
+            {"< Anterior"}
+          </button>
+        )}
+        <p className="heading-5-600 text-grey-3 text-opacity-50">
+          <span className="text-grey-3">{currPage || "1"}</span>
+          {" de " + maxPages}
+        </p>
+        {nextPage && (
+          <button
+            className="btn-brand-outline-brand1 border-none btn-big font-semibold text-heading5"
+            onClick={() => {
+              getAllCars(nextPage.slice(index));
+            }}
+          >
+            {"Seguinte >"}
+          </button>
+        )}
+      </section>
+    );
+  }
 };
