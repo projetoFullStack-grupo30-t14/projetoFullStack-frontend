@@ -53,11 +53,14 @@ export default function HomePage() {
               {(car: TCar) => <CardCar car={car} />}
             </ListCards>
           </main>
-          <Navigation perPage={12} className="lg:relative z-10 min-h-[158px]" />
           <aside className="lg:relative z-10 w-full md:w-1/3">
             <Filter />
           </aside>
         </section>
+        <Navigation
+          perPage={12}
+          className="lg:relative z-10 min-h-[158px] mt-10"
+        />
       </div>
       <Footer />
     </div>
