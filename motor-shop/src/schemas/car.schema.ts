@@ -22,6 +22,11 @@ export const carSchema = z.object({
         image: z.string(),
       })
     ),
+    user: z.object({
+      id: z.string(),
+      name: z.string(),
+      description: z.string(),
+    })
   });
 
   export const carDataSchema = carSchema.omit({
@@ -29,6 +34,7 @@ export const carSchema = z.object({
     is_active: true,
     price_FIPE: true,
     id: true,
+    user: true
   })
 
   export type TCarData = z.infer<typeof carDataSchema>

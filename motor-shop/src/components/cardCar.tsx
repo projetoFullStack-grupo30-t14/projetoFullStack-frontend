@@ -1,7 +1,9 @@
 import { TCar } from "@/schemas/car.schema";
 import Link from "next/link";
+import { getInitials } from "./utils";
 
 const CardCar = ({ car }: { car: TCar }) => {
+  const initials = getInitials(car.user.name);
   return (
     <Link href={`/products/${car.id}`} className="relative z-10 flex flex-col gap-4 max-w-xs mx-auto bg-white overflow-hidden min-w-[312px] min-h-[350px]">
       <div className="flex-shrink-0 flex-grow-0 h-152 bg-grey-7">
@@ -20,13 +22,14 @@ const CardCar = ({ car }: { car: TCar }) => {
         <p className="text-grey-2 font-inter body-2-400 truncate">
           {car.description}
         </p>
-        <div className="flex items-center mt-4">
-          <Link href={`/profiles/${car.usersId}`} className="text-grey-2 body-2-500 font-inter">
+        <Link href={`/profiles/${car.usersId}`}>
+          <div className="flex items-center mt-4">
             <div className="bg-brand-1 w-7 h-7 rounded-full flex items-center justify-center">
-              <span className="text-brand-4 font-inter text-body1">AN</span>
+              <span className="text-brand-4 font-inter text-body1">{initials}</span>
             </div>
-          </Link>
-        </div>
+            <span className="mx-2 text-grey-2 body-2-500 font-inter">{car.user.name}</span>
+          </div>
+        </Link>
         <div className="flex justify-between items-center mt-4">
           <div className="flex items-center gap-3">
             <span className="btn-small btn-brand-opacity">{car.mileage} KM</span>
