@@ -36,6 +36,7 @@ interface CarContextProviderData {
   listCarsByOwner: TCar[];
   nextPage: string | null;
   previousPage: string | null;
+  count: number | undefined;
 }
 
 export const CarContext = createContext<CarContextProviderData>(
@@ -49,6 +50,7 @@ export const CarProvider = ({ children }: Props) => {
   const [listCarsByOwner, setListCarsByOwner] = useState<TCar[]>([]);
   const [nextPage, setNext] = useState<string | null>(null);
   const [previousPage, setPrevious] = useState<string | null>(null);
+  const [count, setCount] = useState<number>();
   const token = parseCookies(null)["motorShop.token"];
 
   const createCar = async (data: TCarData) => {
@@ -75,6 +77,7 @@ export const CarProvider = ({ children }: Props) => {
       setListCars(response.data.data);
       setNext(response.data.nextPage);
       setPrevious(response.data.previousPage);
+      setCount(response.data.count);
       return response.data.data;
     } catch (error) {
       console.log(error);
@@ -172,6 +175,7 @@ export const CarProvider = ({ children }: Props) => {
         listCarsByOwner,
         nextPage,
         previousPage,
+        count,
       }}
     >
       {children}

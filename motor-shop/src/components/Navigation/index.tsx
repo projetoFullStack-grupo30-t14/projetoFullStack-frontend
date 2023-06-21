@@ -1,7 +1,7 @@
 import { useCars } from "@/contexts/carContext";
 
-export const Navigation = () => {
-  const { nextPage, previousPage, getAllCars } = useCars();
+export const Navigation = ({ perPage }: any) => {
+  const { nextPage, previousPage, count, getAllCars } = useCars();
   const index = nextPage?.indexOf("?") || previousPage?.indexOf("?");
   const currPage =
     Number(
@@ -16,9 +16,16 @@ export const Navigation = () => {
         previousPage.indexOf("page=") + 6
       )
     ) + 1;
+  let maxPages = count
+    ? Math.round(Number(Number(count) / Number(perPage)))
+    : 1;
+
+  if (Number(count) % perPage !== 0) {
+    maxPages += 1;
+  }
 
   return (
-    <section className="flex flex-row gap-4">
+    <section className="flex flex-row gap-4 relative z-30">
       {previousPage && (
         <button
           onClick={() => {
@@ -28,7 +35,7 @@ export const Navigation = () => {
           {"< Anterior"}
         </button>
       )}
-      <p>{currPage + " de 2"}</p>
+      <p>{(currPage || "1") + " de " + maxPages}</p>
       {nextPage && (
         <button
           onClick={() => {
