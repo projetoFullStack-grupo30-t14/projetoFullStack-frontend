@@ -46,7 +46,6 @@ export const FilterBox = ({ className, setShow }: FilterBoxProps) => {
         className="flex flex-col gap-1"
         onSubmit={(e) => {
           e.preventDefault();
-          console.log(searchParams);
 
           getAllCars(searchParams);
         }}
