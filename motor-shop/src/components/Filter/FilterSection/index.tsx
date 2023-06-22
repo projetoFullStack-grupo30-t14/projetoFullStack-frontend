@@ -35,7 +35,7 @@ export const FilterSection = ({
             <h6
               id={value.toString()}
               key={value}
-              className="capitalize heading-6-500 text-grey-6 ml-3 cursor-pointer"
+              className="capitalize heading-6-500 text-grey-3 ml-3 cursor-pointer"
               onClick={() => {
                 setRender([value]);
                 if (searchParams.includes(`${searchKey}=${value}&`)) {
