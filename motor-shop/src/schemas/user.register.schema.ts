@@ -76,6 +76,13 @@ export const userRegisterSchema = userSchema
     }
   });
 
+export const userSendMailPassSchema = z.object({
+  email: z
+    .string()
+    .nonempty('Campo obrigatório')
+    .email('Email inválido'),
+});
+
 export type tUserRequest = z.infer<typeof userSchema>;
 
 export type tUserUpdate = z.infer<typeof userUpdateSchema>
@@ -83,6 +90,8 @@ export type tUserUpdate = z.infer<typeof userUpdateSchema>
 export type tUserUpdateRequest = DeepPartial<tUserUpdate>
 
 export type tUserRegister = z.infer<typeof userRegisterSchema>;
+
+export type tUserSendMail = z.infer<typeof userSendMailPassSchema>
 
 // export type tUserRequest = z.infer<type
 

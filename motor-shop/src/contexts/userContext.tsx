@@ -5,6 +5,7 @@ import { useAuth } from "./authContext";
 import { AxiosError } from "axios";
 import { toast } from "react-toastify";
 import jwtDecode from "jwt-decode";
+import { tUserSendMail } from "@/schemas/user.register.schema";
 
 interface Props {
   children: ReactNode;
@@ -15,6 +16,7 @@ interface UserContextProviderData {
   deleteSelf: (id: string) => Promise<void>;
   updateSelf: (id: string, data: UpdateUser) => Promise<UserType | undefined>;
   listAll: () => Promise<UserType[] | undefined>;
+  sendMailPass: (data: tUserSendMail) => Promise<void | string>;
   currUser: UserType | null;
 }
 
@@ -111,8 +113,24 @@ export function UserProvider({ children }: Props) {
     }
   };
 
+  const sendMailPass = async (data: tUserSendMail): Promise<void> => {
+    try {
+      const sendMail = await api.post('users/resetPassword', data)
+      
+      toast.success(sendMail.data.message);
+      return sendMail.data;
+    } catch(error){
+      if (error instanceof AxiosError) {
+        toast.error(`${error.response?.data.message}`);
+        console.log(error);
+      } else {
+        console.error(error);
+      }
+    }
+  };
+
   return (
-    <UserContext.Provider value={{ listOne, deleteSelf, updateSelf, currUser, listAll }}>
+    <UserContext.Provider value={{ listOne, deleteSelf, updateSelf, currUser, listAll, sendMailPass }}>
       {children}
     </UserContext.Provider>
   );
