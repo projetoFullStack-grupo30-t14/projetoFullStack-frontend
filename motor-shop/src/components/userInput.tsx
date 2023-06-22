@@ -1,5 +1,5 @@
 import { TLogin } from '@/schemas/login.schema';
-import { tUserRegister, tUserSendMail } from '@/schemas/user.register.schema';
+import { tResetPassword, tUserRegister, tUserSendMail } from '@/schemas/user.register.schema';
 import { ChangeEvent } from 'react';
 import { UseFormRegister } from 'react-hook-form';
 
@@ -10,6 +10,7 @@ interface iProps {
   register?: UseFormRegister<tUserRegister>;
   registerLogin?: UseFormRegister<TLogin>;
   registerSendMail?: UseFormRegister<tUserSendMail>;
+  registerResetPassword?: UseFormRegister<tResetPassword>;
   db_field:
     | 'name'
     | 'email'

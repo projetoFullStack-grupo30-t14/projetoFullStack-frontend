@@ -83,6 +83,13 @@ export const userSendMailPassSchema = z.object({
     .email('Email inválido'),
 });
 
+export const resetPasswordSchema = z.object({
+  password: z
+    .string()
+    .nonempty('Senha obrigatória')
+    .min(8, 'Senha deve ter no mínimo 8 caracteres'),
+});
+
 export type tUserRequest = z.infer<typeof userSchema>;
 
 export type tUserUpdate = z.infer<typeof userUpdateSchema>
@@ -92,6 +99,8 @@ export type tUserUpdateRequest = DeepPartial<tUserUpdate>
 export type tUserRegister = z.infer<typeof userRegisterSchema>;
 
 export type tUserSendMail = z.infer<typeof userSendMailPassSchema>
+
+export type tResetPassword = z.infer<typeof resetPasswordSchema>
 
 // export type tUserRequest = z.infer<type
 
