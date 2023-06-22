@@ -21,11 +21,12 @@ export const Navigation = ({ perPage, className }: NavigationProps) => {
         previousPage.indexOf("page=") + 6
       )
     ) + 1;
+
   let maxPages = count
     ? Math.round(Number(Number(count) / Number(perPage)))
     : 1;
 
-  if (Number(count) % perPage !== 0) {
+  if (Number(count) % perPage !== 0 && maxPages % 0.5 !== 0) {
     maxPages += 1;
   }
 
