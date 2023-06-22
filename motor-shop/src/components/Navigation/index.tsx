@@ -28,6 +28,8 @@ export const Navigation = ({ perPage, className }: NavigationProps) => {
 
   if (Number(count) % perPage !== 0 && maxPages % 0.5 !== 0) {
     maxPages += 1;
+  } else if (maxPages === 0) {
+    maxPages += 1;
   }
 
   if (count) {
