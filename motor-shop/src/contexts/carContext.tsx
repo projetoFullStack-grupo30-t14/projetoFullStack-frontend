@@ -25,7 +25,7 @@ interface Values {
 interface CarContextProviderData {
   createCar: (data: TCarData) => Promise<TCar | void>;
   getAllCars: (searchParams: string) => Promise<TCar[] | null>;
-  getOneCar: (id: number) => Promise<TCar | null>;
+  getOneCar: (id: string) => Promise<TCar | null>;
   getValues: () => Promise<void>;
   patchOneCar: (id: number) => Promise<void | null>;
   deleteOneCar: (id: number) => Promise<void | null>;
@@ -84,7 +84,7 @@ export const CarProvider = ({ children }: Props) => {
     }
   };
 
-  const getOneCar = async (id: number) => {
+  const getOneCar = async (id: string) => {
     try {
       const response = await api.get(`cars/${id}`, {
         headers: {
@@ -93,6 +93,7 @@ export const CarProvider = ({ children }: Props) => {
       });
       setListOneCar(response.data);
       return response.data;
+
     } catch (error) {
       console.log(error);
     }
