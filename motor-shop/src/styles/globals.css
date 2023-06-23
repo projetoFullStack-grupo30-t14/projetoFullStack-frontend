@@ -94,7 +94,7 @@
   }
 
   .btn-medium {
-    @apply px-5 py-2 rounded btn-medium-text ;
+    @apply px-5 py-2 rounded btn-medium-text;
   }
 
   .btn-small {
@@ -339,6 +339,10 @@
   input[type='date']:invalid::-webkit-datetime-edit {
     /* PLACEHOLDER DO INPUT TIPO DATE */
     @apply font-normal text-grey-3;
+  }
+
+  textarea::placeholder{
+    @apply font-normal
   }
 
   @layer components {

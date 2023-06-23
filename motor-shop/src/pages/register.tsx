@@ -45,18 +45,13 @@ export default function RegisterPage() {
   const { showModal, stateModal } = useModal();
   
   const onSubmit = (data: tUserRegister) => {
-    console.log(data);
     const { confirm, ...registerData } = data;
     registerData.seller = seller;
     registerData.date_of_birth = registerData.date_of_birth
       .split('-')
       .reverse()
       .join('-');
-    console.log(registerData);
     registerRequest(registerData)
-    //   .then(() =>
-    //   showModal(<TestForm />, 'Editar perfil')
-    // );
   };
 
   return (
@@ -131,13 +126,14 @@ export default function RegisterPage() {
               <UserInput
                 label="Data de nascimento"
                 type="date"
-                placeholder="endereço@email.com.br"
+                placeholder=""
                 register={register}
                 db_field="date_of_birth"
                 onChange={(e) =>
                   setValue('date_of_birth', e.target.value)
                 }
                 max={`${new Date().toISOString().split('T')[0]}`}
+                required={true}
               />
               {errors.date_of_birth && (
                 <small className="error">

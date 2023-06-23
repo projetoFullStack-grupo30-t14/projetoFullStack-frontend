@@ -53,12 +53,14 @@ export const userSchema = z.object({
   seller: z.boolean().default(false),
 });
 
-export const userUpdateSRequestchema = userSchema.omit({
-  address: true,
-  password: true
-})
+// export const userUpdateSRequestchema = userSchema.omit({
+//   address: true,
+//   password: true,
+// });
 
-export const userUpdateSchema = userUpdateSRequestchema.partial()
+export const userUpdateSchema = userSchema
+  .omit({ address: true, password: true })
+  .partial();
 
 export const userRegisterSchema = userSchema
   .extend({
@@ -92,15 +94,15 @@ export const resetPasswordSchema = z.object({
 
 export type tUserRequest = z.infer<typeof userSchema>;
 
-export type tUserUpdate = z.infer<typeof userUpdateSchema>
+export type tUserUpdate = z.infer<typeof userUpdateSchema>;
 
-export type tUserUpdateRequest = DeepPartial<tUserUpdate>
+export type tUserUpdateRequest = DeepPartial<tUserUpdate>;
 
 export type tUserRegister = z.infer<typeof userRegisterSchema>;
 
-export type tUserSendMail = z.infer<typeof userSendMailPassSchema>
+export type tUserSendMail = z.infer<typeof userSendMailPassSchema>;
 
-export type tResetPassword = z.infer<typeof resetPasswordSchema>
+export type tResetPassword = z.infer<typeof resetPasswordSchema>;
 
 // export type tUserRequest = z.infer<type
 
