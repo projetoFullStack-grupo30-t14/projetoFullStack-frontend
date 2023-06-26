@@ -1,15 +1,18 @@
-import { Footer } from '@/components/headerAndFooter/footer';
-import { Header } from '@/components/headerAndFooter/header';
 import {
+  addressSchema,
+  tAddress,
+  tAddressResponse,
   tUserRegister,
   userRegisterSchema,
 } from '@/schemas/user.register.schema';
-import { useState } from 'react';
+import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { UserInput } from '@/components/userInput';
 import { api } from '@/services';
-import { useAuth } from '@/contexts/authContext';
+import { useModal } from '@/contexts/modalContext';
+import { UserContext } from '@/contexts/userContext';
+import { toast } from 'react-toastify';
 
 interface iAddressResponse {
   bairro: string;
@@ -26,30 +29,45 @@ interface iAddressResponse {
 }
 
 export default function UpdateAddressForm() {
-  const [selected, setSelected] = useState<1 | 2>(1);
-  const [seller, setSeller] = useState(false);
+  const { closeModal } = useModal();
+  const { currAddress, setCurrAddress, headers } =
+    useContext(UserContext);
+
   const {
     handleSubmit,
     register,
     formState: { errors },
     setValue,
-  } = useForm<tUserRegister>({
-    resolver: zodResolver(userRegisterSchema),
+    watch,
+  } = useForm<tAddress>({
+    resolver: zodResolver(addressSchema),
     reValidateMode: 'onBlur',
+    defaultValues: {
+      cep: currAddress?.cep,
+      city: currAddress?.city,
+      complement: currAddress?.complement,
+      number: currAddress?.number,
+      state: currAddress?.state,
+      street: currAddress?.street,
+    },
   });
 
-  const { register: registerRequest } = useAuth();
-  // console.log(errors)
-  const onSubmit = (data: tUserRegister) => {
-    console.log(data);
-    const { confirm, ...registerData } = data;
-    registerData.seller = seller;
-    registerData.date_of_birth = registerData.date_of_birth
-      .split('-')
-      .reverse()
-      .join('-');
-    console.log(registerData);
-    registerRequest(registerData);
+  const [wCep, wCity, wComplement, wNumber, wState, wStreet] = watch([
+    'cep',
+    'city',
+    'complement',
+    'number',
+    'state',
+    'street',
+  ]);
+
+  const onSubmit = async (data: tAddress) => {
+    const address = (
+      await api.patch<tAddressResponse>('addresses', data, headers)
+    ).data;
+    setCurrAddress(address);
+    console.log(currAddress);
+    closeModal();
   };
 
   return (
@@ -61,20 +79,21 @@ export default function UpdateAddressForm() {
               className="flex flex-col"
               onSubmit={handleSubmit(onSubmit)}
             >
-
               <p className="text-inputLabel mb-6">
                 Informações de endereço
               </p>
-
               <UserInput
                 label="CEP"
                 type="text"
                 placeholder="12345-678"
-                register={register}
-                db_field="address.cep"
+                registerAddress={register}
+                db_field_address="cep"
                 maxLength={9}
+                className={
+                  currAddress?.cep == wCep ? 'text-grey-3' : ''
+                }
                 onChange={async (e) => {
-                  setValue('address.cep', e.target.value);
+                  setValue('cep', e.target.value);
                   if (e.currentTarget.value.length == 9) {
                     try {
                       const cep = e.currentTarget.value
@@ -85,48 +104,44 @@ export default function UpdateAddressForm() {
                           `https://viacep.com.br/ws/${cep}/json/`
                         );
 
-                      setValue('address.state', response.data.uf);
+                      setValue('state', response.data.uf);
                       setValue(
-                        'address.street',
+                        'street',
                         `${response.data.logradouro}, ${response.data.bairro}`
                       );
-                      setValue(
-                        'address.city',
-                        response.data.localidade
-                      );
+                      setValue('city', response.data.localidade);
 
                       if (response.data.erro) {
-                        return (
-                          <small className="error">
-                            CEP não encontrado
-                          </small>
-                        );
+                        console.log(response);
+                        toast.error('CEP Inválido!');
+                        setValue('state', '');
+                        setValue('street', '');
+                        setValue('city', '');
                       }
                     } catch (error) {
                       console.log(error);
                     }
                   } else {
-                    setValue('address.state', '');
-                    setValue('address.street', '');
-                    setValue('address.city', '');
+                    setValue('state', '');
+                    setValue('street', '');
+                    setValue('city', '');
                   }
                 }}
               />
-              {errors.address?.cep && (
-                <small className="error">
-                  {errors.address?.cep.message}
-                </small>
-              )}
-
               <div className="flex w-fit gap-2 flex-1 box-border">
                 <div className="flex flex-col">
                   <UserInput
                     label="Estado"
                     type="text"
                     placeholder="Seu Estado"
-                    register={register}
-                    db_field="address.state"
+                    registerAddress={register}
+                    db_field_address="state"
                     disabled={true}
+                    className={
+                      currAddress?.state == wState
+                        ? 'text-grey-3'
+                        : ''
+                    }
                   />
                 </div>
                 <div className="flex flex-col">
@@ -134,38 +149,49 @@ export default function UpdateAddressForm() {
                     label="Cidade"
                     type="text"
                     placeholder="Sua Cidade"
-                    register={register}
-                    db_field="address.city"
+                    registerAddress={register}
+                    db_field_address="city"
                     disabled={true}
+                    className={
+                      currAddress?.city == wCity ? 'text-grey-3' : ''
+                    }
                   />
                 </div>
               </div>
-
               <UserInput
                 label="Endereço"
                 type="text"
                 placeholder="Logradouro e bairro"
-                register={register}
-                db_field="address.street"
+                registerAddress={register}
+                db_field_address="street"
                 disabled={true}
+                className={
+                  currAddress?.street == wStreet ? 'text-grey-3' : ''
+                }
               />
-
+              {/* setValue( 'street', `${response.data.logradouro}, $
+              {response.data.bairro}` ); */}
               <div className="flex w-fit gap-2 flex-1 box-border">
                 <div className="flex flex-col">
                   <UserInput
                     label="Número"
                     type="text"
                     placeholder="Ex: 22-A"
-                    register={register}
-                    db_field="address.number"
+                    registerAddress={register}
+                    db_field_address="number"
                     onChange={(e) =>
-                      setValue('address.number', e.target.value)
+                      setValue('number', e.target.value)
                     }
                     maxLength={5}
+                    className={
+                      currAddress?.number == wNumber
+                        ? 'text-grey-3'
+                        : ''
+                    }
                   />
-                  {errors.address?.number && (
+                  {errors.number && (
                     <small className="error">
-                      {errors.address?.number.message}
+                      {errors.number.message}
                     </small>
                   )}
                 </div>
@@ -175,31 +201,35 @@ export default function UpdateAddressForm() {
                     label="Complemento"
                     type="text"
                     placeholder="Ex: apart 307"
-                    register={register}
-                    db_field="address.complement"
+                    registerAddress={register}
+                    db_field_address="complement"
                     onChange={(e) =>
-                      setValue('address.complement', e.target.value)
+                      setValue('complement', e.target.value)
                     }
                     maxLength={10}
+                    className={
+                      currAddress?.complement == wComplement
+                        ? 'text-grey-3'
+                        : ''
+                    }
                   />
                 </div>
               </div>
-
-              <div className='flex justify-end gap-2 min-w-max'>
+              <div className="flex justify-end gap-2 min-w-max">
                 <button
-                    type='button'
-                    className="btn-big btn-negative transition ease-in-out"
+                  type="button"
+                  className="btn-big btn-negative transition ease-in-out"
+                  onClick={closeModal}
                 >
-                    Cancelar
+                  Cancelar
                 </button>
                 <button
-                    type="button"
-                    className="btn-big btn-brand1 transition ease-in-out"
+                  type="submit"
+                  className="btn-big btn-brand1 transition ease-in-out"
                 >
-                    Salvar alterações
+                  Salvar alterações
                 </button>
               </div>
-
             </form>
           </div>
         </div>
