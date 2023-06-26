@@ -1,7 +1,5 @@
 import {
-  tUserRegister,
   tUserUpdateRequest,
-  userRegisterSchema,
   userUpdateSchema,
 } from '@/schemas/user.register.schema';
 import { useContext, useState } from 'react';
@@ -10,28 +8,12 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { UserInput } from '@/components/userInput';
 import { useModal } from '@/contexts/modalContext';
 import { UserContext } from '@/contexts/userContext';
-import { GetServerSideProps } from 'next';
-
-interface iAddressResponse {
-  bairro: string;
-  cep: string;
-  complemento: string;
-  ddd: string;
-  gia: string;
-  ibge: string;
-  localidade: string;
-  logradouro: string;
-  siafi: string;
-  uf: string;
-  erro?: boolean;
-}
 
 export default function UpdateUserForm() {
   const { closeModal } = useModal();
   const { currUser } = useContext(UserContext);
-  //   const [selected, setSelected] = useState<1 | 2>(1);
-  //   const [seller, setSeller] = useState(false);
   const { updateSelf, deleteSelf } = useContext(UserContext);
+
   const {
     handleSubmit,
     register,
@@ -51,10 +33,6 @@ export default function UpdateUserForm() {
     },
   });
 
-  // const watchDescription = watch(
-  //   'description',
-  //   currUser?.description
-  // );
   const [wName, wEmail, wCpf, wPhone, wDate_of_birth, wDescription] =
     watch([
       'name',

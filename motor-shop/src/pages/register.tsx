@@ -12,7 +12,6 @@ import { api } from '@/services';
 import { useAuth } from '@/contexts/authContext';
 import { useModal } from '@/contexts/modalContext';
 import Modal from '@/components/modal/modal';
-import TestForm from '@/components/modal/testForm';
 
 interface iAddressResponse {
   bairro: string;
