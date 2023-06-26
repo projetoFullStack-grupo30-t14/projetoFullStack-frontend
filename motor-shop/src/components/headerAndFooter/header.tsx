@@ -105,7 +105,7 @@ export function Header () {
                     :
                     <div className="relative z-10 hidden sm:block border-l-2 border-grey-6 py-4">
                         <button tabIndex={-1} onClick={() => setIsLoginOpen(false)} className="fixed inset-0 h-full w-full cursor-default"></button>
-                        <a href="" onClick={() => router.push("/login")} className="relative rounded font-inter hover:bg-brand-1 hover:text-grey-10 text-brand-1 font-semibold py-4 ml-14 pl-5 pr-5">Fazer login</a>
+                        <a onClick={() => router.push("/login")} className="relative rounded font-inter hover:bg-brand-1 hover:text-grey-10 text-brand-1 font-semibold py-4 ml-14 pl-5 pr-5 cursor-pointer">Fazer login</a>
                         <button onClick={() => router.push("/register")} className="relative btn-big btn-outline2 ml-10">Cadastrar</button>
                     </div>
                 }
@@ -128,7 +128,7 @@ export function Header () {
                             </>
                             :
                             <>
-                                <a href="#" onClick={() => router.push("/login")} className="font-inter hover:bg-grey-0 hover:text-grey-10 py-4 pl-3 pr-5 ">Fazer login</a>
+                                <a onClick={() => router.push("/login")} className="font-inter hover:bg-grey-0 hover:text-grey-10 py-4 pl-3 pr-5 cursor-pointer">Fazer login</a>
                                 <div className="pl-3 pr-5 pb-8 pt-4">
                                     <button onClick={() => router.push("/register")} className="btn-big btn-outline2 w-full">Cadastrar</button>
                                 </div>
