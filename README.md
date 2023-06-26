@@ -45,7 +45,9 @@ or
 yarn
 ```
 
-<br>After that, you need to populate the `env` key in your `next.config.js` file. Make sure to include the last `/`, as the contexts and functions operate under the assumption it will be there.
+<br> <font size=3>
+After that, you need to populate the `env` key in your `next.config.js` file. Make sure to include the last `/`, as the contexts and functions operate under the assumption it will be there.
+</font>
 
 <br>Run the project:
 
