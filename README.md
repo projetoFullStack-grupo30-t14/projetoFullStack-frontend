@@ -1,8 +1,8 @@
 # MotorShop
 
 This is a
-<i font-size="1" class="devicon-nextjs-plain"></i>
-project, built on TypeScript
+<i class="devicon-nextjs-plain"></i>
+project, built on <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" height=20 align="start"/>
 
 ## <h2 id="example">Working example</h2>
 
@@ -31,7 +31,7 @@ or
 yarn
 ```
 
-<br>After that, you need to populate the `env` key in your ` next.config.js` file.
+<br>After that, you need to populate the `env` key in your `next.config.js` file.
 
 <br>Run the project:
 
