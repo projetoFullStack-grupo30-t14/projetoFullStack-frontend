@@ -83,28 +83,17 @@ Open your localhost URL, usually at:
 ## <h2 id="devs">:construction_worker: Built by</h2>
 
 <a href="https://github.com/calberto97" >
-  <img  src="https://avatars.githubusercontent.com/u/110138209?v=4#avatar" style="border-radius:100%">
+  <img  src="https://avatars.githubusercontent.com/u/110138209?v=4" width="120px" alt="Caio Alberto" style="border-radius:100%">
 </a>
 <a href="https://github.com/gabifontoura" >
-  <img  src="https://avatars.githubusercontent.com/u/110035918?v=4#avatar" style="border-radius:100%">
+  <img  src="https://avatars.githubusercontent.com/u/110035918?v=4" width="120px" alt="Gabi Fontoura" style="border-radius:100%">
 </a>
 <a href="https://github.com/LucasWFragoso" >
-  <img  src="https://avatars.githubusercontent.com/u/103780535?v=4#avatar" style="border-radius:100%">
+  <img  src="https://avatars.githubusercontent.com/u/103780535?v=4" width="120px" alt="Lucas Fragoso" style="border-radius:100%">
 </a>
 <a href="https://github.com/CToH10" >
-  <img  src="https://avatars.githubusercontent.com/u/108496850?v=4#avatar" style="border-radius:100%">
+  <img  src="https://avatars.githubusercontent.com/u/108496850?v=4" width="120px" alt="Luís Nunes" style="border-radius:100%">
 </a>
 <a href="https://github.com/silvadpablo" >
-  <img  src="https://avatars.githubusercontent.com/u/110122799?v=4#avatar" style="border-radius:100%">
+  <img  src="https://avatars.githubusercontent.com/u/110122799?v=4" width="120px" alt="Pablo D. Silva" style="border-radius:100%">
 </a>
-
-<style>
-    img[src$="#avatar"] {
-    border-radius: 50%;
-    max-width: 120px;
-}
-
-    img[src$="#next"]{
-        filter:invert(1)
-    }
-</style>
