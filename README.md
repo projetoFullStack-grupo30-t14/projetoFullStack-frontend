@@ -1,6 +1,6 @@
 # MotorShop
 
-<font size=5>A <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" height="35" width="30" align="center" />
+<font size=5>A <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg#next" height="35" width="30" align="center" />
 project, built on</font> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" height="35" width=30 align="center"/>
 
 ## Table of Contents
@@ -22,7 +22,7 @@ You can find the full working example [here](VERCELLINK), deployed on Vercel, co
 
 ## <h2 id="start">Getting started</h2>
 
-You can start with:
+You can create a project with:
 
 [comment]: <> (Precisa testar com o repositório público)
 
@@ -83,17 +83,28 @@ Open your localhost URL, usually at:
 ## <h2 id="devs">:construction_worker: Built by</h2>
 
 <a href="https://github.com/calberto97" >
-  <img width="120px" src="https://avatars.githubusercontent.com/u/110138209?v=4" style="border-radius:100%">
+  <img  src="https://avatars.githubusercontent.com/u/110138209?v=4#avatar" style="border-radius:100%">
 </a>
 <a href="https://github.com/gabifontoura" >
-  <img width="120px" src="https://avatars.githubusercontent.com/u/110035918?v=4" style="border-radius:100%">
+  <img  src="https://avatars.githubusercontent.com/u/110035918?v=4#avatar" style="border-radius:100%">
 </a>
 <a href="https://github.com/LucasWFragoso" >
-  <img width="120px" src="https://avatars.githubusercontent.com/u/103780535?v=4" style="border-radius:100%">
+  <img  src="https://avatars.githubusercontent.com/u/103780535?v=4#avatar" style="border-radius:100%">
 </a>
 <a href="https://github.com/CToH10" >
-  <img width="120px" src="https://avatars.githubusercontent.com/u/108496850?v=4" style="border-radius:100%">
+  <img  src="https://avatars.githubusercontent.com/u/108496850?v=4#avatar" style="border-radius:100%">
 </a>
 <a href="https://github.com/silvadpablo" >
-  <img width="120px" src="https://avatars.githubusercontent.com/u/110122799?v=4" style="border-radius:100%">
+  <img  src="https://avatars.githubusercontent.com/u/110122799?v=4#avatar" style="border-radius:100%">
 </a>
+
+<style>
+    img[src$="#avatar"] {
+    border-radius: 50%;
+    max-width: 120px;
+}
+
+    img[src$="#next"]{
+        filter:invert(1)
+    }
+</style>
