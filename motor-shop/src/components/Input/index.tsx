@@ -1,7 +1,7 @@
 import { UseFormRegisterReturn } from "react-hook-form";
 import { ChangeEvent } from "react";
 
-export interface FieldProps {
+interface FieldProps {
   type?: string;
   placeholder: string;
   label: string;
