@@ -64,7 +64,6 @@ export default function LoginPage() {
                 placeholder="Digitar email"
                 register={register("email")}
                 onChange={(e) => setValue("email", e.target.value)}
-                className="mb-8"
                 error={errors.email?.message}
               />
               <Field
@@ -74,7 +73,6 @@ export default function LoginPage() {
                 register={register("password")}
                 id="password"
                 onChange={(e) => setValue("password", e.target.value)}
-                className="mb-8"
                 error={errors.password?.message}
               />
               <Link
