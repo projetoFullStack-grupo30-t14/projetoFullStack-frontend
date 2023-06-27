@@ -1,3 +1,4 @@
+import { Field } from "@/components/Input";
 import { Footer } from "@/components/headerAndFooter/footer";
 import { Header } from "@/components/headerAndFooter/header";
 import { UserInput } from "@/components/userInput";
@@ -38,7 +39,7 @@ const ResetPassword = () => {
                     <div className="z-10 py-11 px-12 h-full w-[410px] font-medium bg-grey-whiteFixed space-y-6 rounded">
                         <h1 className="text-heading5 font-lexend">Digite uma nova senha</h1>
                         <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
-                            <UserInput
+                            {/* <UserInput
                                 label="Senha"
                                 type="password"
                                 placeholder="Digitar senha"
@@ -48,7 +49,16 @@ const ResetPassword = () => {
                             />
                             {errors.password && (
                                 <small className="error">{errors.password.message}</small>
-                            )}
+                            )} */}
+                            <Field
+                                label="Senha"
+                                type="password"
+                                placeholder="Digitar senha"
+                                register={register("password")}
+                                id="password"
+                                onChange={(e) => setValue("password", e.target.value)}
+                                error={errors.password?.message}
+                            />
 
                             <div className="space-y-5">
                                 <button

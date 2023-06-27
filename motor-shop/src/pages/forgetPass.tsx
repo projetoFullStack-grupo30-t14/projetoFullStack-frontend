@@ -1,3 +1,4 @@
+import { Field } from "@/components/Input";
 import { Footer } from "@/components/headerAndFooter/footer"
 import { Header } from "@/components/headerAndFooter/header"
 import { UserInput } from "@/components/userInput";
@@ -31,7 +32,7 @@ const ForgetPassPage = () => {
                     <div className="z-10 py-11 px-12 h-full w-[410px] font-medium bg-grey-whiteFixed space-y-6 rounded">
                         <h1 className="text-heading5 font-lexend">Digite o email cadastrado</h1>
                         <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
-                            <UserInput
+                            {/* <UserInput
                                 label="Email"
                                 type="text"
                                 placeholder="Digitar email"
@@ -41,7 +42,16 @@ const ForgetPassPage = () => {
                             />
                             {errors.email && (
                                 <small className="error">{errors.email.message}</small>
-                            )}
+                            )} */}
+                            <Field
+                                label="Email"
+                                id="email"
+                                type="text"
+                                placeholder="Digitar email"
+                                register={register("email")}
+                                onChange={(e) => setValue("email", e.target.value)}
+                                error={errors.email?.message}
+                            />
 
                             <div className="space-y-5">
                                 <button
