@@ -23,8 +23,7 @@ export default function LoginPage() {
   });
 
   const onSubmit = (data: TLogin) => {
-    // login(data);
-    console.log(data);
+    login(data);
   };
   return (
     <>
