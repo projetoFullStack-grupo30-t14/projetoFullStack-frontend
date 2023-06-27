@@ -1,3 +1,4 @@
+import { Field } from "@/components/Input";
 import { Footer } from "@/components/headerAndFooter/footer";
 import { Header } from "@/components/headerAndFooter/header";
 import { UserInput } from "@/components/userInput";
@@ -22,7 +23,8 @@ export default function LoginPage() {
   });
 
   const onSubmit = (data: TLogin) => {
-    login(data);
+    // login(data);
+    console.log(data);
   };
   return (
     <>
@@ -32,7 +34,7 @@ export default function LoginPage() {
           <div className="z-10 py-11 px-12 h-full w-[410px] font-medium bg-grey-whiteFixed space-y-6 rounded">
             <h1 className="text-heading5 font-lexend">Login</h1>
             <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
-              <UserInput
+              {/* <UserInput
                 label="Email"
                 type="text"
                 placeholder="Digitar email"
@@ -54,8 +56,31 @@ export default function LoginPage() {
               />
               {errors.password && (
                 <small className="error">{errors.password.message}</small>
-              )}
-              <Link href="/forgetPass" className="body-2-500 text-grey-2 text-right mb-8">
+              )} */}
+              <Field
+                label="Email"
+                id="email"
+                type="text"
+                placeholder="Digitar email"
+                register={register("email")}
+                onChange={(e) => setValue("email", e.target.value)}
+                className="mb-8"
+                error={errors.email?.message}
+              />
+              <Field
+                label="Senha"
+                type="password"
+                placeholder="Digitar senha"
+                register={register("password")}
+                id="password"
+                onChange={(e) => setValue("password", e.target.value)}
+                className="mb-8"
+                error={errors.password?.message}
+              />
+              <Link
+                href="/forgetPass"
+                className="body-2-500 text-grey-2 text-right mb-8"
+              >
                 Esqueci minha senha
               </Link>
 
