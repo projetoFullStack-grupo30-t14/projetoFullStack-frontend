@@ -2,10 +2,9 @@ import {
   tUserUpdateRequest,
   userUpdateSchema,
 } from "@/schemas/user.register.schema";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { UserInput } from "@/components/userInput";
 import { useModal } from "@/contexts/modalContext";
 import { UserContext } from "@/contexts/userContext";
 import { Field } from "../Input";
@@ -77,48 +76,6 @@ export default function UpdateUserForm() {
                 className={currUser?.name == wName ? "text-grey-3" : ""}
                 error={errors.name?.message}
               />
-
-              {/* <UserInput
-                label="Nome"
-                type="text"
-                placeholder="Nome completo"
-                registerUpdateUser={register}
-                db_field="name"
-                onChange={(e) => setValue("name", e.target.value)}
-                defaultValue={currUser?.name}
-                className={currUser?.name == wName ? "text-grey-3" : ""}
-              />
-              {errors.name && (
-                <small className="error">{errors.name.message}</small>
-              )}
-
-              <UserInput
-                label="Email"
-                type="text"
-                placeholder="endereço@email.com.br"
-                registerUpdateUser={register}
-                db_field="email"
-                onChange={(e) => setValue("email", e.target.value)}
-                defaultValue={currUser?.email}
-                className={currUser?.email == wEmail ? "text-grey-3" : ""}
-              />
-              {errors.email && (
-                <small className="error">{errors.email.message}</small>
-              )}
-              <UserInput
-                label="CPF"
-                type="text"
-                placeholder="000.000.000-00"
-                registerUpdateUser={register}
-                db_field="cpf"
-                onChange={(e) => setValue("cpf", e.target.value)}
-                maxLength={14}
-                defaultValue={currUser?.cpf}
-                className={currUser?.cpf == wCpf ? "text-grey-3" : ""}
-              />
-              {errors.cpf && (
-                <small className="error">{errors.cpf.message}</small>
-              )} */}
               <Field
                 label="Email"
                 type="text"
@@ -154,46 +111,6 @@ export default function UpdateUserForm() {
                 className={currUser?.phone == wPhone ? "text-grey-3" : ""}
                 error={errors.phone?.message}
               />
-              {/* <UserInput
-                label="Celular"
-                type="text"
-                placeholder="12 12345-6789"
-                registerUpdateUser={register}
-                db_field="phone"
-                onChange={(e) => setValue("phone", e.target.value)}
-                maxLength={13}
-                defaultValue={currUser?.phone}
-                className={currUser?.phone == wPhone ? "text-grey-3" : ""}
-              />
-              {errors.phone && (
-                <small className="error">{errors.phone.message}</small>
-              )}
-
-              <UserInput
-                label="Data de nascimento"
-                type="date"
-                placeholder=""
-                registerUpdateUser={register}
-                db_field="date_of_birth"
-                onChange={(e) =>
-                  setValue(
-                    "date_of_birth",
-                    e.target.value.split("-").reverse().join("-")
-                  )
-                }
-                max={`${new Date().toISOString().split("T")[0]}`}
-                defaultValue={currUser?.date_of_birth
-                  .split("-")
-                  .reverse()
-                  .join("-")}
-                className={
-                  currUser?.date_of_birth == wDate_of_birth ? "text-grey-3" : ""
-                }
-                required={true}
-              />
-              {errors.date_of_birth && (
-                <small className="error">{errors.date_of_birth.message}</small>
-              )} */}
               <Field
                 label="Data de nascimento"
                 type="date"
@@ -217,23 +134,6 @@ export default function UpdateUserForm() {
                 required={true}
                 error={errors.date_of_birth?.message}
               />
-
-              {/* <label htmlFor="" className="text-inputLabel mb-3">
-                Descrição
-              </label>
-              <textarea
-                placeholder="Digitar descrição"
-                className={`${
-                  currUser?.description == wDescription ? "text-grey-3" : ""
-                } mb-8 py-2 px-4 resize-none h-20`}
-                required={false}
-                {...register("description")}
-                defaultValue={currUser?.description}
-                onChange={(e) => setValue("description", e.target.value)}
-              />
-              {errors.description && (
-                <small className="error">{errors.description.message}</small>
-              )} */}
               <Field
                 label="Descrição"
                 id="description"

@@ -1,7 +1,6 @@
 import { Field } from "@/components/Input";
 import { Footer } from "@/components/headerAndFooter/footer";
 import { Header } from "@/components/headerAndFooter/header";
-import { UserInput } from "@/components/userInput";
 import { AuthContext } from "@/contexts/authContext";
 import { TLogin, loginSchema } from "@/schemas/login.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -33,29 +32,6 @@ export default function LoginPage() {
           <div className="z-10 py-11 px-12 h-full w-[410px] font-medium bg-grey-whiteFixed space-y-6 rounded">
             <h1 className="text-heading5 font-lexend">Login</h1>
             <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
-              {/* <UserInput
-                label="Email"
-                type="text"
-                placeholder="Digitar email"
-                registerLogin={register}
-                db_field="email"
-                onChange={(e) => setValue("email", e.target.value)}
-              />
-              {errors.email && (
-                <small className="error">{errors.email.message}</small>
-              )}
-
-              <UserInput
-                label="Senha"
-                type="password"
-                placeholder="Digitar senha"
-                registerLogin={register}
-                db_field="password"
-                onChange={(e) => setValue("password", e.target.value)}
-              />
-              {errors.password && (
-                <small className="error">{errors.password.message}</small>
-              )} */}
               <Field
                 label="Email"
                 id="email"

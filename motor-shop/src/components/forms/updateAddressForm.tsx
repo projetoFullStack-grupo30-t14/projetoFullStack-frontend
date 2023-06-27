@@ -2,13 +2,10 @@ import {
   addressSchema,
   tAddress,
   tAddressResponse,
-  tUserRegister,
-  userRegisterSchema,
 } from "@/schemas/user.register.schema";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { UserInput } from "@/components/userInput";
 import { api } from "@/services";
 import { useModal } from "@/contexts/modalContext";
 import { UserContext } from "@/contexts/userContext";
@@ -211,109 +208,4 @@ export default function UpdateAddressForm() {
       </main>
     </>
   );
-}
-
-{
-  /* <UserInput
-label="CEP"
-type="text"
-placeholder="12345-678"
-registerAddress={register}
-db_field_address="cep"
-maxLength={9}
-className={currAddress?.cep == wCep ? "text-grey-3" : ""}
-onChange={async (e) => {
-  setValue("cep", e.target.value);
-  if (e.currentTarget.value.length == 9) {
-    try {
-      const cep = e.currentTarget.value.split("-").join("");
-      const response = await api.get<iAddressResponse>(
-        `https://viacep.com.br/ws/${cep}/json/`
-      );
-
-      setValue("state", response.data.uf);
-      setValue(
-        "street",
-        `${response.data.logradouro}, ${response.data.bairro}`
-      );
-      setValue("city", response.data.localidade);
-
-      if (response.data.erro) {
-        console.log(response);
-        toast.error("CEP Inválido!");
-        setValue("state", "");
-        setValue("street", "");
-        setValue("city", "");
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  } else {
-    setValue("state", "");
-    setValue("street", "");
-    setValue("city", "");
-  }
-}}
-/> 
-<UserInput
-                    label="Complemento"
-                    type="text"
-                    placeholder="Ex: apart 307"
-                    registerAddress={register}
-                    db_field_address="complement"
-                    onChange={(e) => setValue("complement", e.target.value)}
-                    maxLength={10}
-                    className={
-                      currAddress?.complement == wComplement
-                        ? "text-grey-3"
-                        : ""
-                    }
-                  />
-                  <UserInput
-                    label="Número"
-                    type="text"
-                    placeholder="Ex: 22-A"
-                    registerAddress={register}
-                    db_field_address="number"
-                    onChange={(e) => setValue("number", e.target.value)}
-                    maxLength={5}
-                    className={
-                      currAddress?.number == wNumber ? "text-grey-3" : ""
-                    }
-                  />
-                  {errors.number && (
-                    <small className="error">{errors.number.message}</small>
-                  )}
-
-                   <UserInput
-                label="Endereço"
-                type="text"
-                placeholder="Logradouro e bairro"
-                registerAddress={register}
-                db_field_address="street"
-                disabled={true}
-                className={currAddress?.street == wStreet ? "text-grey-3" : ""}
-              />
-                  
-              <UserInput
-                    label="Cidade"
-                    type="text"
-                    placeholder="Sua Cidade"
-                    registerAddress={register}
-                    db_field_address="city"
-                    disabled={true}
-                    className={currAddress?.city == wCity ? "text-grey-3" : ""}
-                  />
-                  <UserInput
-                    label="Estado"
-                    type="text"
-                    placeholder="Seu Estado"
-                    registerAddress={register}
-                    db_field_address="state"
-                    disabled={true}
-                    className={
-                      currAddress?.state == wState ? "text-grey-3" : ""
-                    }
-                  />
-                  */
 }
