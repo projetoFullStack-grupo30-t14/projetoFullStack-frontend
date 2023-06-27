@@ -116,7 +116,6 @@ export default function RegisterPage() {
                 label="Descrição"
                 id="description"
                 textarea={true}
-                className="py-2 px-4 resize-none h-20"
                 placeholder="Digitar descrição"
                 register={register("description")}
                 onChange={(e) => setValue("description", e.target.value)}
