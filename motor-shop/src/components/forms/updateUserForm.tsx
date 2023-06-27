@@ -117,12 +117,7 @@ export default function UpdateUserForm() {
                 placeholder=""
                 register={register("date_of_birth")}
                 id="date_of_birth"
-                onChange={(e) =>
-                  setValue(
-                    "date_of_birth",
-                    e.target.value.split("-").reverse().join("-")
-                  )
-                }
+                onChange={(e) => setValue("date_of_birth", e.target.value)}
                 max={`${new Date().toISOString().split("T")[0]}`}
                 defaultValue={currUser?.date_of_birth
                   .split("-")
