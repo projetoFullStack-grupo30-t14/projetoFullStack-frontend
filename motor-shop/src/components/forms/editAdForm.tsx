@@ -4,17 +4,16 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { TUpdateCar, carUpdateSchema } from "@/schemas/car.schema";
 import { useEffect, useState } from "react";
+import { useModal } from "@/contexts/modalContext";
 
 interface EditAdFormProps {
   id: string;
 }
 
 export const EditAdForm = ({ id }: EditAdFormProps) => {
-  const { patchOneCar, getOneCar, listOneCar } = useCars();
-
-  useEffect(() => {
-    getOneCar(id);
-  }, []);
+  const { closeModal } = useModal();
+  const { listOneCar } = useCars();
+  const { patchOneCar, getOneCar } = useCars();
 
   const {
     handleSubmit,
@@ -41,6 +40,7 @@ export const EditAdForm = ({ id }: EditAdFormProps) => {
   });
 
   const [imageGallery, setImageGallery] = useState(listOneCar?.car_gallery);
+  const [published, setPublished] = useState(listOneCar?.is_active);
 
   const [
     wBrand,
@@ -68,8 +68,16 @@ export const EditAdForm = ({ id }: EditAdFormProps) => {
     "price_FIPE",
   ]);
 
+  useEffect(() => {
+    getOneCar(id);
+    setValue("is_active", listOneCar?.is_active);
+  }, []);
+
   const editCar = (data: any) => {
-    patchOneCar(data);
+    data.is_active = published;
+    console.log(data);
+    closeModal();
+    // patchOneCar(data);
   };
 
   return (
@@ -82,6 +90,7 @@ export const EditAdForm = ({ id }: EditAdFormProps) => {
             </p>
             <Field
               id="brand"
+              register={register("brand")}
               type="text"
               placeholder=""
               label="Marca"
@@ -92,6 +101,7 @@ export const EditAdForm = ({ id }: EditAdFormProps) => {
             />
             <Field
               id="model"
+              register={register("model")}
               type="text"
               placeholder=""
               label="Modelo"
@@ -104,6 +114,7 @@ export const EditAdForm = ({ id }: EditAdFormProps) => {
               <div className="flex flex-col">
                 <Field
                   id="year"
+                  register={register("year")}
                   type="text"
                   placeholder=""
                   label="Ano"
@@ -116,6 +127,7 @@ export const EditAdForm = ({ id }: EditAdFormProps) => {
               <div className="flex flex-col">
                 <Field
                   id="fuel"
+                  register={register("fuel")}
                   type="text"
                   placeholder=""
                   label="Combustível"
@@ -134,6 +146,7 @@ export const EditAdForm = ({ id }: EditAdFormProps) => {
               <div className="flex flex-col">
                 <Field
                   id="mileage"
+                  register={register("mileage")}
                   type="text"
                   placeholder=""
                   label="Quilometragem"
@@ -148,6 +161,7 @@ export const EditAdForm = ({ id }: EditAdFormProps) => {
               <div className="flex flex-col">
                 <Field
                   id="color"
+                  register={register("color")}
                   type="text"
                   placeholder=""
                   label="Cor"
@@ -174,7 +188,8 @@ export const EditAdForm = ({ id }: EditAdFormProps) => {
               <div className="flex flex-col">
                 <Field
                   id="price"
-                  type="text"
+                  register={register("price")}
+                  type="number"
                   placeholder=""
                   label="Preço"
                   onChange={(e) => setValue("price", Number(e.target.value))}
@@ -186,6 +201,7 @@ export const EditAdForm = ({ id }: EditAdFormProps) => {
             </section>
             <Field
               id="description"
+              register={register("description")}
               textarea={true}
               type="text"
               placeholder=""
@@ -202,16 +218,35 @@ export const EditAdForm = ({ id }: EditAdFormProps) => {
             />
             <div className="grid grid-cols-2 justify-between gap-2 lg:min-w-max mb-8">
               <p className="col-span-2">Publicado</p>
-              <button type="button" className="btn-big btn-outline2">
+              <button
+                type="button"
+                className={`btn-big  ${
+                  wIsActive ? "btn-brand1" : "btn-outline2"
+                }`}
+                onClick={() => {
+                  setPublished(true);
+                  setValue("is_active", true);
+                }}
+              >
                 Sim
               </button>
-              <button type="button" className="btn-big btn-brand1">
+              <button
+                type="button"
+                className={`btn-big  ${
+                  !wIsActive ? "btn-brand1" : "btn-outline2"
+                }`}
+                onClick={() => {
+                  setPublished(false);
+                  setValue("is_active", false);
+                }}
+              >
                 Não
               </button>
             </div>
 
             <Field
               id="coverImage"
+              register={register("cover_image")}
               type="text"
               placeholder=""
               label="Imagem da capa"
@@ -227,7 +262,9 @@ export const EditAdForm = ({ id }: EditAdFormProps) => {
                 imageGallery.map((image, index) => {
                   return (
                     <Field
+                      key={image.id || index}
                       id={`${index}galleryImage`}
+                      // register={}
                       type="text"
                       placeholder=""
                       label={`${index + 1}ª imagem da galeria`}
