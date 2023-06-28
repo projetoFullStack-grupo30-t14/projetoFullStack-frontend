@@ -30,6 +30,7 @@ export const EditAdForm = () => {
     wPrice,
     wDescription,
     wCoverImage,
+    wIsActive,
   ] = watch([
     "brand",
     "model",
@@ -39,7 +40,8 @@ export const EditAdForm = () => {
     "color",
     "price",
     "description",
-    "coverImage",
+    "cover_image",
+    "is_active",
   ]);
 
   const editCar = (data: any) => {
@@ -171,6 +173,23 @@ export const EditAdForm = () => {
                 "py-2 px-4 resize-none h-20" /* currCar?.description === wDescription? "text-grey-3" : "" */
               }
               //   error={errors.description?.message}
+            />
+            <div className="grid grid-cols-2 justify-between gap-2 lg:min-w-max mb-8">
+              <p className="col-span-2">Publicado</p>
+              <button className="btn-big btn-negative">Sim</button>
+              <button className="btn-big btn-brand1">Não</button>
+            </div>
+
+            <Field
+              id="coverImage"
+              type="text"
+              placeholder=""
+              label="Imagem da capa"
+              // onChange={(e) => setValue("cover_image", e.target.value)}
+              defaultValue={""}
+              className={
+                "" /* currCar?.cover_image === wCoverImage? "text-grey-3" : "" */
+              }
             />
 
             <div className="flex flex-col sm:flex-row justify-between gap-2 lg:gap-1 min-w-max">
