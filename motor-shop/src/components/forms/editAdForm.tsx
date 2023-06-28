@@ -3,6 +3,7 @@ import { Field } from "../Input";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { carUpdateSchema } from "@/schemas/car.schema";
+import { useState } from "react";
 
 export const EditAdForm = () => {
   const { patchOneCar } = useCars();
@@ -19,6 +20,13 @@ export const EditAdForm = () => {
     //   brand: "",
     // },
   });
+  const [imageGallery, setImageGallery] = useState<string[]>([
+    "imagem1",
+    "imagem2",
+    "imagem3",
+  ]);
+
+  // let mockGallery: Array<string> = ["imagem1", "imagem2", "imagem3"];
 
   const [
     wBrand,
@@ -176,8 +184,12 @@ export const EditAdForm = () => {
             />
             <div className="grid grid-cols-2 justify-between gap-2 lg:min-w-max mb-8">
               <p className="col-span-2">Publicado</p>
-              <button className="btn-big btn-negative">Sim</button>
-              <button className="btn-big btn-brand1">Não</button>
+              <button type="button" className="btn-big btn-outline2">
+                Sim
+              </button>
+              <button type="button" className="btn-big btn-brand1">
+                Não
+              </button>
             </div>
 
             <Field
@@ -192,10 +204,39 @@ export const EditAdForm = () => {
               }
             />
 
+            <div className="flex flex-col">
+              {imageGallery &&
+                imageGallery.map((image, index) => {
+                  return (
+                    <Field
+                      id={`${index}galleryImage`}
+                      type="text"
+                      placeholder=""
+                      label={`${index + 1}ª imagem da galeria`}
+                      // onChange={(e) => setValue("cover_image", e.target.value)}
+                      defaultValue={image}
+                      className={
+                        "" /* currCar?.cover_image === wCoverImage? "text-grey-3" : "" */
+                      }
+                    />
+                  );
+                })}
+              <button
+                className="btn-small btn-brand-opacity h-10 min-w-[75%] lg:w-2/3 mb-8"
+                type="button"
+                onClick={() => {
+                  setImageGallery([...imageGallery, ""]);
+                }}
+              >
+                Adicionar campo para imagem da galeria
+              </button>
+            </div>
+
             <div className="flex flex-col sm:flex-row justify-between gap-2 lg:gap-1 min-w-max">
               <button
                 // onClick={}
                 className="btn-big btn-negative transition ease-in-out lg:w-[55%]"
+                type="button"
               >
                 Excluir anúncio
               </button>
