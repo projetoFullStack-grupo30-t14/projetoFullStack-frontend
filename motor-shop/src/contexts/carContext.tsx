@@ -1,4 +1,9 @@
-import { TCar, TCarData, TUpdateCar } from "@/schemas/car.schema";
+import {
+  TCar,
+  TCarData,
+  TUpdateCar,
+  TUpdateCarRequest,
+} from "@/schemas/car.schema";
 import { api } from "@/services";
 import { AxiosError } from "axios";
 import { parseCookies } from "nookies";
@@ -21,7 +26,10 @@ interface CarContextProviderData {
   getAllCars: (searchParams: string) => Promise<TCar[] | null>;
   getOneCar: (id: string) => Promise<TCar | null>;
   getValues: () => Promise<void>;
-  patchOneCar: (id: string, data: TUpdateCar) => Promise<void | null>;
+  patchOneCar: (
+    id: string,
+    data: TUpdateCar | TUpdateCarRequest
+  ) => Promise<void | null>;
   deleteOneCar: (id: string) => Promise<void | null>;
   getCarsByOwner: () => Promise<TCar[] | null>;
   listCars: TCar[];
@@ -123,7 +131,19 @@ export const CarProvider = ({ children }: Props) => {
     }
   };
 
-  const patchOneCar = async (id: string, data: TUpdateCar) => {
+  const patchOneCar = async (
+    id: string,
+    data: TUpdateCar | TUpdateCarRequest
+  ) => {
+    data.car_gallery = data.car_gallery!.map((obj) => {
+      if (typeof obj !== "string") {
+        return obj.image || "";
+      } else if (obj === undefined) {
+        return "";
+      }
+      return obj;
+    });
+
     try {
       const response = await api.patch(`cars/${id}`, data, {
         headers: {

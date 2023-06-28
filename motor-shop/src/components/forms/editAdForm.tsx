@@ -12,7 +12,7 @@ interface EditAdFormProps {
 
 export const EditAdForm = ({ id }: EditAdFormProps) => {
   const { closeModal } = useModal();
-  const { patchOneCar, listOneCar, carLoading, deleteOneCar } = useCars();
+  const { patchOneCar, listOneCar, carLoading } = useCars();
 
   if (id !== listOneCar?.id) {
     return;
@@ -82,10 +82,10 @@ export const EditAdForm = ({ id }: EditAdFormProps) => {
 
   const editCar = (data: TUpdateCar) => {
     data.is_active = published;
-    console.log(data);
-    // patchOneCar(id, data);
 
-    // closeModal();
+    patchOneCar(id, data);
+
+    closeModal();
   };
 
   return carLoading ? (
@@ -277,7 +277,9 @@ export const EditAdForm = ({ id }: EditAdFormProps) => {
                         type="text"
                         placeholder=""
                         label={`${index + 1}ª imagem da galeria`}
-                        // onChange={(e) => setValue("cover_image", e.target.value)}
+                        onChange={(e) =>
+                          setValue("cover_image", e.target.value)
+                        }
                         defaultValue={image.image}
                         className={
                           listOneCar?.cover_image === wCoverImage
@@ -308,7 +310,6 @@ export const EditAdForm = ({ id }: EditAdFormProps) => {
               <button
                 onClick={() => {
                   closeModal();
-                  // deleteOneCar(id);
                 }}
                 className="btn-big btn-negative transition ease-in-out lg:w-[55%]"
                 type="button"
@@ -328,7 +329,6 @@ export const EditAdForm = ({ id }: EditAdFormProps) => {
     </main>
   ) : (
     <main className="flex justify-center items-center min-w-[80vw] h-[150px]">
-      {" "}
       <p className="heading-2-600">Carregando...</p>
     </main>
   );

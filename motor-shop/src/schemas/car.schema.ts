@@ -45,6 +45,11 @@ export const carUpdateSchema = carSchema
   })
   .deepPartial();
 
+const carUpdateRequestSchema = carUpdateSchema.extend({
+  car_gallery: z.array(z.string()),
+});
+
 export type TCarData = z.infer<typeof carDataSchema>;
 export type TCar = z.infer<typeof carSchema>;
 export type TUpdateCar = z.infer<typeof carUpdateSchema>;
+export type TUpdateCarRequest = z.infer<typeof carUpdateRequestSchema>;
