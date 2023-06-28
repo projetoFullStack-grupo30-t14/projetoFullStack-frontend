@@ -8,11 +8,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useModal } from "@/contexts/modalContext";
 import { UserContext } from "@/contexts/userContext";
 import { Field } from "../Input";
+import { ConfirmUserDelete } from "../modal/confirmUserDelete";
 
 export default function UpdateUserForm() {
-  const { closeModal } = useModal();
-  const { currUser } = useContext(UserContext);
-  const { updateSelf, deleteSelf } = useContext(UserContext);
+  const { closeModal, showModal } = useModal();
+  const { updateSelf, currUser } = useContext(UserContext);
 
   const {
     handleSubmit,
@@ -51,9 +51,15 @@ export default function UpdateUserForm() {
     closeModal();
   };
 
-  function deleteUser(userId: string) {
-    deleteSelf(userId);
+  const isBrowser = () => typeof window !== "undefined"
+  function scrollToTop () {
+      if (!isBrowser()) return
+      window.scrollTo({ top: 0, behavior: "smooth"})
+  }
+  function confirmDelete() {
     closeModal();
+    scrollToTop()
+    showModal(<ConfirmUserDelete/>, "Excluir Perfil")
   }
 
   return (
@@ -153,7 +159,8 @@ export default function UpdateUserForm() {
                   Cancelar
                 </button>
                 <button
-                  onClick={(e) => deleteUser}
+                  type="button"
+                  onClick={() => confirmDelete()}
                   className="btn-big btn-alert transition ease-in-out"
                 >
                   Excluir perfil
