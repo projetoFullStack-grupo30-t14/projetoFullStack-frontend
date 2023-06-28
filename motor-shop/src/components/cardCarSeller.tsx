@@ -2,9 +2,11 @@ import { useModal } from "@/contexts/modalContext";
 import { TCar } from "@/schemas/car.schema";
 import Link from "next/link";
 import { EditAdForm } from "./forms/editAdForm";
+import { useCars } from "@/contexts/carContext";
 
 const CardCarSeller = ({ car }: { car: TCar }) => {
   const { showModal } = useModal();
+  const { getOneCar } = useCars();
   return (
     <div className="relative z-10 flex flex-col gap-4 max-w-xs mx-auto bg-white overflow-hidden min-w-[312px] min-h-[350px]">
       <div className="flex-shrink-0 flex-grow-0 h-152 bg-grey-7">
@@ -46,9 +48,10 @@ const CardCarSeller = ({ car }: { car: TCar }) => {
         <div className="mt-3 flex gap-4">
           <button
             className="btn-outline1 rounded px-5 py-3 font-inter"
-            onClick={() =>
-              showModal(<EditAdForm id={car.id} />, "Editar anúncio")
-            }
+            onClick={() => {
+              getOneCar(car.id);
+              showModal(<EditAdForm id={car.id} />, "Editar anúncio");
+            }}
           >
             Editar
           </button>

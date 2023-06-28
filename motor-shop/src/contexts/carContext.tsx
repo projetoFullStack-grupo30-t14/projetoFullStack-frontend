@@ -2,13 +2,7 @@ import { TCar, TCarData } from "@/schemas/car.schema";
 import { api } from "@/services";
 import { AxiosError } from "axios";
 import { parseCookies } from "nookies";
-import {
-  ReactNode,
-  createContext,
-  useState,
-  useContext,
-  useEffect,
-} from "react";
+import { ReactNode, createContext, useState, useContext } from "react";
 import { toast } from "react-toastify";
 
 interface Props {
@@ -27,8 +21,8 @@ interface CarContextProviderData {
   getAllCars: (searchParams: string) => Promise<TCar[] | null>;
   getOneCar: (id: string) => Promise<TCar | null>;
   getValues: () => Promise<void>;
-  patchOneCar: (id: number) => Promise<void | null>;
-  deleteOneCar: (id: number) => Promise<void | null>;
+  patchOneCar: (id: string) => Promise<void | null>;
+  deleteOneCar: (id: string) => Promise<void | null>;
   getCarsByOwner: () => Promise<TCar[] | null>;
   listCars: TCar[];
   listOneCar?: TCar;
@@ -37,6 +31,7 @@ interface CarContextProviderData {
   nextPage: string | null;
   previousPage: string | null;
   count: number | undefined;
+  carLoading: boolean;
 }
 
 export const CarContext = createContext<CarContextProviderData>(
@@ -52,6 +47,7 @@ export const CarProvider = ({ children }: Props) => {
   const [previousPage, setPrevious] = useState<string | null>(null);
   const [count, setCount] = useState<number>();
   const token = parseCookies(null)["motorShop.token"];
+  const [carLoading, setCarLoading] = useState(true);
 
   const createCar = async (data: TCarData) => {
     try {
@@ -73,6 +69,7 @@ export const CarProvider = ({ children }: Props) => {
 
   const getAllCars = async (searchParams: string = "") => {
     try {
+      setCarLoading(false);
       const response = await api.get(`cars${searchParams}`);
       setListCars(response.data.data);
       setNext(response.data.nextPage);
@@ -81,11 +78,14 @@ export const CarProvider = ({ children }: Props) => {
       return response.data.data;
     } catch (error) {
       console.log(error);
+    } finally {
+      setCarLoading(true);
     }
   };
 
   const getOneCar = async (id: string) => {
     try {
+      setCarLoading(false);
       const response = await api.get(`cars/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -93,9 +93,10 @@ export const CarProvider = ({ children }: Props) => {
       });
       setListOneCar(response.data);
       return response.data;
-
     } catch (error) {
       console.log(error);
+    } finally {
+      setCarLoading(true);
     }
   };
 
@@ -122,7 +123,7 @@ export const CarProvider = ({ children }: Props) => {
     }
   };
 
-  const patchOneCar = async (id: number) => {
+  const patchOneCar = async (id: string) => {
     try {
       const response = await api.patch(`cars/${id}`, {
         headers: {
@@ -141,7 +142,7 @@ export const CarProvider = ({ children }: Props) => {
     }
   };
 
-  const deleteOneCar = async (id: number) => {
+  const deleteOneCar = async (id: string) => {
     try {
       const response = await api.delete(`cars/${id}`, {
         headers: {
@@ -177,6 +178,7 @@ export const CarProvider = ({ children }: Props) => {
         nextPage,
         previousPage,
         count,
+        carLoading,
       }}
     >
       {children}

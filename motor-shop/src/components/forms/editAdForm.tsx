@@ -12,8 +12,11 @@ interface EditAdFormProps {
 
 export const EditAdForm = ({ id }: EditAdFormProps) => {
   const { closeModal } = useModal();
-  const { listOneCar } = useCars();
-  const { patchOneCar, getOneCar } = useCars();
+  const { patchOneCar, listOneCar, carLoading, deleteOneCar } = useCars();
+
+  if (id !== listOneCar?.id) {
+    return;
+  }
 
   const {
     handleSubmit,
@@ -69,18 +72,16 @@ export const EditAdForm = ({ id }: EditAdFormProps) => {
   ]);
 
   useEffect(() => {
-    getOneCar(id);
     setValue("is_active", listOneCar?.is_active);
   }, []);
 
-  const editCar = (data: any) => {
+  const editCar = (data: TUpdateCar) => {
     data.is_active = published;
-    console.log(data);
     closeModal();
     // patchOneCar(data);
   };
 
-  return (
+  return carLoading ? (
     <main className="bg-grey-8">
       <div className="flex justify-center items-center h-full">
         <div className="z-10 h-full lg:w-[410px] max-w-full font-medium bg-grey-whiteFixed space-y-8 sm:min-w-max">
@@ -208,12 +209,9 @@ export const EditAdForm = ({ id }: EditAdFormProps) => {
               label="Descrição"
               onChange={(e) => setValue("description", e.target.value)}
               defaultValue={listOneCar?.description}
-              className={
-                "py-2 px-4 resize-none h-20" + " " + listOneCar?.description ===
-                wDescription
-                  ? "text-grey-3"
-                  : ""
-              }
+              className={`py-2 px-4 resize-none h-20 ${
+                listOneCar?.description === wDescription ? "text-grey-3" : ""
+              }`}
               error={errors.description?.message}
             />
             <div className="grid grid-cols-2 justify-between gap-2 lg:min-w-max mb-8">
@@ -250,7 +248,7 @@ export const EditAdForm = ({ id }: EditAdFormProps) => {
               type="text"
               placeholder=""
               label="Imagem da capa"
-              // onChange={(e) => setValue("cover_image", e.target.value)}
+              onChange={(e) => setValue("cover_image", e.target.value)}
               defaultValue={listOneCar?.cover_image}
               className={
                 listOneCar?.cover_image === wCoverImage ? "text-grey-3" : ""
@@ -296,7 +294,10 @@ export const EditAdForm = ({ id }: EditAdFormProps) => {
 
             <div className="flex flex-col sm:flex-row justify-between gap-2 lg:gap-1 min-w-max">
               <button
-                // onClick={}
+                onClick={() => {
+                  closeModal();
+                  // deleteOneCar(id);
+                }}
                 className="btn-big btn-negative transition ease-in-out lg:w-[55%]"
                 type="button"
               >
@@ -312,6 +313,11 @@ export const EditAdForm = ({ id }: EditAdFormProps) => {
           </form>
         </div>
       </div>
+    </main>
+  ) : (
+    <main className="flex justify-center items-center min-w-[80vw] h-[150px]">
+      {" "}
+      <p className="heading-2-600">Carregando...</p>
     </main>
   );
 };
