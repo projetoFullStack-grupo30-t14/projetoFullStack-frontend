@@ -1,6 +1,6 @@
 import { useCars } from "@/contexts/carContext";
 import { Field } from "../Input";
-import { useForm } from "react-hook-form";
+import { useFieldArray, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { TUpdateCar, carUpdateSchema } from "@/schemas/car.schema";
 import { useEffect, useState } from "react";
@@ -24,6 +24,7 @@ export const EditAdForm = ({ id }: EditAdFormProps) => {
     formState: { errors },
     setValue,
     watch,
+    control,
   } = useForm<TUpdateCar>({
     resolver: zodResolver(carUpdateSchema),
     mode: "onBlur",
@@ -42,7 +43,10 @@ export const EditAdForm = ({ id }: EditAdFormProps) => {
     },
   });
 
+  const {} = useFieldArray({ control, name: "car_gallery" });
+
   const [imageGallery, setImageGallery] = useState(listOneCar?.car_gallery);
+
   const [published, setPublished] = useState(listOneCar?.is_active);
 
   const [
@@ -56,7 +60,6 @@ export const EditAdForm = ({ id }: EditAdFormProps) => {
     wDescription,
     wCoverImage,
     wIsActive,
-    wFipe,
   ] = watch([
     "brand",
     "model",
@@ -72,15 +75,17 @@ export const EditAdForm = ({ id }: EditAdFormProps) => {
   ]);
 
   useEffect(() => {
+    console.log(imageGallery);
+
     setValue("is_active", listOneCar?.is_active);
-  }, []);
+  }, [listOneCar]);
 
   const editCar = (data: TUpdateCar) => {
     data.is_active = published;
     console.log(data);
+    // patchOneCar(id, data);
 
-    closeModal();
-    // patchOneCar(data);
+    // closeModal();
   };
 
   return carLoading ? (
@@ -185,11 +190,8 @@ export const EditAdForm = ({ id }: EditAdFormProps) => {
                   placeholder=""
                   label="Preço tabela FIPE"
                   disabled={true}
-                  // onChange={(e) => setValue("fipePrice", e.target.value)}
                   defaultValue={listOneCar?.price_FIPE}
-                  className={
-                    listOneCar?.price_FIPE === wFipe ? "text-grey-3" : ""
-                  }
+                  className={"text-grey-3"}
                 />
               </div>
               <div className="flex flex-col">
@@ -265,25 +267,27 @@ export const EditAdForm = ({ id }: EditAdFormProps) => {
 
             <div className="flex flex-col">
               {imageGallery &&
-                imageGallery.map((image, index) => {
-                  return (
-                    <Field
-                      key={image.id || index}
-                      id={`${index}galleryImage`}
-                      // register={}
-                      type="text"
-                      placeholder=""
-                      label={`${index + 1}ª imagem da galeria`}
-                      // onChange={(e) => setValue("cover_image", e.target.value)}
-                      defaultValue={image.image}
-                      className={
-                        listOneCar?.cover_image === wCoverImage
-                          ? "text-grey-3"
-                          : ""
-                      }
-                    />
-                  );
-                })}
+                imageGallery.map(
+                  (image: { id: string; image: string }, index: number) => {
+                    return (
+                      <Field
+                        key={image.id || index}
+                        id={`${index}galleryImage`}
+                        register={register(`car_gallery.${index}.image`)}
+                        type="text"
+                        placeholder=""
+                        label={`${index + 1}ª imagem da galeria`}
+                        // onChange={(e) => setValue("cover_image", e.target.value)}
+                        defaultValue={image.image}
+                        className={
+                          listOneCar?.cover_image === wCoverImage
+                            ? "text-grey-3"
+                            : ""
+                        }
+                      />
+                    );
+                  }
+                )}
               <button
                 className="btn-small btn-brand-opacity h-10 min-w-[75%] lg:w-2/3 mb-8"
                 type="button"
