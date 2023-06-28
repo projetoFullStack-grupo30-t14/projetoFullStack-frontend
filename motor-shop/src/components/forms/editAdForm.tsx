@@ -77,6 +77,8 @@ export const EditAdForm = ({ id }: EditAdFormProps) => {
 
   const editCar = (data: TUpdateCar) => {
     data.is_active = published;
+    console.log(data);
+
     closeModal();
     // patchOneCar(data);
   };
@@ -115,7 +117,9 @@ export const EditAdForm = ({ id }: EditAdFormProps) => {
               <div className="flex flex-col">
                 <Field
                   id="year"
-                  register={register("year")}
+                  register={register("year", {
+                    valueAsNumber: true,
+                  })}
                   type="text"
                   placeholder=""
                   label="Ano"
@@ -147,7 +151,9 @@ export const EditAdForm = ({ id }: EditAdFormProps) => {
               <div className="flex flex-col">
                 <Field
                   id="mileage"
-                  register={register("mileage")}
+                  register={register("mileage", {
+                    valueAsNumber: true,
+                  })}
                   type="text"
                   placeholder=""
                   label="Quilometragem"
@@ -189,7 +195,9 @@ export const EditAdForm = ({ id }: EditAdFormProps) => {
               <div className="flex flex-col">
                 <Field
                   id="price"
-                  register={register("price")}
+                  register={register("price", {
+                    valueAsNumber: true,
+                  })}
                   type="number"
                   placeholder=""
                   label="Preço"
