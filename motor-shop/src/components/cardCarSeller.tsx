@@ -12,11 +12,11 @@ const CardCarSeller = ({ car }: { car: TCar }) => {
       <div className="flex-shrink-0 flex-grow-0 h-152 bg-grey-7">
         <div className="group border-2 border-grey-7 hover:border-brand-1 hover:border-2 relative">
           {car.is_active ? (
-            <span className="absolute top-0 left-0 m-3 bg-brand-1 px-2 text-grey-whiteFixed text-body-2-500 font-inter">
+            <span className="absolute top-0 left-0 z-40 m-3 bg-brand-1 px-2 text-grey-whiteFixed text-body-2-500 font-inter">
               Ativo
             </span>
           ) : (
-            <span className="absolute top-0 left-0 m-3 bg-grey-4 px-2 text-grey-whiteFixed text-body-2-500 font-inter">
+            <span className="absolute top-0 left-0 z-40 m-3 bg-grey-4 px-2 text-grey-whiteFixed text-body-2-500 font-inter">
               Inativo
             </span>
           )}
