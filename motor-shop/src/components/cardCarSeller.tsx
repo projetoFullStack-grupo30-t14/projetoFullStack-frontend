@@ -46,7 +46,9 @@ const CardCarSeller = ({ car }: { car: TCar }) => {
         <div className="mt-3 flex gap-4">
           <button
             className="btn-outline1 rounded px-5 py-3 font-inter"
-            onClick={() => showModal(<EditAdForm />, "Editar anúncio")}
+            onClick={() =>
+              showModal(<EditAdForm id={car.id} />, "Editar anúncio")
+            }
           >
             Editar
           </button>

@@ -2,31 +2,45 @@ import { useCars } from "@/contexts/carContext";
 import { Field } from "../Input";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { carUpdateSchema } from "@/schemas/car.schema";
-import { useState } from "react";
+import { TUpdateCar, carUpdateSchema } from "@/schemas/car.schema";
+import { useEffect, useState } from "react";
 
-export const EditAdForm = () => {
-  const { patchOneCar } = useCars();
+interface EditAdFormProps {
+  id: string;
+}
+
+export const EditAdForm = ({ id }: EditAdFormProps) => {
+  const { patchOneCar, getOneCar, listOneCar } = useCars();
+
+  useEffect(() => {
+    getOneCar(id);
+  }, []);
+
   const {
     handleSubmit,
     register,
     formState: { errors },
     setValue,
     watch,
-  } = useForm<any>({
+  } = useForm<TUpdateCar>({
     resolver: zodResolver(carUpdateSchema),
     mode: "onBlur",
-    // defaultValues: {
-    //   brand: "",
-    // },
+    defaultValues: {
+      brand: listOneCar?.brand,
+      model: listOneCar?.model,
+      color: listOneCar?.color,
+      car_gallery: listOneCar?.car_gallery,
+      year: listOneCar?.year,
+      cover_image: listOneCar?.cover_image,
+      description: listOneCar?.description,
+      fuel: listOneCar?.fuel,
+      is_active: listOneCar?.is_active,
+      mileage: listOneCar?.mileage,
+      price: listOneCar?.price,
+    },
   });
-  const [imageGallery, setImageGallery] = useState<string[]>([
-    "imagem1",
-    "imagem2",
-    "imagem3",
-  ]);
 
-  // let mockGallery: Array<string> = ["imagem1", "imagem2", "imagem3"];
+  const [imageGallery, setImageGallery] = useState(listOneCar?.car_gallery);
 
   const [
     wBrand,
@@ -39,6 +53,7 @@ export const EditAdForm = () => {
     wDescription,
     wCoverImage,
     wIsActive,
+    wFipe,
   ] = watch([
     "brand",
     "model",
@@ -50,6 +65,7 @@ export const EditAdForm = () => {
     "description",
     "cover_image",
     "is_active",
+    "price_FIPE",
   ]);
 
   const editCar = (data: any) => {
@@ -70,9 +86,9 @@ export const EditAdForm = () => {
               placeholder=""
               label="Marca"
               onChange={(e) => setValue("brand", e.target.value)}
-              defaultValue={""}
-              className={"" /* currCar?.brand === wBrand? "text-grey-3" : "" */}
-              //   error={errors.brand?.message}
+              defaultValue={listOneCar?.brand}
+              className={listOneCar?.brand === wBrand ? "text-grey-3" : ""}
+              error={errors.brand?.message}
             />
             <Field
               id="model"
@@ -80,9 +96,9 @@ export const EditAdForm = () => {
               placeholder=""
               label="Modelo"
               onChange={(e) => setValue("model", e.target.value)}
-              defaultValue={""}
-              className={"" /* currCar?.model === wModel? "text-grey-3" : "" */}
-              //   error={errors.model?.message}
+              defaultValue={listOneCar?.model}
+              className={listOneCar?.model === wModel ? "text-grey-3" : ""}
+              error={errors.model?.message}
             />
             <section className="grid grid-cols-2 justify-between gap-2 lg:min-w-max">
               <div className="flex flex-col">
@@ -91,12 +107,10 @@ export const EditAdForm = () => {
                   type="text"
                   placeholder=""
                   label="Ano"
-                  onChange={(e) => setValue("year", e.target.value)}
-                  defaultValue={""}
-                  className={
-                    "" /* currCar?.year === wYear? "text-grey-3" : "" */
-                  }
-                  //   error={errors.year?.message}
+                  onChange={(e) => setValue("year", Number(e.target.value))}
+                  defaultValue={listOneCar?.year}
+                  className={listOneCar?.year === wYear ? "text-grey-3" : ""}
+                  error={errors.year?.message}
                 />
               </div>
               <div className="flex flex-col">
@@ -105,12 +119,16 @@ export const EditAdForm = () => {
                   type="text"
                   placeholder=""
                   label="Combustível"
-                  onChange={(e) => setValue("fuel", e.target.value)}
-                  defaultValue={""}
-                  className={
-                    "" /* currCar?.fuel === wFuel? "text-grey-3" : "" */
-                  }
-                  //   error={errors.fuel?.message}
+                  // onChange={(e) => {
+                  //   if (
+                  //     ["flex", "hybrid", "electric"].includes(e.target.value)
+                  //   ) {
+                  //     setValue("fuel", e.target.value);
+                  //   }
+                  // }}
+                  defaultValue={listOneCar?.fuel}
+                  className={listOneCar?.fuel === wFuel ? "text-grey-3" : ""}
+                  error={errors.fuel?.message}
                 />
               </div>
               <div className="flex flex-col">
@@ -119,12 +137,12 @@ export const EditAdForm = () => {
                   type="text"
                   placeholder=""
                   label="Quilometragem"
-                  onChange={(e) => setValue("mileage", e.target.value)}
-                  defaultValue={""}
+                  onChange={(e) => setValue("mileage", Number(e.target.value))}
+                  defaultValue={listOneCar?.mileage}
                   className={
-                    "" /* currCar?.mileage === wMileage? "text-grey-3" : "" */
+                    listOneCar?.mileage === wMileage ? "text-grey-3" : ""
                   }
-                  //   error={errors.mileage?.message}
+                  error={errors.mileage?.message}
                 />
               </div>
               <div className="flex flex-col">
@@ -134,11 +152,9 @@ export const EditAdForm = () => {
                   placeholder=""
                   label="Cor"
                   onChange={(e) => setValue("color", e.target.value)}
-                  defaultValue={""}
-                  className={
-                    "" /* currCar?.color === wColor? "text-grey-3" : "" */
-                  }
-                  //   error={errors.color?.message}
+                  defaultValue={listOneCar?.color}
+                  className={listOneCar?.color === wColor ? "text-grey-3" : ""}
+                  error={errors.color?.message}
                 />
               </div>
               <div className="flex flex-col">
@@ -147,10 +163,11 @@ export const EditAdForm = () => {
                   type="text"
                   placeholder=""
                   label="Preço tabela FIPE"
+                  disabled={true}
                   // onChange={(e) => setValue("fipePrice", e.target.value)}
-                  defaultValue={""}
+                  defaultValue={listOneCar?.price_FIPE}
                   className={
-                    "" /* currCar?.fipePrice === wBrand? "text-grey-3" : "" */
+                    listOneCar?.price_FIPE === wFipe ? "text-grey-3" : ""
                   }
                 />
               </div>
@@ -160,12 +177,10 @@ export const EditAdForm = () => {
                   type="text"
                   placeholder=""
                   label="Preço"
-                  onChange={(e) => setValue("price", e.target.value)}
-                  defaultValue={""}
-                  className={
-                    "" /* currCar?.price === wPrice? "text-grey-3" : "" */
-                  }
-                  //   error={errors.price?.message}
+                  onChange={(e) => setValue("price", Number(e.target.value))}
+                  defaultValue={listOneCar?.price}
+                  className={listOneCar?.price === wPrice ? "text-grey-3" : ""}
+                  error={errors.price?.message}
                 />
               </div>
             </section>
@@ -176,11 +191,14 @@ export const EditAdForm = () => {
               placeholder=""
               label="Descrição"
               onChange={(e) => setValue("description", e.target.value)}
-              defaultValue={""}
+              defaultValue={listOneCar?.description}
               className={
-                "py-2 px-4 resize-none h-20" /* currCar?.description === wDescription? "text-grey-3" : "" */
+                "py-2 px-4 resize-none h-20" + " " + listOneCar?.description ===
+                wDescription
+                  ? "text-grey-3"
+                  : ""
               }
-              //   error={errors.description?.message}
+              error={errors.description?.message}
             />
             <div className="grid grid-cols-2 justify-between gap-2 lg:min-w-max mb-8">
               <p className="col-span-2">Publicado</p>
@@ -198,9 +216,9 @@ export const EditAdForm = () => {
               placeholder=""
               label="Imagem da capa"
               // onChange={(e) => setValue("cover_image", e.target.value)}
-              defaultValue={""}
+              defaultValue={listOneCar?.cover_image}
               className={
-                "" /* currCar?.cover_image === wCoverImage? "text-grey-3" : "" */
+                listOneCar?.cover_image === wCoverImage ? "text-grey-3" : ""
               }
             />
 
@@ -214,9 +232,11 @@ export const EditAdForm = () => {
                       placeholder=""
                       label={`${index + 1}ª imagem da galeria`}
                       // onChange={(e) => setValue("cover_image", e.target.value)}
-                      defaultValue={image}
+                      defaultValue={image.image}
                       className={
-                        "" /* currCar?.cover_image === wCoverImage? "text-grey-3" : "" */
+                        listOneCar?.cover_image === wCoverImage
+                          ? "text-grey-3"
+                          : ""
                       }
                     />
                   );
@@ -225,7 +245,12 @@ export const EditAdForm = () => {
                 className="btn-small btn-brand-opacity h-10 min-w-[75%] lg:w-2/3 mb-8"
                 type="button"
                 onClick={() => {
-                  setImageGallery([...imageGallery, ""]);
+                  imageGallery
+                    ? setImageGallery([
+                        ...imageGallery,
+                        { id: "", car_id: id, image: "" },
+                      ])
+                    : setImageGallery([{ id: "", car_id: id, image: "" }]);
                 }}
               >
                 Adicionar campo para imagem da galeria
