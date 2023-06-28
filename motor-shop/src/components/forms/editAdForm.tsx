@@ -75,8 +75,6 @@ export const EditAdForm = ({ id }: EditAdFormProps) => {
   ]);
 
   useEffect(() => {
-    console.log(imageGallery);
-
     setValue("is_active", listOneCar?.is_active);
   }, [listOneCar]);
 
@@ -135,23 +133,15 @@ export const EditAdForm = ({ id }: EditAdFormProps) => {
                 />
               </div>
               <div className="flex flex-col">
-                <Field
-                  id="fuel"
-                  register={register("fuel")}
-                  type="text"
-                  placeholder=""
-                  label="Combustível"
-                  // onChange={(e) => {
-                  //   if (
-                  //     ["flex", "hybrid", "electric"].includes(e.target.value)
-                  //   ) {
-                  //     setValue("fuel", e.target.value);
-                  //   }
-                  // }}
-                  defaultValue={listOneCar?.fuel}
-                  className={listOneCar?.fuel === wFuel ? "text-grey-3" : ""}
-                  error={errors.fuel?.message}
-                />
+                <label htmlFor="fuel" className="text-inputLabel mb-3">
+                  Combustível
+                </label>
+                <select id="fuel" {...register("fuel")}>
+                  <option value="">Combustível</option>
+                  <option value="flex">Flex</option>
+                  <option value="hybrid">Híbrido</option>
+                  <option value="electric">Elétrico</option>
+                </select>
               </div>
               <div className="flex flex-col">
                 <Field
