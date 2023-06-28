@@ -53,6 +53,7 @@ export const Field = ({
           className={`mb-8 py-2 px-4 resize-none h-20 ${className} ${
             !disabled && "shadow-webkit"
           }`}
+          defaultValue={defaultValue}
         />
       ) : (
         <input
