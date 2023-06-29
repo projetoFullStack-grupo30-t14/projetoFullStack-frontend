@@ -20,24 +20,11 @@ export const CreateAdForm = () => {
   } = useForm<TCreateCar>({
     resolver: zodResolver(carDataSchema),
     mode: "onBlur",
-    defaultValues: {
-        brand: listOneCar?.brand,
-        model: listOneCar?.model,
-        color: listOneCar?.color,
-        car_gallery: listOneCar?.car_gallery,
-        year: listOneCar?.year,
-        cover_image: listOneCar?.cover_image,
-        description: listOneCar?.description,
-        fuel: listOneCar?.fuel,
-        mileage: listOneCar?.mileage,
-        price: listOneCar?.price,
-      },
   });
 
   const {} = useFieldArray({ control, name: "car_gallery" });
 
-  const [imageGallery, setImageGallery] = useState(listOneCar?.car_gallery);
-
+  const [imageGallery, setImageGallery] = useState([""]);
 
   const [
     wBrand,
@@ -49,7 +36,6 @@ export const CreateAdForm = () => {
     wPrice,
     wDescription,
     wCoverImage,
-   
   ] = watch([
     "brand",
     "model",
@@ -60,12 +46,10 @@ export const CreateAdForm = () => {
     "price",
     "description",
     "cover_image",
-
   ]);
 
-
   const onSubmit = (data: TCreateCar) => {
-    console.log(data)
+    console.log(data);
     createCar(data);
     closeModal();
   };
@@ -85,7 +69,6 @@ export const CreateAdForm = () => {
               placeholder=""
               label="Marca"
               onChange={(e) => setValue("brand", e.target.value)}
-              defaultValue={listOneCar?.brand}
               className={listOneCar?.brand === wBrand ? "text-grey-3" : ""}
               error={errors.brand?.message}
             />
@@ -96,7 +79,6 @@ export const CreateAdForm = () => {
               placeholder=""
               label="Modelo"
               onChange={(e) => setValue("model", e.target.value)}
-              defaultValue={listOneCar?.model}
               className={listOneCar?.model === wModel ? "text-grey-3" : ""}
               error={errors.model?.message}
             />
@@ -111,7 +93,6 @@ export const CreateAdForm = () => {
                   placeholder=""
                   label="Ano"
                   onChange={(e) => setValue("year", Number(e.target.value))}
-                  defaultValue={listOneCar?.year}
                   className={listOneCar?.year === wYear ? "text-grey-3" : ""}
                   error={errors.year?.message}
                 />
@@ -137,7 +118,6 @@ export const CreateAdForm = () => {
                   placeholder=""
                   label="Quilometragem"
                   onChange={(e) => setValue("mileage", Number(e.target.value))}
-                  defaultValue={listOneCar?.mileage}
                   className={
                     listOneCar?.mileage === wMileage ? "text-grey-3" : ""
                   }
@@ -152,7 +132,6 @@ export const CreateAdForm = () => {
                   placeholder=""
                   label="Cor"
                   onChange={(e) => setValue("color", e.target.value)}
-                  defaultValue={listOneCar?.color}
                   className={listOneCar?.color === wColor ? "text-grey-3" : ""}
                   error={errors.color?.message}
                 />
@@ -164,7 +143,6 @@ export const CreateAdForm = () => {
                   placeholder=""
                   label="Preço tabela FIPE"
                   disabled={true}
-                  defaultValue={listOneCar?.price_FIPE}
                   className={"text-grey-3"}
                 />
               </div>
@@ -178,7 +156,6 @@ export const CreateAdForm = () => {
                   placeholder=""
                   label="Preço"
                   onChange={(e) => setValue("price", Number(e.target.value))}
-                  defaultValue={listOneCar?.price}
                   className={listOneCar?.price === wPrice ? "text-grey-3" : ""}
                   error={errors.price?.message}
                 />
@@ -192,13 +169,11 @@ export const CreateAdForm = () => {
               placeholder=""
               label="Descrição"
               onChange={(e) => setValue("description", e.target.value)}
-              defaultValue={listOneCar?.description}
               className={`py-2 px-4 resize-none h-20 ${
                 listOneCar?.description === wDescription ? "text-grey-3" : ""
               }`}
               error={errors.description?.message}
             />
-      
 
             <Field
               id="coverImage"
@@ -207,7 +182,6 @@ export const CreateAdForm = () => {
               placeholder=""
               label="Imagem da capa"
               onChange={(e) => setValue("cover_image", e.target.value)}
-              defaultValue={listOneCar?.cover_image}
               className={
                 listOneCar?.cover_image === wCoverImage ? "text-grey-3" : ""
               }
@@ -215,39 +189,30 @@ export const CreateAdForm = () => {
 
             <div className="flex flex-col">
               {imageGallery &&
-                imageGallery.map(
-                  (image: { id: string; image: string }, index: number) => {
-                    return (
-                      <Field
-                        key={image.id || index}
-                        id={`${index}galleryImage`}
-                        register={register(`car_gallery.${index}.image`)}
-                        type="text"
-                        placeholder=""
-                        label={`${index + 1}ª imagem da galeria`}
-                        onChange={(e) =>
-                          setValue("cover_image", e.target.value)
-                        }
-                        defaultValue={image.image}
-                        className={
-                          listOneCar?.cover_image === wCoverImage
-                            ? "text-grey-3"
-                            : ""
-                        }
-                      />
-                    );
-                  }
-                )}
+                imageGallery.map((image: string, index: number) => {
+                  return (
+                    <Field
+                      key={index}
+                      id={`${index}galleryImage`}
+                      register={register(`car_gallery.${index}.image`)}
+                      type="text"
+                      placeholder=""
+                      label={`${index + 1}ª imagem da galeria`}
+                      className={
+                        listOneCar?.cover_image === wCoverImage
+                          ? "text-grey-3"
+                          : ""
+                      }
+                    />
+                  );
+                })}
               <button
                 className="btn-small btn-brand-opacity h-10 min-w-[75%] lg:w-2/3 mb-8"
                 type="button"
                 onClick={() => {
-                //   imageGallery
-                //     ? setImageGallery([
-                //         ...imageGallery,
-                //         { id: "", car_id: id, image: "" },
-                //       ])
-                //     : setImageGallery([{ id: "", car_id: id, image: "" }]);
+                  imageGallery
+                    ? setImageGallery([...imageGallery, ""])
+                    : setImageGallery([""]);
                 }}
               >
                 Adicionar campo para imagem da galeria
@@ -268,8 +233,8 @@ export const CreateAdForm = () => {
                 type="submit"
                 className="btn-big btn-brand1 transition ease-in-out"
                 onClick={() => {
-                    closeModal();
-                  }}
+                  closeModal();
+                }}
               >
                 Criar Anúncio
               </button>
