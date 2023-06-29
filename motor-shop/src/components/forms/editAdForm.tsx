@@ -99,7 +99,7 @@ export const EditAdForm = ({ id }: EditAdFormProps) => {
       <div className="flex justify-center items-center h-full">
         <div className="z-10 h-full lg:w-[410px] max-w-full font-medium bg-grey-whiteFixed space-y-8 sm:min-w-max">
           <form
-            className="flex flex-col h-full overflow-auto scrollbar"
+            className="flex flex-col h-4/5 overflow-auto scrollbar"
             onSubmit={handleSubmit(editCar)}
           >
             <p className="text-body2 font-inter my-4 pb-4">
@@ -120,16 +120,14 @@ export const EditAdForm = ({ id }: EditAdFormProps) => {
               error={errors.brand?.message}
             />
             {models.length > 0 ? (
-              <div className="flex flex-col mb-8">
+              <div className="flex flex-col mb-8 max-h-[80px] overflow-y-visible">
                 <label htmlFor="model" className="text-inputLabel mb-3">
                   Modelo
                 </label>
-                <select
-                  id="model"
-                  {...register("model")}
-                  className="max-h-[120px]"
-                >
-                  <option value="">Selecione um modelo</option>
+                <select id="model" {...register("model")}>
+                  <option value="" disabled>
+                    Selecione um modelo
+                  </option>
                   {models.map((model) => (
                     <option
                       value={model}
