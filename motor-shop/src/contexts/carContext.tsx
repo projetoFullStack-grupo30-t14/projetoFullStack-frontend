@@ -1,6 +1,7 @@
 import {
   TCar,
   TCarData,
+  TCarRequest,
   TUpdateCar,
   TUpdateCarRequest,
 } from "@/schemas/car.schema";
@@ -22,7 +23,7 @@ interface Values {
 }
 
 interface CarContextProviderData {
-  createCar: (data: TCarData) => Promise<TCar | void>;
+  createCar: (data: TCarRequest) => Promise<TCar | void>;
   getAllCars: (searchParams: string) => Promise<TCar[] | null>;
   getOneCar: (id: string) => Promise<TCar | null>;
   getValues: () => Promise<void>;
@@ -57,7 +58,7 @@ export const CarProvider = ({ children }: Props) => {
   const token = parseCookies(null)["motorShop.token"];
   const [carLoading, setCarLoading] = useState(true);
 
-  const createCar = async (data: TCarData) => {
+  const createCar = async (data: TCarRequest) => {
     try {
       const response = await api.post("cars", data, {
         headers: {

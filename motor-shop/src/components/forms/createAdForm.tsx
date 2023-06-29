@@ -2,7 +2,7 @@ import { useCars } from "@/contexts/carContext";
 import { Field } from "../Input";
 import { useFieldArray, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { TCreateCar, carDataSchema } from "@/schemas/car.schema";
+import { TCarRequest, carRequestSchema } from "@/schemas/car.schema";
 import { useState } from "react";
 import { useModal } from "@/contexts/modalContext";
 
@@ -17,14 +17,16 @@ export const CreateAdForm = () => {
     setValue,
     watch,
     control,
-  } = useForm<TCreateCar>({
-    resolver: zodResolver(carDataSchema),
+  } = useForm<TCarRequest>({
+    resolver: zodResolver(carRequestSchema),
     mode: "onBlur",
   });
 
-  const {} = useFieldArray({ control, name: "car_gallery" });
+  // const {} = useFieldArray({ control, name: "car_gallery" });
 
-  const [imageGallery, setImageGallery] = useState([""]);
+  const [imageGallery, setImageGallery] = useState([
+    { id: "", car_id: "", image: "" },
+  ]);
 
   const [
     wBrand,
@@ -48,13 +50,14 @@ export const CreateAdForm = () => {
     "cover_image",
   ]);
 
-  const onSubmit = (data: TCreateCar) => {
+  const onSubmit = (data: TCarRequest) => {
     console.log(data);
     createCar(data);
-    closeModal();
+    // closeModal();
   };
+  console.log(errors);
 
-  return carLoading ? (
+  return (
     <main className="bg-grey-8">
       <div className="flex justify-center items-center h-full">
         <div className="z-10 h-full lg:w-[410px] max-w-full font-medium bg-grey-whiteFixed space-y-8 sm:min-w-max">
@@ -189,30 +192,38 @@ export const CreateAdForm = () => {
 
             <div className="flex flex-col">
               {imageGallery &&
-                imageGallery.map((image: string, index: number) => {
-                  return (
-                    <Field
-                      key={index}
-                      id={`${index}galleryImage`}
-                      register={register(`car_gallery.${index}.image`)}
-                      type="text"
-                      placeholder=""
-                      label={`${index + 1}ª imagem da galeria`}
-                      className={
-                        listOneCar?.cover_image === wCoverImage
-                          ? "text-grey-3"
-                          : ""
-                      }
-                    />
-                  );
-                })}
+                imageGallery.map(
+                  (
+                    image: { id: string; car_id: string; image: string },
+                    index: number
+                  ) => {
+                    return (
+                      <Field
+                        key={index}
+                        id={`${index}galleryImage`}
+                        register={register(`car_gallery.${index}`)}
+                        type="text"
+                        placeholder=""
+                        label={`${index + 1}ª imagem da galeria`}
+                        className={
+                          listOneCar?.cover_image === wCoverImage
+                            ? "text-grey-3"
+                            : ""
+                        }
+                      />
+                    );
+                  }
+                )}
               <button
                 className="btn-small btn-brand-opacity h-10 min-w-[75%] lg:w-2/3 mb-8"
                 type="button"
                 onClick={() => {
                   imageGallery
-                    ? setImageGallery([...imageGallery, ""])
-                    : setImageGallery([""]);
+                    ? setImageGallery([
+                        ...imageGallery,
+                        { id: "", car_id: "", image: "" },
+                      ])
+                    : setImageGallery([{ id: "", car_id: "", image: "" }]);
                 }}
               >
                 Adicionar campo para imagem da galeria
@@ -239,10 +250,6 @@ export const CreateAdForm = () => {
           </form>
         </div>
       </div>
-    </main>
-  ) : (
-    <main className="flex justify-center items-center min-w-[80vw] h-[150px]">
-      <p className="heading-2-600">Carregando...</p>
     </main>
   );
 };
