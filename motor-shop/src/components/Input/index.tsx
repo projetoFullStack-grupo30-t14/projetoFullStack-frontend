@@ -69,7 +69,7 @@ export const Field = ({
           } ${type === "date" && "date-input--has-value"}`}
           required={required}
           defaultValue={defaultValue}
-          onChange={onChange}
+          onInput={onChange}
           max={max}
           maxLength={maxLength}
         />

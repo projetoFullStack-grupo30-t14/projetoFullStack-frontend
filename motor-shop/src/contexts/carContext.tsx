@@ -8,7 +8,14 @@ import {
 import { api } from "@/services";
 import { AxiosError } from "axios";
 import { parseCookies } from "nookies";
-import { ReactNode, createContext, useState, useContext } from "react";
+import {
+  ReactNode,
+  createContext,
+  useState,
+  useContext,
+  Dispatch,
+  SetStateAction,
+} from "react";
 import { toast } from "react-toastify";
 
 interface Props {
@@ -41,6 +48,9 @@ interface CarContextProviderData {
   previousPage: string | null;
   count: number | undefined;
   carLoading: boolean;
+  getBrandModels: (brand: string) => Promise<any>;
+  models: string[];
+  setModels: Dispatch<SetStateAction<string[]>>;
 }
 
 export const CarContext = createContext<CarContextProviderData>(
@@ -57,6 +67,7 @@ export const CarProvider = ({ children }: Props) => {
   const [count, setCount] = useState<number>();
   const token = parseCookies(null)["motorShop.token"];
   const [carLoading, setCarLoading] = useState(true);
+  const [models, setModels] = useState([""]);
 
   const createCar = async (data: TCarRequest) => {
     try {
@@ -106,6 +117,23 @@ export const CarProvider = ({ children }: Props) => {
       console.log(error);
     } finally {
       setCarLoading(true);
+    }
+  };
+
+  const getBrandModels = async (brand: string) => {
+    try {
+      let data = (
+        await api.get(
+          `https://kenzie-kars.herokuapp.com/cars?brand=${brand.toLowerCase()}`
+        )
+      ).data;
+
+      let models = await data.map((obj: { name: string }) => obj.name);
+      setModels(models);
+
+      return models;
+    } catch (err) {
+      console.error(err);
     }
   };
 
@@ -200,6 +228,9 @@ export const CarProvider = ({ children }: Props) => {
         previousPage,
         count,
         carLoading,
+        getBrandModels,
+        models,
+        setModels,
       }}
     >
       {children}
