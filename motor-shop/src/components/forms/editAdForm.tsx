@@ -98,7 +98,10 @@ export const EditAdForm = ({ id }: EditAdFormProps) => {
     <main className="bg-grey-8">
       <div className="flex justify-center items-center h-full">
         <div className="z-10 h-full lg:w-[410px] max-w-full font-medium bg-grey-whiteFixed space-y-8 sm:min-w-max">
-          <form className="flex flex-col" onSubmit={handleSubmit(editCar)}>
+          <form
+            className="flex flex-col h-full overflow-auto scrollbar"
+            onSubmit={handleSubmit(editCar)}
+          >
             <p className="text-body2 font-inter my-4 pb-4">
               Informações do veículo
             </p>
@@ -117,11 +120,15 @@ export const EditAdForm = ({ id }: EditAdFormProps) => {
               error={errors.brand?.message}
             />
             {models.length > 0 ? (
-              <div className="flex flex-col">
+              <div className="flex flex-col mb-8">
                 <label htmlFor="model" className="text-inputLabel mb-3">
                   Modelo
                 </label>
-                <select id="model" {...register("model")}>
+                <select
+                  id="model"
+                  {...register("model")}
+                  className="max-h-[120px]"
+                >
                   <option value="">Selecione um modelo</option>
                   {models.map((model) => (
                     <option
@@ -147,8 +154,8 @@ export const EditAdForm = ({ id }: EditAdFormProps) => {
                 error={errors.model?.message}
               />
             )}
-            <section className="grid grid-cols-2 justify-between gap-2 lg:min-w-max">
-              <div className="flex flex-col">
+            <section className="grid grid-cols-2 justify-between gap-2 lg:min-w-max mb-8">
+              <div className="flex flex-col mb-4">
                 <Field
                   id="year"
                   register={register("year", {
@@ -163,7 +170,7 @@ export const EditAdForm = ({ id }: EditAdFormProps) => {
                   error={errors.year?.message}
                 />
               </div>
-              <div className="flex flex-col">
+              <div className="flex flex-col mb-4">
                 <label htmlFor="fuel" className="text-inputLabel mb-3">
                   Combustível
                 </label>
@@ -174,7 +181,7 @@ export const EditAdForm = ({ id }: EditAdFormProps) => {
                   <option value="electric">Elétrico</option>
                 </select>
               </div>
-              <div className="flex flex-col">
+              <div className="flex flex-col mb-4">
                 <Field
                   id="mileage"
                   register={register("mileage", {
@@ -191,7 +198,7 @@ export const EditAdForm = ({ id }: EditAdFormProps) => {
                   error={errors.mileage?.message}
                 />
               </div>
-              <div className="flex flex-col">
+              <div className="flex flex-col mb-4">
                 <Field
                   id="color"
                   register={register("color")}
@@ -200,11 +207,13 @@ export const EditAdForm = ({ id }: EditAdFormProps) => {
                   label="Cor"
                   onChange={(e) => setValue("color", e.target.value)}
                   defaultValue={listOneCar?.color}
-                  className={listOneCar?.color === wColor ? "text-grey-3" : ""}
+                  className={`mb-0 ${
+                    listOneCar?.color === wColor ? "text-grey-3" : ""
+                  }`}
                   error={errors.color?.message}
                 />
               </div>
-              <div className="flex flex-col">
+              <div className="flex flex-col mb-4">
                 <Field
                   id="fipePrice"
                   type="number"
@@ -215,7 +224,7 @@ export const EditAdForm = ({ id }: EditAdFormProps) => {
                   className={"text-grey-3"}
                 />
               </div>
-              <div className="flex flex-col">
+              <div className="flex flex-col mb-4">
                 <Field
                   id="price"
                   register={register("price", {
@@ -286,7 +295,7 @@ export const EditAdForm = ({ id }: EditAdFormProps) => {
               }
             />
 
-            <div className="flex flex-col">
+            <div className="flex flex-col mb-4">
               {imageGallery &&
                 imageGallery.map(
                   (image: { id: string; image: string }, index: number) => {
