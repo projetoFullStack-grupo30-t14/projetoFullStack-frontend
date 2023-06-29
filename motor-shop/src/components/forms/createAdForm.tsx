@@ -232,9 +232,6 @@ export const CreateAdForm = () => {
               <button
                 type="submit"
                 className="btn-big btn-brand1 transition ease-in-out"
-                onClick={() => {
-                  closeModal();
-                }}
               >
                 Criar Anúncio
               </button>
