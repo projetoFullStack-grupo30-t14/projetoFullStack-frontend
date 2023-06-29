@@ -98,9 +98,9 @@ export const EditAdForm = ({ id }: EditAdFormProps) => {
   return carLoading ? (
     <main className="bg-grey-8">
       <div className="flex justify-center items-center h-full">
-        <div className="z-10 h-full lg:w-[410px] max-w-full font-medium bg-grey-whiteFixed space-y-8 sm:min-w-max">
+        <div className="z-10 max-h-[550px] overflow-auto scrollbar lg:w-[410px] max-w-full font-medium bg-grey-whiteFixed space-y-8 sm:min-w-max">
           <form
-            className="flex flex-col h-4/5 overflow-auto scrollbar"
+            className="flex flex-col overflow-auto scrollbar"
             onSubmit={handleSubmit(editCar)}
           >
             <p className="text-body2 font-inter my-4 pb-4">
@@ -125,7 +125,7 @@ export const EditAdForm = ({ id }: EditAdFormProps) => {
                 <label htmlFor="model" className="text-inputLabel mb-3">
                   Modelo
                 </label>
-                <select id="model" {...register("model")}>
+                <select id="model" {...register("model")} className="scrollbar">
                   <option value="" disabled>
                     Selecione um modelo
                   </option>
@@ -173,7 +173,7 @@ export const EditAdForm = ({ id }: EditAdFormProps) => {
                 <label htmlFor="fuel" className="text-inputLabel mb-3">
                   Combustível
                 </label>
-                <select id="fuel" {...register("fuel")}>
+                <select id="fuel" {...register("fuel")} className="scrollbar">
                   <option value="">Combustível</option>
                   <option value="flex">Flex</option>
                   <option value="hybrid">Híbrido</option>
