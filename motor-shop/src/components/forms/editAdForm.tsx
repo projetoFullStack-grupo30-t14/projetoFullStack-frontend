@@ -5,13 +5,14 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { TUpdateCar, carUpdateSchema } from "@/schemas/car.schema";
 import { useEffect, useState } from "react";
 import { useModal } from "@/contexts/modalContext";
+import { ConfirmAdDelete } from "../modal/confirmAdDelete";
 
 interface EditAdFormProps {
   id: string;
 }
 
 export const EditAdForm = ({ id }: EditAdFormProps) => {
-  const { closeModal } = useModal();
+  const { closeModal, showModal } = useModal();
   const {
     patchOneCar,
     listOneCar,
@@ -338,6 +339,7 @@ export const EditAdForm = ({ id }: EditAdFormProps) => {
               <button
                 onClick={() => {
                   closeModal();
+                  showModal(<ConfirmAdDelete id={id} />, "Excluir anúncio");
                 }}
                 className="btn-big btn-negative transition ease-in-out lg:w-[55%]"
                 type="button"
