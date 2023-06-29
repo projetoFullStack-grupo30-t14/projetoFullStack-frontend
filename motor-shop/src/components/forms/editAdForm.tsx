@@ -5,13 +5,14 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { TUpdateCar, carUpdateSchema } from "@/schemas/car.schema";
 import { useEffect, useState } from "react";
 import { useModal } from "@/contexts/modalContext";
+import { ConfirmAdDelete } from "../modal/confirmAdDelete";
 
 interface EditAdFormProps {
   id: string;
 }
 
 export const EditAdForm = ({ id }: EditAdFormProps) => {
-  const { closeModal } = useModal();
+  const { closeModal, showModal } = useModal();
   const {
     patchOneCar,
     listOneCar,
@@ -97,8 +98,11 @@ export const EditAdForm = ({ id }: EditAdFormProps) => {
   return carLoading ? (
     <main className="bg-grey-8">
       <div className="flex justify-center items-center h-full">
-        <div className="z-10 h-full lg:w-[410px] max-w-full font-medium bg-grey-whiteFixed space-y-8 sm:min-w-max">
-          <form className="flex flex-col" onSubmit={handleSubmit(editCar)}>
+        <div className="z-10 max-h-[550px] overflow-auto scrollbar lg:w-[410px] max-w-full font-medium bg-grey-whiteFixed space-y-8 sm:min-w-max">
+          <form
+            className="flex flex-col overflow-auto scrollbar"
+            onSubmit={handleSubmit(editCar)}
+          >
             <p className="text-body2 font-inter my-4 pb-4">
               Informações do veículo
             </p>
@@ -117,12 +121,14 @@ export const EditAdForm = ({ id }: EditAdFormProps) => {
               error={errors.brand?.message}
             />
             {models.length > 0 ? (
-              <div className="flex flex-col">
+              <div className="flex flex-col mb-8 max-h-[80px] overflow-y-visible">
                 <label htmlFor="model" className="text-inputLabel mb-3">
                   Modelo
                 </label>
-                <select id="model" {...register("model")}>
-                  <option value="">Selecione um modelo</option>
+                <select id="model" {...register("model")} className="scrollbar">
+                  <option value="" disabled>
+                    Selecione um modelo
+                  </option>
                   {models.map((model) => (
                     <option
                       value={model}
@@ -147,8 +153,8 @@ export const EditAdForm = ({ id }: EditAdFormProps) => {
                 error={errors.model?.message}
               />
             )}
-            <section className="grid grid-cols-2 justify-between gap-2 lg:min-w-max">
-              <div className="flex flex-col">
+            <section className="grid grid-cols-2 justify-between gap-2 lg:min-w-max mb-8">
+              <div className="flex flex-col mb-4">
                 <Field
                   id="year"
                   register={register("year", {
@@ -163,18 +169,18 @@ export const EditAdForm = ({ id }: EditAdFormProps) => {
                   error={errors.year?.message}
                 />
               </div>
-              <div className="flex flex-col">
+              <div className="flex flex-col mb-4">
                 <label htmlFor="fuel" className="text-inputLabel mb-3">
                   Combustível
                 </label>
-                <select id="fuel" {...register("fuel")}>
+                <select id="fuel" {...register("fuel")} className="scrollbar">
                   <option value="">Combustível</option>
                   <option value="flex">Flex</option>
                   <option value="hybrid">Híbrido</option>
                   <option value="electric">Elétrico</option>
                 </select>
               </div>
-              <div className="flex flex-col">
+              <div className="flex flex-col mb-4">
                 <Field
                   id="mileage"
                   register={register("mileage", {
@@ -191,7 +197,7 @@ export const EditAdForm = ({ id }: EditAdFormProps) => {
                   error={errors.mileage?.message}
                 />
               </div>
-              <div className="flex flex-col">
+              <div className="flex flex-col mb-4">
                 <Field
                   id="color"
                   register={register("color")}
@@ -200,11 +206,13 @@ export const EditAdForm = ({ id }: EditAdFormProps) => {
                   label="Cor"
                   onChange={(e) => setValue("color", e.target.value)}
                   defaultValue={listOneCar?.color}
-                  className={listOneCar?.color === wColor ? "text-grey-3" : ""}
+                  className={`mb-0 ${
+                    listOneCar?.color === wColor ? "text-grey-3" : ""
+                  }`}
                   error={errors.color?.message}
                 />
               </div>
-              <div className="flex flex-col">
+              <div className="flex flex-col mb-4">
                 <Field
                   id="fipePrice"
                   type="number"
@@ -215,7 +223,7 @@ export const EditAdForm = ({ id }: EditAdFormProps) => {
                   className={"text-grey-3"}
                 />
               </div>
-              <div className="flex flex-col">
+              <div className="flex flex-col mb-4">
                 <Field
                   id="price"
                   register={register("price", {
@@ -286,7 +294,7 @@ export const EditAdForm = ({ id }: EditAdFormProps) => {
               }
             />
 
-            <div className="flex flex-col">
+            <div className="flex flex-col mb-4">
               {imageGallery &&
                 imageGallery.map(
                   (image: { id: string; image: string }, index: number) => {
@@ -331,6 +339,7 @@ export const EditAdForm = ({ id }: EditAdFormProps) => {
               <button
                 onClick={() => {
                   closeModal();
+                  showModal(<ConfirmAdDelete id={id} />, "Excluir anúncio");
                 }}
                 className="btn-big btn-negative transition ease-in-out lg:w-[55%]"
                 type="button"
