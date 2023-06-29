@@ -123,7 +123,7 @@ export const EditAdForm = ({ id }: EditAdFormProps) => {
                   register={register("year", {
                     valueAsNumber: true,
                   })}
-                  type="text"
+                  type="number"
                   placeholder=""
                   label="Ano"
                   onChange={(e) => setValue("year", Number(e.target.value))}
@@ -149,7 +149,7 @@ export const EditAdForm = ({ id }: EditAdFormProps) => {
                   register={register("mileage", {
                     valueAsNumber: true,
                   })}
-                  type="text"
+                  type="number"
                   placeholder=""
                   label="Quilometragem"
                   onChange={(e) => setValue("mileage", Number(e.target.value))}
@@ -176,7 +176,7 @@ export const EditAdForm = ({ id }: EditAdFormProps) => {
               <div className="flex flex-col">
                 <Field
                   id="fipePrice"
-                  type="text"
+                  type="number"
                   placeholder=""
                   label="Preço tabela FIPE"
                   disabled={true}
