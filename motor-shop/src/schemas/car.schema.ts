@@ -49,7 +49,13 @@ const carUpdateRequestSchema = carUpdateSchema.extend({
   car_gallery: z.array(z.string()),
 });
 
+export const carRequestSchema = carDataSchema.omit({ usersId: true }).extend({
+  car_gallery: z.array(z.string()),
+});
+
 export type TCarData = z.infer<typeof carDataSchema>;
 export type TCar = z.infer<typeof carSchema>;
+export type TCreateCar = z.infer<typeof carDataSchema>;
 export type TUpdateCar = z.infer<typeof carUpdateSchema>;
 export type TUpdateCarRequest = z.infer<typeof carUpdateRequestSchema>;
+export type TCarRequest = z.infer<typeof carRequestSchema>;
