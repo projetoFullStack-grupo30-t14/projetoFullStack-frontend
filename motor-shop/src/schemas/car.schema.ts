@@ -51,5 +51,6 @@ const carUpdateRequestSchema = carUpdateSchema.extend({
 
 export type TCarData = z.infer<typeof carDataSchema>;
 export type TCar = z.infer<typeof carSchema>;
+export type TCreateCar = z.infer<typeof carDataSchema>;
 export type TUpdateCar = z.infer<typeof carUpdateSchema>;
 export type TUpdateCarRequest = z.infer<typeof carUpdateRequestSchema>;

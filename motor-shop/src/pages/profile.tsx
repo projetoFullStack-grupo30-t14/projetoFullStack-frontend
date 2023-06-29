@@ -9,9 +9,12 @@ import { useAuth } from "@/contexts/authContext";
 import { useContext, useEffect } from "react";
 import { UserContext } from "@/contexts/userContext";
 import { useCars } from "@/contexts/carContext";
+import { useModal } from "@/contexts/modalContext";
+import { CreateAdForm } from "@/components/forms/createAdForm";
 
 const ProfilePage = () => {
   const { protect } = useAuth();
+  const { showModal } = useModal();
   const { currUser } = useContext(UserContext);
   const { getCarsByOwner, listCarsByOwner } = useCars();
 
@@ -34,7 +37,12 @@ const ProfilePage = () => {
           <InfoSellerProfile userData={currUser!}>
             {
               <div className="text-left">
-                <button className="btn-brand-outline-brand1 rounded py-3 px-4 font-inter">
+                <button 
+                  className="btn-brand-outline-brand1 rounded py-3 px-4 font-inter"
+                  onClick={() => {
+                  
+                    showModal(<CreateAdForm />, "Criar anúncio");
+                  }}>
                   Criar Anúncio
                 </button>
               </div>
