@@ -12,8 +12,8 @@ import { useCars } from "@/contexts/carContext";
 
 const ProfilePage = () => {
   const { protect } = useAuth();
-  const { currUser } = useContext(UserContext)
-  const { getCarsByOwner, listCarsByOwner } = useCars()
+  const { currUser } = useContext(UserContext);
+  const { getCarsByOwner, listCarsByOwner } = useCars();
 
   useEffect(() => {
     protect();
@@ -25,16 +25,20 @@ const ProfilePage = () => {
       }
     };
     fetchData();
-  });
+  }, []);
   return (
     <>
       <Header />
       <main className="pb-11 bg-gradient-to-b from-brand-1 from-20% to-grey-8 to-20%">
         <div className="lg:px-44 pt-20 mb-14">
           <InfoSellerProfile userData={currUser!}>
-            {<div className="text-left">
-              <button className='btn-brand-outline-brand1 rounded py-3 px-4 font-inter'>Criar Anúncio</button>
-            </div>}
+            {
+              <div className="text-left">
+                <button className="btn-brand-outline-brand1 rounded py-3 px-4 font-inter">
+                  Criar Anúncio
+                </button>
+              </div>
+            }
           </InfoSellerProfile>
         </div>
         <div className="md:pl-20 sm:pl-4 py-6 w-full">

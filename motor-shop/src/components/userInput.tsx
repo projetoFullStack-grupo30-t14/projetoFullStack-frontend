@@ -1,5 +1,6 @@
 import { TLogin } from '@/schemas/login.schema';
 import {
+  tAddress,
   tResetPassword,
   tUserRegister,
   tUserSendMail,
@@ -17,6 +18,7 @@ interface iProps {
   registerSendMail?: UseFormRegister<tUserSendMail>;
   registerResetPassword?: UseFormRegister<tResetPassword>;
   registerUpdateUser?: UseFormRegister<tUserUpdate>;
+  registerAddress?: UseFormRegister<tAddress>;
   db_field?:
     | 'name'
     | 'email'
@@ -39,6 +41,13 @@ interface iProps {
     | 'phone'
     | 'date_of_birth'
     | 'description';
+  db_field_address?:
+    | 'state'
+    | 'street'
+    | 'complement'
+    | 'city'
+    | 'cep'
+    | 'number';
   max?: string | number | undefined;
   maxLength?: number;
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
@@ -55,15 +64,17 @@ export const UserInput = ({
   register,
   registerLogin,
   registerUpdateUser,
+  registerAddress,
   db_field,
   db_field_update,
+  db_field_address,
   max,
   maxLength,
   onChange,
   disabled,
   required,
   defaultValue,
-  className
+  className,
 }: iProps) => {
   return (
     <>
@@ -90,6 +101,10 @@ export const UserInput = ({
         // {...registerUpdateUser?.(
         //   db_field_update ? db_field_update : 'cpf'
         // )}
+        {...(db_field_address &&
+          registerAddress && {
+            ...registerAddress(db_field_address),
+          })}
         {...registerLogin?.(
           type === 'password' ? 'password' : 'email'
         )}
