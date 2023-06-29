@@ -12,7 +12,14 @@ interface EditAdFormProps {
 
 export const EditAdForm = ({ id }: EditAdFormProps) => {
   const { closeModal } = useModal();
-  const { patchOneCar, listOneCar, carLoading } = useCars();
+  const {
+    patchOneCar,
+    listOneCar,
+    carLoading,
+    models,
+    getBrandModels,
+    setModels,
+  } = useCars();
 
   if (id !== listOneCar?.id) {
     return;
@@ -76,13 +83,14 @@ export const EditAdForm = ({ id }: EditAdFormProps) => {
 
   useEffect(() => {
     setValue("is_active", listOneCar?.is_active);
+    getBrandModels(listOneCar.brand);
   }, [listOneCar]);
 
   const editCar = (data: TUpdateCar) => {
     data.is_active = published;
 
     patchOneCar(id, data);
-
+    setModels([""]);
     closeModal();
   };
 
@@ -100,22 +108,45 @@ export const EditAdForm = ({ id }: EditAdFormProps) => {
               type="text"
               placeholder=""
               label="Marca"
-              onChange={(e) => setValue("brand", e.target.value)}
+              onChange={(e) => {
+                setValue("brand", e.target.value);
+                getBrandModels(e.target.value);
+              }}
               defaultValue={listOneCar?.brand}
               className={listOneCar?.brand === wBrand ? "text-grey-3" : ""}
               error={errors.brand?.message}
             />
-            <Field
-              id="model"
-              register={register("model")}
-              type="text"
-              placeholder=""
-              label="Modelo"
-              onChange={(e) => setValue("model", e.target.value)}
-              defaultValue={listOneCar?.model}
-              className={listOneCar?.model === wModel ? "text-grey-3" : ""}
-              error={errors.model?.message}
-            />
+            {models.length > 0 ? (
+              <div className="flex flex-col">
+                <label htmlFor="model" className="text-inputLabel mb-3">
+                  Modelo
+                </label>
+                <select id="model" {...register("model")}>
+                  <option value="">Selecione um modelo</option>
+                  {models.map((model) => (
+                    <option
+                      value={model}
+                      className="capitalize"
+                      selected={model === listOneCar.model}
+                    >
+                      {model}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            ) : (
+              <Field
+                id="model"
+                register={register("model")}
+                type="text"
+                placeholder=""
+                label="Modelo"
+                onChange={(e) => setValue("model", e.target.value)}
+                defaultValue={listOneCar?.model}
+                className={listOneCar?.model === wModel ? "text-grey-3" : ""}
+                error={errors.model?.message}
+              />
+            )}
             <section className="grid grid-cols-2 justify-between gap-2 lg:min-w-max">
               <div className="flex flex-col">
                 <Field
