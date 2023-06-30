@@ -18,8 +18,6 @@ You can find the full working example [here](https://projeto-full-stack-frontend
 
 <br>
 
-[comment]: <> (Reconfigurar com o deploy pronto)
-
 ## <h2 id="start">Getting started</h2>
 
 You can create a project with:
