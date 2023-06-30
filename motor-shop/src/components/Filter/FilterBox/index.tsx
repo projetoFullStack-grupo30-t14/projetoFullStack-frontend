@@ -39,7 +39,7 @@ export const FilterBox = ({ className, setShow }: FilterBoxProps) => {
           }}
           className="w-6 h-6"
         >
-          X{/* {<MdClose/>} */}
+          <img src="/xmark.png" alt="" />
         </button>
       </section>
       <form
