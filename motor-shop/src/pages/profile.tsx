@@ -3,7 +3,6 @@ import { Footer } from "@/components/headerAndFooter/footer";
 import { Header } from "@/components/headerAndFooter/header";
 import InfoSellerProfile from "@/components/infoSellerProfile";
 import ListCards from "@/components/listCards";
-import { carsListMock } from "@/mocks/carList.mock";
 import { TCar } from "@/schemas/car.schema";
 import { useAuth } from "@/contexts/authContext";
 import { useContext, useEffect } from "react";
