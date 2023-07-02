@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   env: {
-    api_base_url: "https://motor-shop-grupo30.onrender.com/",
+    api_base_url: "http://localhost:3001/",
     timeout: 5000,
   },
 };

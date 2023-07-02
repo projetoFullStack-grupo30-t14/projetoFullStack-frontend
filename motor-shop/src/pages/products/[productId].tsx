@@ -7,6 +7,7 @@ import ProductDetail from "@/components/productDetail/productDetail";
 import { useRouter } from "next/router";
 import { useCars } from "@/contexts/carContext";
 import { useEffect } from "react";
+import { useComments } from "@/contexts/commentContext";
 
 const Product = () => {
   const router = useRouter();
