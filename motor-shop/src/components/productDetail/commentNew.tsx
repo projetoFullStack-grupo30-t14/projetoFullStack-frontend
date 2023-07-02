@@ -12,19 +12,17 @@ import { useRouter } from 'next/router';
 export const NewComment = () => {
   const router = useRouter()
   const [inputValue, setInputValue] = useState('');
-  const  { createComment } = useComments()
+  const  { createComment, getAllComments } = useComments()
   const { currUser } = useContext(UserContext)
   const { token } = useAuth()
   const carId = router.query.productId
-  // const userId = currUser?.id
 
   const {
     handleSubmit,
     register,
     formState: { errors },
     setValue,
-    watch,
-    control
+    reset
   } = useForm<commentRequestType>({
     resolver: zodResolver(commentRequestSchema),
     mode: "onBlur"
@@ -33,6 +31,8 @@ export const NewComment = () => {
   function onSubmit(data: commentRequestType) {
     if (typeof carId === "string"){
       createComment(carId, data)
+      reset()
+      // getAllComments(carId)
     }
   }
 

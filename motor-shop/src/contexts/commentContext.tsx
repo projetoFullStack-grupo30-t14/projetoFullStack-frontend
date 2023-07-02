@@ -1,4 +1,4 @@
-import { CommentType, commentRequestType } from "@/schemas/comment.schema";
+import { CommentType, commentRequestType, commentUpdateType } from "@/schemas/comment.schema";
 import { api } from "@/services";
 import { AxiosError } from "axios";
 import { createContext, useState, useContext } from "react";
@@ -11,8 +11,10 @@ interface iCommentProviderProps {
 
 interface iCommentContextProps {
     comments: CommentType[]
-    createComment: (car_id: string, commentData: commentRequestType) => Promise<CommentType | undefined>
+    createComment: (car_id: string, comment_data: commentRequestType) => Promise<CommentType | undefined>
+    updateComment: (comment_id: string, comment_data: commentUpdateType) => Promise<void>
     getAllComments: (car_id: string) => Promise<CommentType[] | undefined>
+    deleteComment: (comment_id: string) => Promise<void>
 }
 
 export const CommentContext = createContext({} as iCommentContextProps)
@@ -27,9 +29,9 @@ export default function CommentProvider ({ children }: iCommentProviderProps){
         }
     }
 
-    async function createComment (car_id: string, commentData: commentRequestType) {
+    async function createComment (car_id: string, comment_data: commentRequestType) {
         try {
-            const newComment: CommentType = (await api.post(`comments/${car_id}`, commentData, headers)).data
+            const newComment: CommentType = (await api.post(`comments/${car_id}`, comment_data, headers)).data
             toast.success("Obrigado por deixar seu comentário")
             return newComment
         } catch (error) {
@@ -37,6 +39,7 @@ export default function CommentProvider ({ children }: iCommentProviderProps){
                 toast.error(`${error.response?.data.message}`)
                 console.log(error)
             } else {
+                toast.error("Erro desconhecido, procure a equipe de suporte")
                 console.log(error)
             }
         }
@@ -54,6 +57,37 @@ export default function CommentProvider ({ children }: iCommentProviderProps){
                 toast.error(`${error.response?.data.message}`)
                 console.log(error)
             } else {
+                toast.error("Erro desconhecido, procure a equipe de suporte")
+                console.log(error)
+            }
+        }
+    }
+
+    async function updateComment (comment_id: string, comment_data: commentUpdateType) {
+        try {
+            await api.patch(`comments/${comment_id}`, comment_data, headers)
+            toast.success("Comentário editado com sucesso")
+        } catch (error) {
+            if (error instanceof AxiosError) {
+                toast.error(`${error.response?.data.message}`)
+                console.log(error)
+            } else {
+                toast.error("Erro desconhecido, procure a equipe de suporte")
+                console.log(error)
+            }
+        }
+    }
+
+    async function deleteComment (comment_id: string) {
+        try {
+            await api.delete(`comments/${comment_id}`, headers)
+            toast.success("Comentário deletado com sucesso")
+        } catch (error) {
+            if (error instanceof AxiosError) {
+                toast.error(`${error.response?.data.message}`)
+                console.log(error)
+            } else {
+                toast.error("Erro desconhecido, procure a equipe de suporte")
                 console.log(error)
             }
         }
@@ -64,7 +98,9 @@ export default function CommentProvider ({ children }: iCommentProviderProps){
             value={{
                 comments,
                 createComment,
-                getAllComments
+                updateComment,
+                getAllComments,
+                deleteComment,
             }}
         >
             {children}
