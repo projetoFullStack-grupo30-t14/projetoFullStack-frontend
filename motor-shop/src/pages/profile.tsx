@@ -10,6 +10,7 @@ import { UserContext } from "@/contexts/userContext";
 import { useCars } from "@/contexts/carContext";
 import { useModal } from "@/contexts/modalContext";
 import { CreateAdForm } from "@/components/forms/createAdForm";
+import { Navigation } from "@/components/Navigation";
 
 const ProfilePage = () => {
   const { protect } = useAuth();
@@ -21,7 +22,7 @@ const ProfilePage = () => {
     protect();
     const fetchData = async () => {
       try {
-        await getCarsByOwner();
+        await getCarsByOwner("");
       } catch (error) {
         console.log(error);
       }
@@ -53,6 +54,10 @@ const ProfilePage = () => {
             {(car: TCar) => <CardCarSeller car={car} />}
           </ListCards>
         </div>
+        <Navigation
+          perPage={16}
+          className="lg:relative z-10 min-h-[158px] mt-10"
+        />
       </main>
       <Footer />
     </>
