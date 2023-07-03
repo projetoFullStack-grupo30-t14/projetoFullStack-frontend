@@ -116,7 +116,7 @@ export default function UpdateAddressForm() {
                 }}
               />
 
-              <div className="flex w-fit gap-2 flex-1 box-border">
+              <div className="flex w-full gap-2 flex-1 box-border">
                 <div className="flex flex-col">
                   <Field
                     label="Estado"
