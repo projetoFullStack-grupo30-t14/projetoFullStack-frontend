@@ -1,4 +1,5 @@
 import { useCars } from "@/contexts/carContext";
+import { useRouter } from "next/router";
 
 interface NavigationProps {
   perPage: number;
@@ -6,8 +7,12 @@ interface NavigationProps {
 }
 
 export const Navigation = ({ perPage, className }: NavigationProps) => {
-  const { nextPage, previousPage, count, getAllCars } = useCars();
+  const { nextPage, previousPage, count, getAllCars, getCarsByOwner } =
+    useCars();
   const index = nextPage?.indexOf("?") || previousPage?.indexOf("?");
+  const { asPath } = useRouter();
+  console.log(asPath);
+
   const currPage =
     Number(
       nextPage?.slice(
@@ -22,13 +27,15 @@ export const Navigation = ({ perPage, className }: NavigationProps) => {
       )
     ) + 1;
 
-  let maxPages = count
-    ? Math.round(Number(Number(count) / Number(perPage)))
-    : 1;
+  const pageCount = Number(Number(count) / Number(perPage));
+  const pageString = pageCount.toString();
+  let maxPages = count ? Math.round(pageCount) : 1;
 
   if (Number(count) % perPage !== 0 && maxPages % 0.5 !== 0) {
     maxPages += 1;
   } else if (maxPages === 0) {
+    maxPages += 1;
+  } else if (Number(pageString.slice(pageString.indexOf("."))) < 0.5) {
     maxPages += 1;
   }
 
@@ -44,7 +51,9 @@ export const Navigation = ({ perPage, className }: NavigationProps) => {
           <button
             className="btn-brand-outline-brand1 border-none btn-big font-semibold text-heading5"
             onClick={() => {
-              getAllCars(previousPage.slice(index));
+              asPath !== "/profile"
+                ? getAllCars(previousPage.slice(index))
+                : getCarsByOwner(previousPage.slice(index));
             }}
           >
             {"< Anterior"}
@@ -58,7 +67,9 @@ export const Navigation = ({ perPage, className }: NavigationProps) => {
           <button
             className="btn-brand-outline-brand1 border-none btn-big font-semibold text-heading5"
             onClick={() => {
-              getAllCars(nextPage.slice(index));
+              asPath !== "/profile"
+                ? getAllCars(nextPage.slice(index))
+                : getCarsByOwner(nextPage.slice(index));
             }}
           >
             {"Seguinte >"}
