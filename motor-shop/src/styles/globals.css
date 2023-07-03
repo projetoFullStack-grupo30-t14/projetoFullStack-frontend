@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lexend:wght@500;600;700&display=swap');
+/* @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lexend:wght@500;600;700&display=swap"); */
 
 /* FONT SIZING, STYLES AND FAMILY */
 @layer components {
@@ -94,7 +94,7 @@
   }
 
   .btn-medium {
-    @apply px-5 py-2 rounded btn-medium-text ;
+    @apply px-5 py-2 rounded btn-medium-text;
   }
 
   .btn-small {
@@ -213,7 +213,7 @@
     @apply border-2 rounded border-grey-7 outline-none pl-4 h-12;
   }
 
-  texarea::placeholder,
+  textarea::placeholder,
   input::placeholder {
     @apply input-place-text;
   }
@@ -295,9 +295,9 @@
 
 /* SCROLLBAR E INPUT TIPO NUMBER */
 @layer utilities {
-  input[type='number']::-webkit-outer-spin-button,
-  input[type='number']::-webkit-inner-spin-button,
-  input[type='number'] {
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"] {
     -webkit-appearance: none;
     margin: 0;
     -moz-appearance: textfield !important;
@@ -329,21 +329,25 @@
     @apply bg-brand-3;
   }
 
-  input[type='date']::-webkit-calendar-picker-indicator {
+  input[type="date"]::-webkit-calendar-picker-indicator {
     /* COR DO ÍCONE DE CALENDÁRIO DO INPUT TIPO DATE */
     filter: invert(20%) sepia(94%) saturate(2948%) hue-rotate(245deg)
       brightness(85%) contrast(116%);
     @apply mr-3 hover:cursor-pointer;
   }
 
-  input[type='date']:invalid::-webkit-datetime-edit {
+  input[type="date"]:invalid::-webkit-datetime-edit {
     /* PLACEHOLDER DO INPUT TIPO DATE */
     @apply font-normal text-grey-3;
   }
 
+  textarea::placeholder {
+    @apply font-normal;
+  }
+
   @layer components {
     .error {
-      @apply text-alert-1 -mt-8 mb-3 text-[12px] animate-pulse;
+      @apply text-alert-1 mb-3 text-[12px] animate-pulse;
     }
   }
 }

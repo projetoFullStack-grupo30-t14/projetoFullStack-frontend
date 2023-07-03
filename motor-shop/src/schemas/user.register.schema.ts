@@ -1,7 +1,7 @@
 import { DeepPartial } from 'react-hook-form';
 import { z } from 'zod';
 
-const addressSchema = z.object({
+export const addressSchema = z.object({
   cep: z
     .string()
     .nonempty('Campo obrigatório')
@@ -11,6 +11,11 @@ const addressSchema = z.object({
   street: z.string(),
   state: z.string(),
   number: z.string().nonempty('Campo obrigatório'),
+});
+
+export const addressResponseSchema = addressSchema.extend({
+  id: z.string(),
+  user_id: z.string(),
 });
 
 export const userSchema = z.object({
@@ -53,12 +58,9 @@ export const userSchema = z.object({
   seller: z.boolean().default(false),
 });
 
-export const userUpdateSRequestchema = userSchema.omit({
-  address: true,
-  password: true
-})
-
-export const userUpdateSchema = userUpdateSRequestchema.partial()
+export const userUpdateSchema = userSchema
+  .omit({ address: true, password: true })
+  .partial();
 
 export const userRegisterSchema = userSchema
   .extend({
@@ -92,16 +94,16 @@ export const resetPasswordSchema = z.object({
 
 export type tUserRequest = z.infer<typeof userSchema>;
 
-export type tUserUpdate = z.infer<typeof userUpdateSchema>
+export type tUserUpdate = z.infer<typeof userUpdateSchema>;
 
-export type tUserUpdateRequest = DeepPartial<tUserUpdate>
+export type tUserUpdateRequest = DeepPartial<tUserUpdate>;
 
 export type tUserRegister = z.infer<typeof userRegisterSchema>;
 
-export type tUserSendMail = z.infer<typeof userSendMailPassSchema>
+export type tUserSendMail = z.infer<typeof userSendMailPassSchema>;
 
-export type tResetPassword = z.infer<typeof resetPasswordSchema>
-
-// export type tUserRequest = z.infer<type
+export type tResetPassword = z.infer<typeof resetPasswordSchema>;
 
 export type tAddress = z.infer<typeof addressSchema>;
+
+export type tAddressResponse = z.infer<typeof addressResponseSchema>;

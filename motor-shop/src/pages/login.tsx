@@ -1,6 +1,6 @@
+import { Field } from "@/components/Input";
 import { Footer } from "@/components/headerAndFooter/footer";
 import { Header } from "@/components/headerAndFooter/header";
-import { UserInput } from "@/components/userInput";
 import { AuthContext } from "@/contexts/authContext";
 import { TLogin, loginSchema } from "@/schemas/login.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -32,30 +32,28 @@ export default function LoginPage() {
           <div className="z-10 py-11 px-12 h-full w-[410px] font-medium bg-grey-whiteFixed space-y-6 rounded">
             <h1 className="text-heading5 font-lexend">Login</h1>
             <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
-              <UserInput
+              <Field
                 label="Email"
+                id="email"
                 type="text"
                 placeholder="Digitar email"
-                registerLogin={register}
-                db_field="email"
+                register={register("email")}
                 onChange={(e) => setValue("email", e.target.value)}
+                error={errors.email?.message}
               />
-              {errors.email && (
-                <small className="error">{errors.email.message}</small>
-              )}
-
-              <UserInput
+              <Field
                 label="Senha"
                 type="password"
                 placeholder="Digitar senha"
-                registerLogin={register}
-                db_field="password"
+                register={register("password")}
+                id="password"
                 onChange={(e) => setValue("password", e.target.value)}
+                error={errors.password?.message}
               />
-              {errors.password && (
-                <small className="error">{errors.password.message}</small>
-              )}
-              <Link href="/forgetPass" className="body-2-500 text-grey-2 text-right mb-8">
+              <Link
+                href="/forgetPass"
+                className="body-2-500 text-grey-2 text-right mb-8"
+              >
                 Esqueci minha senha
               </Link>
 

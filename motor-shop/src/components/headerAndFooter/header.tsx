@@ -2,7 +2,6 @@ import { useModal } from "@/contexts/modalContext"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import { useContext, useEffect, useState } from "react"
-import TestForm from "../modal/testForm"
 import Modal from "../modal/modal"
 import { useAuth } from "@/contexts/authContext"
 import { UserContext } from "@/contexts/userContext"
@@ -49,18 +48,6 @@ export function Header () {
         return initials?.join('')
     }
     const iconName = getInitials(currUser?.name)
-
-    const mockAnnounc = [{}]
-
-    const mock = 
-        {
-            avatar: '',
-            name: 'Julia Lima',
-            date: '2023-06-06 14:03:12.983433',
-            commentary:
-                'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
-        }
-
     
     return (
         <>
@@ -93,10 +80,7 @@ export function Header () {
                                 <div className="absolute z-20 right-0 top-14 w-48 bg-grey-10 rounded shadow-xl flex flex-col">
                                     <button onClick={() => showModal(<UpdateUserForm/>, "Editar perfil")} className="text-left font-inter hover:bg-grey-0 hover:text-grey-10 py-4 pl-3 pr-5 ">Editar Perfil</button>
                                     <button onClick={() => showModal(<UpdateAddressForm/>, "Editar endereço")} className="text-left font-inter hover:bg-grey-0 hover:text-grey-10 py-4 pl-3 pr-5 ">Editar endereço</button>
-                                    {
-                                        mockAnnounc.length > 0 &&
-                                        <Link href="/profile" className="text-left font-inter hover:bg-grey-0 hover:text-grey-10 py-4 pl-3 pr-5 ">Meus Anúncios</Link>
-                                    }
+                                    <Link href="/profile" className="text-left font-inter hover:bg-grey-0 hover:text-grey-10 py-4 pl-3 pr-5 ">Meus Anúncios</Link>
                                     <a onClick={logout} href="#" className="text-left font-inter hover:bg-grey-0 hover:text-grey-10 py-4 pl-3 pr-5 ">Sair</a>
                                 </div>
                             </>
@@ -105,7 +89,7 @@ export function Header () {
                     :
                     <div className="relative z-10 hidden sm:block border-l-2 border-grey-6 py-4">
                         <button tabIndex={-1} onClick={() => setIsLoginOpen(false)} className="fixed inset-0 h-full w-full cursor-default"></button>
-                        <a href="" onClick={() => router.push("/login")} className="relative rounded font-inter hover:bg-brand-1 hover:text-grey-10 text-brand-1 font-semibold py-4 ml-14 pl-5 pr-5">Fazer login</a>
+                        <a onClick={() => router.push("/login")} className="relative rounded font-inter hover:bg-brand-1 hover:text-grey-10 text-brand-1 font-semibold py-4 ml-14 pl-5 pr-5 cursor-pointer">Fazer login</a>
                         <button onClick={() => router.push("/register")} className="relative btn-big btn-outline2 ml-10">Cadastrar</button>
                     </div>
                 }
@@ -120,15 +104,12 @@ export function Header () {
                             <>
                                 <button onClick={() => showModal(<UpdateUserForm/>, "Editar perfil")} className="text-left font-inter hover:bg-grey-0 hover:text-grey-10 py-4 pl-3 pr-5 ">Editar Perfil</button>
                                 <button onClick={() => showModal(<UpdateAddressForm/>, "Editar endereço")} className="text-left font-inter hover:bg-grey-0 hover:text-grey-10 py-4 pl-3 pr-5 ">Editar endereço</button>
-                                {
-                                    mockAnnounc.length > 0 &&
-                                    <Link href="/profile" className="text-left font-inter hover:bg-grey-0 hover:text-grey-10 py-4 pl-3 pr-5 ">Meus Anúncios</Link>
-                                }
+                                <Link href="/profile" className="text-left font-inter hover:bg-grey-0 hover:text-grey-10 py-4 pl-3 pr-5 ">Meus Anúncios</Link>
                                 <a onClick={logout} href="#" className="font-inter hover:bg-grey-0 hover:text-grey-10 py-4 pl-3 pr-5 ">Sair</a>
                             </>
                             :
                             <>
-                                <a href="#" onClick={() => router.push("/login")} className="font-inter hover:bg-grey-0 hover:text-grey-10 py-4 pl-3 pr-5 ">Fazer login</a>
+                                <a onClick={() => router.push("/login")} className="font-inter hover:bg-grey-0 hover:text-grey-10 py-4 pl-3 pr-5 cursor-pointer">Fazer login</a>
                                 <div className="pl-3 pr-5 pb-8 pt-4">
                                     <button onClick={() => router.push("/register")} className="btn-big btn-outline2 w-full">Cadastrar</button>
                                 </div>
