@@ -39,7 +39,7 @@ interface CarContextProviderData {
     data: TUpdateCar | TUpdateCarRequest
   ) => Promise<void | null>;
   deleteOneCar: (id: string) => Promise<void | null>;
-  getCarsByOwner: () => Promise<TCar[] | null>;
+  getCarsByOwner: (searchParams: string) => Promise<TCar[] | null>;
   listCars: TCar[];
   listOneCar?: TCar;
   values: Values;
@@ -137,15 +137,18 @@ export const CarProvider = ({ children }: Props) => {
     }
   };
 
-  const getCarsByOwner = async () => {
+  const getCarsByOwner = async (searchParams: string = "") => {
     try {
-      const response = await api.get(`cars/access/owner`, {
+      const response = await api.get(`cars/access/owner${searchParams}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      setListCarsByOwner(response.data);
-      return response.data;
+      setListCarsByOwner(response.data.data);
+      setNext(response.data.nextPage);
+      setPrevious(response.data.previousPage);
+      setCount(response.data.count);
+      return response.data.data;
     } catch (error) {
       console.log(error);
     }
