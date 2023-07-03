@@ -12,7 +12,7 @@ interface UpdateCommentProps {
 
 export default function EditCommentForm ({content, commentId}: UpdateCommentProps) {
     const { updateComment } = useComments()
-    const { closeModal } = useModal()
+    const { closeProductModal } = useModal()
     const {
         handleSubmit,
         register,
@@ -25,7 +25,7 @@ export default function EditCommentForm ({content, commentId}: UpdateCommentProp
 
     function onSubmit(data: commentUpdateType) {
         updateComment(commentId, data)
-        closeModal()
+        closeProductModal()
     }
     return (
         <form
@@ -41,13 +41,13 @@ export default function EditCommentForm ({content, commentId}: UpdateCommentProp
             label=''
             defaultValue={content}
             onChange={(e) => setValue("content", e.target.value)}
-            className='w-full h-32 resize-none px-7 py-8 rounded-[4px] border-solid border-2 border-grey-7 placeholder:text-grey-3 text-gray-7 transition ease-in-out delay-300 outline-none focus:border-grey-3'
+            className='w-96 h-32 resize-none px-7 py-8 rounded-[4px] border-solid border-2 border-grey-7 placeholder:text-grey-3 text-gray-7 transition ease-in-out delay-300 outline-none focus:border-grey-3'
             />
             <button
             type='submit'
-            className="mb-7 btn-medium bg-brand-1 text-grey-whiteFixed rounded p-5 font-semibold transition ease-in-out delay-300 hover:bg-brand-2"
+            className="btn-medium bg-brand-1 text-grey-whiteFixed rounded p-5 font-semibold transition ease-in-out delay-300 hover:bg-brand-2"
             >
-            Comentar
+                Atualizar
             </button>
         </form>
     )

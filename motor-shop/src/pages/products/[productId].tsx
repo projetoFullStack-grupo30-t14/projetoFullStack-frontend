@@ -7,7 +7,6 @@ import ProductDetail from "@/components/productDetail/productDetail";
 import { useRouter } from "next/router";
 import { useCars } from "@/contexts/carContext";
 import { useEffect } from "react";
-import { useComments } from "@/contexts/commentContext";
 
 const Product = () => {
   const router = useRouter();
@@ -32,13 +31,13 @@ const Product = () => {
       <Header/>
       <main className="pb-11 bg-gradient-to-b from-brand-1 from-30% to-grey-8 to-30%">
           <div className="lg:px-44">
-            <section className="relative z-10 md:flex md:justify-between py-9 gap-5">
+            <section className="md:flex md:justify-between py-9 gap-5">
               <ProductDetail car={listOneCar}/>
               <Aside car={listOneCar}/>
             </section>
-            <div className="relative z-10">
               <CommentList />
               <NewComment />
+            <div className="relative z-10 hidden h-0 m-0">
             </div>
           </div>
       </main>

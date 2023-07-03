@@ -2,10 +2,13 @@ import React, { createContext, useContext, useState } from "react";
 
 interface iModalContextProps {
   stateModal: boolean;
+  stateModalProduct: boolean;
   showModal: (children: React.ReactNode, title: string) => void;
   closeModal: () => void;
   childrenModal: React.ReactNode;
   modalTitle: string;
+  showProductModal: (children: React.ReactNode, title: string) => void;
+  closeProductModal: () => void;
 }
 
 interface iModalProviderProps {
@@ -16,6 +19,7 @@ export const modalContext = createContext({} as iModalContextProps);
 
 export default function ModalProvider ({ children }: iModalProviderProps) {
   const [stateModal, setStateModal] = useState(false);
+  const [stateModalProduct, setStateModalProduct] = useState(false)
   const [childrenModal, setChildrenModal] = useState<React.ReactNode>();
   const [modalTitle, setModalTitle] = useState("")
 
@@ -26,10 +30,18 @@ export default function ModalProvider ({ children }: iModalProviderProps) {
     setChildrenModal(children);
   };
 
+  const showProductModal = (children: React.ReactNode, title: string) => {
+    setStateModalProduct(true);
+    setModalTitle(title)
+    setChildrenModal(children);
+  };
+
   const closeModal = () => {
     setStateModal(false);
-    // setTimeout(() => {
-    // }, 800);
+  };
+
+  const closeProductModal = () => {
+    setStateModalProduct(false);
   };
 
   return (
@@ -40,6 +52,9 @@ export default function ModalProvider ({ children }: iModalProviderProps) {
         closeModal,
         childrenModal,
         modalTitle,
+        showProductModal,
+        closeProductModal,
+        stateModalProduct,
       }}
     >
       {children}

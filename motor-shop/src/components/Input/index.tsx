@@ -64,7 +64,7 @@ export const Field = ({
           aria-label={placeholder}
           {...register}
           disabled={disabled}
-          className={`mb-8 ${className} ${!disabled && "shadow-webkit"} ${
+          className={`w-full mb-8 ${className} ${!disabled && "shadow-webkit"} ${
             id.includes("address") && "w-full"
           } ${type === "date" && "date-input--has-value"}`}
           required={required}
