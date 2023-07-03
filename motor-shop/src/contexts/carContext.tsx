@@ -39,7 +39,7 @@ interface CarContextProviderData {
     data: TUpdateCar | TUpdateCarRequest
   ) => Promise<void | null>;
   deleteOneCar: (id: string) => Promise<void | null>;
-  getCarsByOwner: () => Promise<TCar[] | null>;
+  getCarsByOwner: (searchParams: string) => Promise<TCar[] | null>;
   listCars: TCar[];
   listOneCar?: TCar;
   values: Values;

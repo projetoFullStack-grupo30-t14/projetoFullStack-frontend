@@ -10,6 +10,7 @@ import { UserContext } from "@/contexts/userContext";
 import { useCars } from "@/contexts/carContext";
 import { useModal } from "@/contexts/modalContext";
 import { CreateAdForm } from "@/components/forms/createAdForm";
+import { Navigation } from "@/components/Navigation";
 
 const ProfilePage = () => {
   const { protect } = useAuth();

@@ -11,8 +11,6 @@ export const Navigation = ({ perPage, className }: NavigationProps) => {
     useCars();
   const index = nextPage?.indexOf("?") || previousPage?.indexOf("?");
   const { asPath } = useRouter();
-  console.log(asPath);
-
   const currPage =
     Number(
       nextPage?.slice(
