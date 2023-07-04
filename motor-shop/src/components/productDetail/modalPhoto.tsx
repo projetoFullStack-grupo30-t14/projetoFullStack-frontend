@@ -1,4 +1,3 @@
-import { useModal } from "@/contexts/modalContext";
 import { TCar } from "@/schemas/car.schema";
 
 export const ModalPhoto = ({ car }: { car?: TCar }) => {
