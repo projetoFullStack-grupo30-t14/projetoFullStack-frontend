@@ -1,9 +1,9 @@
 import { useCars } from "@/contexts/carContext";
 import { Field } from "../Input";
-import { useFieldArray, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { TCarRequest, carRequestSchema } from "@/schemas/car.schema";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useModal } from "@/contexts/modalContext";
 
 export const CreateAdForm = () => {
@@ -16,13 +16,10 @@ export const CreateAdForm = () => {
     formState: { errors },
     setValue,
     watch,
-    control,
   } = useForm<TCarRequest>({
     resolver: zodResolver(carRequestSchema),
     mode: "onBlur",
   });
-
-  // const {} = useFieldArray({ control, name: "car_gallery" });
 
   const [imageGallery, setImageGallery] = useState([
     { id: "", car_id: "", image: "" },

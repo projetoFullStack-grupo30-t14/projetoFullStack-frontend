@@ -1,23 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import { TCar } from "@/schemas/car.schema";
+import { useModal } from "@/contexts/modalContext";
+import { ModalPhoto } from "./modalPhoto";
+
 
 const ProductDetail = ({ car }: { car?: TCar }) => {
+  const { showModal } = useModal();
+
   return (
     <>
-      <div className="flex flex-col gap-3">
-        <div className="bg-grey-10 rounded">
+
+      <div className="flex flex-col gap-3 " >
+        <div className="bg-grey-10 rounded" onClick={() => showModal(<ModalPhoto car={car} /> , "") }>
           <img
             src={car?.cover_image}
             alt={car?.model}
-            className="flex w-full md:px-20 py-9 "
+            className="md:px-16 md:py-8 cursor-pointer"
           />
         </div>
 
-        <div className=" bg-grey-10 flex flex-col gap-5 rounded py-7 px-11">
+        <div className=" bg-grey-10 flex flex-col gap-5 rounded p-7 md:py-7 md:px-11">
           <h3 className="heading-6-600">
             {car?.brand} - {car?.model}
           </h3>
-          <div className="flex justify-between ">
+          <div className="flex flex-col justify-between gap-5 sm:flex-row">
             <div className="flex gap-2">
               <span className="btn-brand-opacity btn-small"> {car?.year} </span>
               <span className="btn-brand-opacity btn-small">{car?.mileage} KM</span>
@@ -29,7 +35,7 @@ const ProductDetail = ({ car }: { car?: TCar }) => {
 
         <div className="bg-grey-10 mt-4 rounded py-7 px-11">
           <h5 className="heading-6-600">Descrição</h5>
-          <p className="body-1-400">{car?.description}</p>
+          <p className="body-1-400 max-h-20">{car?.description}</p>
         </div>
       </div>
     </>
