@@ -98,7 +98,7 @@
   }
 
   .btn-small {
-    @apply px-2 py-1 rounded  body-2-500;
+    @apply px-2 py-1 rounded body-2-500;
   }
 
   .btn-grey1 {
@@ -110,7 +110,7 @@
   }
 
   .btn-negative {
-    @apply bg-grey-6 text-grey-2;
+    @apply bg-grey-6 text-grey-2 body-1-600;
   }
 
   .btn-negative:hover {
