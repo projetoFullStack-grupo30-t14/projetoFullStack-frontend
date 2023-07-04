@@ -51,7 +51,7 @@ export const Field = ({
           {...register}
           disabled={disabled}
           className={`mb-8 py-2 px-4 resize-none h-20 ${className} ${
-            !disabled && "shadow-webkit"
+            !disabled && 'shadow-webkit'
           }`}
           defaultValue={defaultValue}
         />
@@ -64,9 +64,11 @@ export const Field = ({
           aria-label={placeholder}
           {...register}
           disabled={disabled}
-          className={`w-full mb-8 ${className} ${!disabled && "shadow-webkit"} ${
-            id.includes("address") && "w-full"
-          } ${type === "date" && "date-input--has-value"}`}
+          className={`w-full mb-8 ${className} ${
+            !disabled && 'shadow-webkit'
+          } ${id.includes('address') && 'w-full'} ${
+            type === 'date' && 'date-input--has-value'
+          }`}
           required={required}
           defaultValue={defaultValue}
           onInput={onChange}
