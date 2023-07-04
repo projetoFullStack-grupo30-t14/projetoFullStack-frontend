@@ -1,3 +1,4 @@
+import { useModal } from "@/contexts/modalContext";
 import { TCar } from "@/schemas/car.schema";
 
 export const ModalPhoto = ({ car }: { car?: TCar }) => {
@@ -6,7 +7,7 @@ export const ModalPhoto = ({ car }: { car?: TCar }) => {
       <img
         src={car?.cover_image}
         alt={car?.model}
-        className="md:px-16 md:py-8 w-full flex items-center"
+        className="sm:py-8 sm:px-4 sm:max-w-2xl"
         />
     </>
   );

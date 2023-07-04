@@ -6,10 +6,9 @@ import Link from "next/link";
 
 const Aside = ({ car }: { car?: TCar }) => {
   const initials = getInitials(car?.user.name);
-  console.log(car)
 
   return (
-    <div className="flex flex-col gap-5 md:w-7/12">
+    <div className="flex z-10 flex-col gap-5 sm:w-7/12">
       <div className="bg-grey-10 flex flex-col rounded p-5 gap-5">
         <h4 className="heading-6-600">Fotos</h4>
         <ul className="grid grid-cols-3 gap-2 ">

@@ -12,7 +12,7 @@ interface UpdateCommentProps {
 
 export default function EditCommentForm ({content, commentId}: UpdateCommentProps) {
     const { updateComment } = useComments()
-    const { closeProductModal } = useModal()
+    const { closeCommentModal } = useModal()
     const {
         handleSubmit,
         register,
@@ -25,7 +25,7 @@ export default function EditCommentForm ({content, commentId}: UpdateCommentProp
 
     function onSubmit(data: commentUpdateType) {
         updateComment(commentId, data)
-        closeProductModal()
+        closeCommentModal()
     }
     return (
         <form
