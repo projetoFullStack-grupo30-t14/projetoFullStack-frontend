@@ -9,7 +9,7 @@ import { UserContext } from "@/contexts/userContext";
 import { UserType } from "@/schemas";
 import { TCar } from "@/schemas/car.schema";
 import { useRouter } from "next/router";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 
 const Profiles = () => {
   const router = useRouter();
