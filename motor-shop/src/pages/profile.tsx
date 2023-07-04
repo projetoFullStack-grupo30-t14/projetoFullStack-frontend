@@ -37,10 +37,9 @@ const ProfilePage = () => {
           <InfoSellerProfile userData={currUser!}>
             {
               <div className="text-left">
-                <button 
+                <button
                   className="btn-brand-outline-brand1 rounded py-3 px-4 font-inter"
                   onClick={() => {
-                  
                     showModal(<CreateAdForm />, "Criar anúncio");
                   }}>
                   Criar Anúncio
@@ -49,11 +48,19 @@ const ProfilePage = () => {
             }
           </InfoSellerProfile>
         </div>
-        <div className="md:pl-20 sm:pl-4 py-6 w-full">
-          <ListCards carList={listCarsByOwner}>
-            {(car: TCar) => <CardCarSeller car={car} />}
-          </ListCards>
-        </div>
+        {listCarsByOwner && listCarsByOwner.length > 0 ? (
+          <div className="md:pl-20 sm:pl-4 py-6 w-full">
+            <ListCards carList={listCarsByOwner}>
+              {(car: TCar) => <CardCarSeller car={car} />}
+            </ListCards>
+          </div>
+        ) : (
+          <div className="flex justify-center w-full">
+            <p className="self-center heading-5-500 text-grey-3 bg-grey-7 rounded-full w-fit py-1 px-4 overflow-hidden">
+              Ainda não há anúncios
+            </p>
+          </div>
+        )}
         <Navigation
           perPage={16}
           className="lg:relative z-10 min-h-[158px] mt-10"
