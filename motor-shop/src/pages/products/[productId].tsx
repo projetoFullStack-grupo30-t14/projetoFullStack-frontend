@@ -31,7 +31,7 @@ const Product = () => {
       <Header/>
       <main className="pb-11 bg-gradient-to-b from-brand-1 from-30% to-grey-8 to-30%">
           <div className="lg:px-44 px-5 ">
-            <section className="md:flex md:justify-between py-9 gap-5">
+            <section className="md:flex justify-stretch py-9 gap-7">
               <ProductDetail car={listOneCar}/>
               <Aside car={listOneCar}/>
             </section>

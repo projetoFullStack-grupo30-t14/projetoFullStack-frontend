@@ -18,7 +18,7 @@ export const CommentList = () => {
   const carId = router.query.productId
   const { getAllComments, comments, deleteComment } = useComments()
   const { currUser } = useContext(UserContext)
-  const { stateModalProduct, showProductModal } = useModal()
+  const { stateModalComment, showCommentModal } = useModal()
   dayjs.extend(relativeTime);
 
   useEffect(() => {
@@ -36,7 +36,7 @@ export const CommentList = () => {
 
   return (
     <>
-      {stateModalProduct && <Modal/>}
+      {stateModalComment && <Modal/>}
       <div className="py-9 px-11 rounded-[4px] mb-8 bg-grey-whiteFixed">
         <h2 className="heading-6-600 mb-5">Comentários</h2>
         <ul className="comment-list flex flex-col gap-5 max-h-[400px] overflow-y-auto mr-[-10px]">
@@ -62,7 +62,7 @@ export const CommentList = () => {
                   comment.user_id == currUser?.id &&
                     <div className='flex gap-2 justify-end sm:items-center'>
                       <button
-                        onClick={() => showProductModal(<EditCommentForm
+                        onClick={() => showCommentModal(<EditCommentForm
                             content={comment.content}
                             commentId={comment.id}
                           />, "Editar comentário")}
