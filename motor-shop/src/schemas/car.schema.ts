@@ -1,11 +1,11 @@
-import { z } from "zod";
+import { z } from 'zod';
 
 export const carSchema = z.object({
   id: z.string(),
   brand: z.string(),
   model: z.string(),
   year: z.number(),
-  fuel: z.enum(["flex", "hybrid", "electric"]),
+  fuel: z.enum(['flex', 'hybrid', 'electric']),
   mileage: z.number(),
   color: z.string(),
   price_FIPE: z.number(),
@@ -26,6 +26,7 @@ export const carSchema = z.object({
     id: z.string(),
     name: z.string(),
     description: z.string(),
+    phone: z.string(),
   }),
 });
 
@@ -49,13 +50,17 @@ const carUpdateRequestSchema = carUpdateSchema.extend({
   car_gallery: z.array(z.string()),
 });
 
-export const carRequestSchema = carDataSchema.omit({ usersId: true }).extend({
-  car_gallery: z.array(z.string()),
-});
+export const carRequestSchema = carDataSchema
+  .omit({ usersId: true })
+  .extend({
+    car_gallery: z.array(z.string()),
+  });
 
 export type TCarData = z.infer<typeof carDataSchema>;
 export type TCar = z.infer<typeof carSchema>;
 export type TCreateCar = z.infer<typeof carDataSchema>;
 export type TUpdateCar = z.infer<typeof carUpdateSchema>;
-export type TUpdateCarRequest = z.infer<typeof carUpdateRequestSchema>;
+export type TUpdateCarRequest = z.infer<
+  typeof carUpdateRequestSchema
+>;
 export type TCarRequest = z.infer<typeof carRequestSchema>;
