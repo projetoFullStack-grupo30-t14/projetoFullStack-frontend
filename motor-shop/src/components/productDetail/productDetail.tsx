@@ -2,20 +2,21 @@ import React, { useState } from "react";
 import { TCar } from "@/schemas/car.schema";
 import { useModal } from "@/contexts/modalContext";
 import { ModalPhoto } from "./modalPhoto";
+import Modal from "../modal/modal";
 
 
 const ProductDetail = ({ car }: { car?: TCar }) => {
-  const { showModal } = useModal();
+  const { stateModalPicture, showPictureModal } = useModal();
 
   return (
     <>
-
-      <div className="flex flex-col gap-3 " >
-        <div className="bg-grey-10 rounded" onClick={() => showModal(<ModalPhoto car={car} /> , "") }>
+      {stateModalPicture && <Modal/>}
+      <div className="flex z-10 flex-col gap-3 sm:w-2/3" >
+        <div className="bg-grey-10 rounded" onClick={() => showPictureModal(<ModalPhoto car={car} /> , "Imagem do veículo") }>
           <img
             src={car?.cover_image}
             alt={car?.model}
-            className="md:px-16 md:py-8 cursor-pointer"
+            className="sm:px-16 md:py-8 cursor-pointer"
           />
         </div>
 
