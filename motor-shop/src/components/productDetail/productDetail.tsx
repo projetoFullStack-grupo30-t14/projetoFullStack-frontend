@@ -4,22 +4,22 @@ import { useModal } from "@/contexts/modalContext";
 import { ModalPhoto } from "./modalPhoto";
 import { UserContext } from '@/contexts/userContext';
 import { useRouter } from 'next/router';
-import Link from 'next/link';import Modal from "../modal/modal";
-import Modal from "../modal/modal";
+import Link from 'next/link';
+import Modal from '../modal/modal';
 
 
 const ProductDetail = ({ car }: { car?: TCar }) => {
   const { currUser } = useContext(UserContext);
   const router = useRouter();
-  const { stateModalPicture, stateModalPicture, showPicturePictureModal } = useModal();
+  const { stateModalPicture, showPictureModal } = useModal();
 
 
 
   return (
     <>
-      {stateModalPicture && <Modal/>}      {stateModalPicture && <Modal/>}
-      <div className="flex z-10 z-10 flex-col gap-3 sm:w-2/3sm:w-2/3" >
-        <div className="bg-grey-10 rounded" onClick={() => showPicturePictureModal(<ModalPhoto car={car} /> , "Imagem do veículoImagem do veículo") }>
+      {stateModalPicture && <Modal/>}
+      <div className="flex z-10 flex-col gap-3 sm:w-2/3sm:w-2/3" >
+        <div className="bg-grey-10 rounded" onClick={() => showPictureModal(<ModalPhoto car={car} /> , "Imagem do veículoImagem do veículo") }>
           <img
             src={car?.cover_image}
             alt={car?.model}
