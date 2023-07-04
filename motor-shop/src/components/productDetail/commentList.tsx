@@ -51,7 +51,7 @@ export const CommentList = () => {
                     <p className="body-2-500 font-inter">{comment.user.name}</p>
                     <p className="text-grey-4">•</p>
                     <p className="text-grey-3 body-2-400">
-                      {dayjs(comment.updated_at).locale(ptBr).fromNow()}
+                      {dayjs(comment.updatedAt).locale(ptBr).fromNow()}
                     </p>
                   </div>
                   <p className="text-grey-2 body-2-400 text-justify mt-4 mr-2">
