@@ -7,7 +7,7 @@ const CardCar = ({ car }: { car: TCar }) => {
   return (
     <Link href={`/products/${car.id}`} className="relative z-10 flex flex-col gap-4 max-w-xs mx-auto bg-white overflow-hidden min-w-[312px] min-h-[350px] group">
       <div className="flex-shrink-0 flex-grow-0 h-152 bg-grey-7">
-        <div className="border-2 border-grey-7 group-hover:border-brand-1 group-hover:border-2">
+        <div className="border-2 border-grey-7 group-hover:border-brand-1 group-hover:border-2 overflow-hidden">
           <img
             src={car.cover_image}
             alt={car.model}
