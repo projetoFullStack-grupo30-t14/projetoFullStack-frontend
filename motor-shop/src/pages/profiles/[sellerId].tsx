@@ -43,11 +43,19 @@ const Profiles = () => {
         <h1 className="text-heading-5 font-bold font-lexend mx-14 my-8">
           Anúncios
         </h1>
-        <div className="md:pl-20 sm:pl-4 py-6 w-full">
-          <ListCards carList={listCars}>
-            {(car: TCar) => <CardCar car={car} />}
-          </ListCards>
-        </div>
+        {listCars && listCars.length > 0 ? (
+          <div className="md:pl-20 sm:pl-4 py-6 w-full">
+            <ListCards carList={listCars}>
+              {(car: TCar) => <CardCar car={car} />}
+            </ListCards>
+          </div>
+        ) : (
+          <div className="flex justify-center w-full">
+            <p className="self-center heading-5-500 text-grey-3 bg-grey-7 rounded-full w-fit py-1 px-4 overflow-hidden">
+              Ainda não há anúncios
+            </p>
+          </div>
+        )}
         <Navigation
           perPage={16}
           className="lg:relative z-10 min-h-[158px] mt-10"

@@ -49,9 +49,17 @@ export default function HomePage() {
         </div>
         <section className="flex flex-col gap-y-8 md:flex-row-reverse lg:flex-row-reverse md:gap-x-4 lg:gap-x-8">
           <main className="w-full md:w-3/3">
-            <ListCards carList={listCars}>
-              {(car: TCar) => <CardCar car={car} />}
-            </ListCards>
+            {listCars && listCars.length ? (
+              <ListCards carList={listCars}>
+                {(car: TCar) => <CardCar car={car} />}
+              </ListCards>
+            ) : (
+              <div className="flex justify-center w-full">
+                <p className="self-center heading-5-500 text-grey-3 bg-grey-7 rounded-full w-fit py-1 px-4 overflow-hidden">
+                  Ainda não há anúncios
+                </p>
+              </div>
+            )}
           </main>
           <aside className="lg:relative z-10 w-full md:w-1/3">
             <Filter />
