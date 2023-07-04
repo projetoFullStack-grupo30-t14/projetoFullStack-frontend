@@ -10,7 +10,7 @@ const CardCarSeller = ({ car }: { car: TCar }) => {
   return (
     <div className="relative z-10 flex flex-col gap-4 max-w-xs mx-auto bg-white overflow-hidden min-w-[312px] min-h-[350px] group">
       <div className="flex-shrink-0 flex-grow-0 h-152 bg-grey-7">
-        <div className="group border-2 border-grey-7 group-hover:border-brand-1 group-hover:border-2 relative">
+        <div className="group border-2 border-grey-7 group-hover:border-brand-1 group-hover:border-2 relative overflow-hidden">
           {car.is_active ? (
             <span className="absolute top-0 left-0 z-40 m-3 bg-brand-1 px-2 text-grey-whiteFixed text-body-2-500 font-inter">
               Ativo

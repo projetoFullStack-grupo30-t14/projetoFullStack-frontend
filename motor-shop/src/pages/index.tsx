@@ -10,6 +10,7 @@ import { Navigation } from "@/components/Navigation";
 
 export default function HomePage() {
   const { getAllCars, listCars } = useCars();
+  let carsActive = [];
 
   useEffect(() => {
     const fetchData = async () => {
@@ -50,8 +51,9 @@ export default function HomePage() {
         <section className="flex flex-col gap-y-8 md:flex-row-reverse lg:flex-row-reverse md:gap-x-4 lg:gap-x-8">
           <main className="w-full md:w-3/3">
             {listCars && listCars.length ? (
-              <ListCards carList={listCars}>
-                {(car: TCar) => <CardCar car={car} />}
+              carsActive = listCars.filter(car => car.is_active),
+              <ListCards carList={carsActive}>
+                {car => <CardCar car={car} />}
               </ListCards>
             ) : (
               <div className="flex justify-center w-full">
