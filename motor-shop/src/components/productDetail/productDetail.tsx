@@ -1,17 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import { TCar } from "@/schemas/car.schema";
 import { useModal } from "@/contexts/modalContext";
 import { ModalPhoto } from "./modalPhoto";
-
 
 const ProductDetail = ({ car }: { car?: TCar }) => {
   const { showModal } = useModal();
 
   return (
     <>
-
-      <div className="flex flex-col gap-3 " >
-        <div className="bg-grey-10 rounded" onClick={() => showModal(<ModalPhoto car={car} /> , "") }>
+      <div className="flex flex-col gap-3 md:w-2/3 md:mr-4">
+        <div
+          className="bg-grey-10 rounded"
+          onClick={() => showModal(<ModalPhoto car={car} />, "")}
+        >
           <img
             src={car?.cover_image}
             alt={car?.model}
@@ -26,9 +27,14 @@ const ProductDetail = ({ car }: { car?: TCar }) => {
           <div className="flex flex-col justify-between gap-5 sm:flex-row">
             <div className="flex gap-2">
               <span className="btn-brand-opacity btn-small"> {car?.year} </span>
-              <span className="btn-brand-opacity btn-small">{car?.mileage} KM</span>
+              <span className="btn-brand-opacity btn-small">
+                {car?.mileage} KM
+              </span>
             </div>
-            <p className="heading-7-500 text-grey-1 ">R${car?.price.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</p>
+            <p className="heading-7-500 text-grey-1 ">
+              R$
+              {car?.price.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
+            </p>
           </div>
           <button className="btn-brand1 btn-medium w-max">Comprar</button>
         </div>
