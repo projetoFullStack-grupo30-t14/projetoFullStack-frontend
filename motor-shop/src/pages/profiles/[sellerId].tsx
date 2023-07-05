@@ -13,6 +13,7 @@ const Profiles = () => {
   const router = useRouter();
   const { sellerId } = router.query;
   const { getAllCars, listCars } = useCars();
+  let carsActive = [];
 
   useEffect(() => {
     const fetchData = async () => {
@@ -42,8 +43,9 @@ const Profiles = () => {
           Anúncios
         </h1>
         {listCars && listCars.length > 0 ? (
+          carsActive = listCars.filter(car => car.is_active),
           <div className="md:pl-20 sm:pl-4 py-6 w-full">
-            <ListCards carList={listCars}>
+            <ListCards carList={carsActive}>
               {(car: TCar) => <CardCar car={car} />}
             </ListCards>
           </div>

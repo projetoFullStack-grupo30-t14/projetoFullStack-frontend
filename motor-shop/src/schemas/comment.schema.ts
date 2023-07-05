@@ -16,7 +16,7 @@ export const commentSchema = z.object({
     content: z.string(),
     user_id: z.string(),
     created_at: z.string().or(z.string().datetime()),
-    updated_at: z.string().or(z.string().datetime()),
+    updatedAt: z.string().or(z.string().datetime()),
 })
 
 export type commentRequestType = z.infer<typeof commentRequestSchema>
