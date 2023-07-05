@@ -69,7 +69,9 @@ export const CreateAdForm = () => {
       await fetch(url)
         .then((response) => response.json())
         .then((res) => {
-          setFipeReturn(res.value);
+          res.value
+            ? setFipeReturn(res.value)
+            : setFipeReturn("Carro não encontrado");
         })
         .catch((err) => {
           console.log(err);
