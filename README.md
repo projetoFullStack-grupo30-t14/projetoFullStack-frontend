@@ -14,7 +14,7 @@ project, built on</font> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/
 
 ## <h2 id="example">Working example</h2>
 
-You can find the full working example [here](https://projeto-full-stack-frontend.vercel.app/), deployed on Vercel, consuming a Render/Railway database.
+You can find the full working example [here](https://projeto-full-stack-frontend.vercel.app/), deployed on Vercel, consuming a Render database.
 
 <br>
 
@@ -25,7 +25,7 @@ You can create a project with:
 [comment]: <> (Precisa testar com o repositório público)
 
 ```bash
-npx create-next-app -e https://github.com/projetoFullStack-grupo30-t14/projetoFullStack-frontend
+npx create-next-app -e https://github.com/projetoFullStack-grupo30-t14/projetoFullStack-frontend/tree/main/motor-shop
 ```
 
 Or you could clone this repository.
@@ -62,7 +62,7 @@ yarn dev
 Open your localhost URL, usually at:
 `http://localhost:3000`
 
-<br>To make use of all the functionalities, you need the proper connection to the [MotorShop API](https://github.com/projetoFullStack-grupo30-t14/projetoFullStack-backend). This application needs the `env` file to be properly configured to connect to the database.
+<br>To make use of all the functionalities, you need the proper connection to the [MotorShop API](https://github.com/projetoFullStack-grupo30-t14/projetoFullStack-backend). This application needs the `env` key in `next.config.js` to be properly configured to connect to the database.
 
 <br>
 
