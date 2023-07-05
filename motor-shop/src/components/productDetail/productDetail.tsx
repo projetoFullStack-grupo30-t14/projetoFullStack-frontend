@@ -7,19 +7,16 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import Modal from '../modal/modal';
 
-
 const ProductDetail = ({ car }: { car?: TCar }) => {
   const { currUser } = useContext(UserContext);
   const router = useRouter();
-  const { stateModalPicture, showPictureModal } = useModal();
-
-
+  const {  showModal } = useModal();
 
   return (
     <>
-      {stateModalPicture && <Modal/>}
-      <div className="flex z-10 flex-col gap-3 sm:w-2/3" >
-        <div className="bg-grey-10 rounded" onClick={() => showPictureModal(<ModalPhoto car={car} /> , "Imagem do veículo") }>
+   
+      <div className="flex z-10 flex-col md:w-2/3 md:pr-5 gap-5" >
+        <div className="bg-grey-10 rounded min-h-[400px] " onClick={() => showModal(<ModalPhoto car={car} /> , "Imagem do veículo") }>
           <img
             src={car?.cover_image}
             alt={car?.model}

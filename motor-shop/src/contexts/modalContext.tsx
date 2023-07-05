@@ -9,9 +9,6 @@ interface iModalContextProps {
   stateModalComment: boolean;
   showCommentModal: (children: React.ReactNode, title: string) => void;
   closeCommentModal: () => void;
-  stateModalPicture: boolean;
-  showPictureModal: (children: React.ReactNode, title: string) => void;
-  closePictureModal: () => void;
 }
 
 interface iModalProviderProps {
@@ -20,29 +17,21 @@ interface iModalProviderProps {
 
 export const modalContext = createContext({} as iModalContextProps);
 
-export default function ModalProvider ({ children }: iModalProviderProps) {
+export default function ModalProvider({ children }: iModalProviderProps) {
   const [stateModal, setStateModal] = useState(false);
-  const [stateModalComment, setStateModalComment] = useState(false)
-  const [stateModalPicture, setStateModalPicture] = useState(false)
+  const [stateModalComment, setStateModalComment] = useState(false);
   const [childrenModal, setChildrenModal] = useState<React.ReactNode>();
-  const [modalTitle, setModalTitle] = useState("")
-
+  const [modalTitle, setModalTitle] = useState("");
 
   const showModal = (children: React.ReactNode, title: string) => {
     setStateModal(true);
-    setModalTitle(title)
+    setModalTitle(title);
     setChildrenModal(children);
   };
 
   const showCommentModal = (children: React.ReactNode, title: string) => {
     setStateModalComment(true);
-    setModalTitle(title)
-    setChildrenModal(children);
-  };
-
-  const showPictureModal = (children: React.ReactNode, title: string) => {
-    setStateModalPicture(true);
-    setModalTitle(title)
+    setModalTitle(title);
     setChildrenModal(children);
   };
 
@@ -52,10 +41,6 @@ export default function ModalProvider ({ children }: iModalProviderProps) {
 
   const closeCommentModal = () => {
     setStateModalComment(false);
-  };
-
-  const closePictureModal = () => {
-    setStateModalPicture(false);
   };
 
   return (
@@ -69,14 +54,11 @@ export default function ModalProvider ({ children }: iModalProviderProps) {
         showCommentModal,
         closeCommentModal,
         stateModalComment,
-        showPictureModal,
-        closePictureModal,
-        stateModalPicture,
       }}
     >
       {children}
     </modalContext.Provider>
   );
-};
+}
 
 export const useModal = () => useContext(modalContext);

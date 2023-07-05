@@ -7,6 +7,7 @@ import {
   userSendMailPassSchema,
 } from "@/schemas/user.register.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
+import Head from "next/head";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 
@@ -28,6 +29,9 @@ const ForgetPassPage = () => {
 
   return (
     <>
+      <Head>
+        <title>MotorShop - Esqueci minha senha</title>
+      </Head>
       <Header />
       <main className="bg-grey-8 py-6">
         <div className="flex justify-center items-center h-full">
