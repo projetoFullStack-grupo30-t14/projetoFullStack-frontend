@@ -27,7 +27,7 @@ const Profiles = () => {
       }
     };
     fetchData();
-  }, []);
+  }, [listCars]);
 
   return (
     <>

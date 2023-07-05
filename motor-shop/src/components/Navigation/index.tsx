@@ -42,7 +42,7 @@ export const Navigation = ({ perPage, className }: NavigationProps) => {
       <section
         className={
           className +
-          " flex flex-col lg:flex-row justify-center items-center gap-4 relative z-30"
+          " flex flex-col lg:flex-row justify-center items-center gap-4 relative z-10"
         }
       >
         {previousPage && (

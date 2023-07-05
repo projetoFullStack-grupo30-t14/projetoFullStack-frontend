@@ -9,6 +9,7 @@ interface iModalContextProps {
   stateModalComment: boolean;
   showCommentModal: (children: React.ReactNode, title: string) => void;
   closeCommentModal: () => void;
+  showEditCarModal: (children: React.ReactNode, title: string) => void;
 }
 
 interface iModalProviderProps {
@@ -23,6 +24,12 @@ export default function ModalProvider({ children }: iModalProviderProps) {
   const [childrenModal, setChildrenModal] = useState<React.ReactNode>();
   const [modalTitle, setModalTitle] = useState("");
 
+  const isBrowser = () => typeof window !== "undefined"
+  function scrollToTop () {
+      if (!isBrowser()) return
+      window.scrollTo({ top: 0, behavior: "smooth"})
+  }
+
   const showModal = (children: React.ReactNode, title: string) => {
     setStateModal(true);
     setModalTitle(title);
@@ -31,6 +38,13 @@ export default function ModalProvider({ children }: iModalProviderProps) {
 
   const showCommentModal = (children: React.ReactNode, title: string) => {
     setStateModalComment(true);
+    setModalTitle(title);
+    setChildrenModal(children);
+  };
+
+  const showEditCarModal = (children: React.ReactNode, title: string) => {
+    setStateModal(true);
+    scrollToTop()
     setModalTitle(title);
     setChildrenModal(children);
   };
@@ -54,6 +68,7 @@ export default function ModalProvider({ children }: iModalProviderProps) {
         showCommentModal,
         closeCommentModal,
         stateModalComment,
+        showEditCarModal,
       }}
     >
       {children}

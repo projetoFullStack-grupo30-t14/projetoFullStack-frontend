@@ -29,7 +29,7 @@ const ProfilePage = () => {
       }
     };
     fetchData();
-  }, []);
+  }, [listCarsByOwner]);
   return (
     <>
       <Head>
@@ -53,6 +53,7 @@ const ProfilePage = () => {
             }
           </InfoSellerProfile>
         </div>
+        
         {listCarsByOwner && listCarsByOwner.length > 0 ? (
           <div className="md:pl-20 sm:pl-4 py-6 w-full">
             <ListCards carList={listCarsByOwner}>

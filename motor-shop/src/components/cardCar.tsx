@@ -10,7 +10,7 @@ const CardCar = ({ car }: { car: TCar }) => {
     const carPrice: number = car.price
     const fipePrice: number | null = car.price_FIPE
     const discount = carPrice / fipePrice
-    if (discount < 0.2) {
+    if (discount < 0.95) {
       isOnSale = true
     }
   }
@@ -30,7 +30,7 @@ const CardCar = ({ car }: { car: TCar }) => {
           {
             isOnSale &&
             <div className="bg-success-1 w-fit p-1 absolute top-0 right-0">
-              <img src="discount.png" alt="discount icon" />
+              <img src="/discount.png" alt="discount icon" />
             </div>
           }
         </div>
