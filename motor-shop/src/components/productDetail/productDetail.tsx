@@ -16,7 +16,7 @@ const ProductDetail = ({ car }: { car?: TCar }) => {
     <>
    
       <div className="flex z-10 flex-col md:w-2/3 md:pr-5 gap-5" >
-        <div className="bg-grey-10 rounded min-h-[400px] " onClick={() => showModal(<ModalPhoto car={car} /> , "Imagem do veículo") }>
+        <div className="bg-grey-10 rounded min-h-[400px] " onClick={() => showModal(<ModalPhoto car={car!} image={car!.cover_image}/> , "Imagem do veículo") }>
           <img
             src={car?.cover_image}
             alt={car?.model}

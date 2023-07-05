@@ -6,6 +6,14 @@ const nextConfig = {
     api_base_url: "https://motor-shop-grupo30.onrender.com/",
     timeout: 5000,
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**.**',
+      },
+    ],
+  },
 };
 
 module.exports = nextConfig;
