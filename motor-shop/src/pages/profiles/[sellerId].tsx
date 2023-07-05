@@ -32,7 +32,9 @@ const Profiles = () => {
   return (
     <>
       <Head>
-        <title>{`MotorShop - ${listCars[0].user.name || `Carregando`}`}</title>
+        <title>{`MotorShop - ${
+          (listCars[0] && listCars[0].user.name) || `Anunciante`
+        }`}</title>
       </Head>
       <Header />
       <main className="pb-11 bg-gradient-to-b from-brand-1 from-20% to-grey-8 to-20%">
