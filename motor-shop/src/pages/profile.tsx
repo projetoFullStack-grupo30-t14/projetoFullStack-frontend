@@ -28,7 +28,7 @@ const ProfilePage = () => {
       }
     };
     fetchData();
-  }, []);
+  }, [listCarsByOwner]);
   return (
     <>
       <Header />
