@@ -24,6 +24,7 @@ export const CreateAdForm = () => {
   const [imageGallery, setImageGallery] = useState([
     { id: "", car_id: "", image: "" },
   ]);
+  const [fipeReturn, setFipeReturn] = useState<number | string | undefined>();
 
   const [
     wBrand,
@@ -47,9 +48,42 @@ export const CreateAdForm = () => {
     "cover_image",
   ]);
 
+  if (wBrand && wModel && wYear && wFuel) {
+    let fuelToApi: number;
+
+    switch (wFuel) {
+      case "flex":
+        fuelToApi = 1;
+        break;
+      case "hybrid":
+        fuelToApi = 2;
+        break;
+      case "electric":
+        fuelToApi = 3;
+        break;
+    }
+
+    let url = `https://kenzie-kars.herokuapp.com/cars/unique?brand=${wBrand}&name=${wModel}&year=${wYear}&fuel=${fuelToApi}`;
+
+    const getFipe = async () => {
+      await fetch(url)
+        .then((response) => response.json())
+        .then((res) => {
+          setFipeReturn(res.value);
+        })
+        .catch((err) => {
+          console.log(err);
+          setFipeReturn("Carro não encontrado");
+        });
+    };
+
+    getFipe();
+  }
+
   const onSubmit = (data: TCarRequest) => {
     createCar(data);
     closeModal();
+    setFipeReturn(undefined);
   };
 
   return (
@@ -164,6 +198,7 @@ export const CreateAdForm = () => {
                   label="Preço tabela FIPE"
                   disabled={true}
                   className={"text-grey-3"}
+                  defaultValue={fipeReturn}
                 />
               </div>
               <div className="flex flex-col">
