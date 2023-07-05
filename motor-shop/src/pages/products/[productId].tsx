@@ -35,7 +35,7 @@ const Product = () => {
               <ProductDetail car={listOneCar}/>
               <Aside car={listOneCar}/>
             </section>
-            <div className="md:w-2/3 md:pr-3">
+            <div className="md:w-2/3 md:pr-5">
               <CommentList />
               <NewComment />
             </div>
