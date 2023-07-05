@@ -15,7 +15,7 @@ const Aside = ({ car }: { car?: TCar }) => {
         <h4 className="heading-6-600">Fotos</h4>
         <ul className="grid grid-cols-3 gap-2 ">
           {car?.car_gallery.map((photo) => (
-            <li onClick={() => showModal(<ModalPhoto car={car} />, "")}>
+            <li onClick={() => showModal(<ModalPhoto car={car} />, "Imagem do veículo")}>
               <Image
                 key={car.id}
                 width={400}
