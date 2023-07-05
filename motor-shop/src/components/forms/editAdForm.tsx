@@ -118,7 +118,9 @@ export const EditAdForm = ({ id }: EditAdFormProps) => {
       await fetch(url)
         .then((response) => response.json())
         .then((res) => {
-          setFipeReturn(res.value);
+          res.value
+            ? setFipeReturn(res.value)
+            : setFipeReturn("Carro não encontrado");
         })
         .catch((err) => {
           console.log(err);
@@ -249,7 +251,7 @@ export const EditAdForm = ({ id }: EditAdFormProps) => {
               <div className="flex flex-col mb-4">
                 <Field
                   id="fipePrice"
-                  type="number"
+                  type="text"
                   placeholder=""
                   label="Preço tabela FIPE"
                   disabled={true}
