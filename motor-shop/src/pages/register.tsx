@@ -12,6 +12,7 @@ import { useAuth } from "@/contexts/authContext";
 import { useModal } from "@/contexts/modalContext";
 import Modal from "@/components/modal/modal";
 import { Field } from "@/components/Input";
+import Head from "next/head";
 
 interface iAddressResponse {
   bairro: string;
@@ -55,6 +56,9 @@ export default function RegisterPage() {
 
   return (
     <>
+      <Head>
+        <title>MotorShop - Registro</title>
+      </Head>
       <Header />
       {stateModal && <Modal />}
       <main className="bg-grey-8 py-12 px-4 w-screen">

@@ -4,6 +4,7 @@ import { Header } from "@/components/headerAndFooter/header";
 import { AuthContext } from "@/contexts/authContext";
 import { TLogin, loginSchema } from "@/schemas/login.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
+import Head from "next/head";
 import Link from "next/link";
 import router from "next/router";
 import { useContext } from "react";
@@ -26,6 +27,9 @@ export default function LoginPage() {
   };
   return (
     <>
+      <Head>
+        <title>MotorShop - Login</title>
+      </Head>
       <Header />
       <main className="bg-grey-8 py-6">
         <div className="flex justify-center items-center h-full">

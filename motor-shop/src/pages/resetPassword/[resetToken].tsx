@@ -7,6 +7,7 @@ import {
   tResetPassword,
 } from "@/schemas/user.register.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
+import Head from "next/head";
 import { useRouter } from "next/router";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
@@ -36,6 +37,9 @@ const ResetPassword = () => {
 
   return (
     <>
+      <Head>
+        <title>MotorShop - Nova senha</title>
+      </Head>
       <Header />
       <main className="bg-grey-8 py-6">
         <div className="flex justify-center items-center h-full">
