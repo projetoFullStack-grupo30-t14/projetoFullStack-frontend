@@ -12,12 +12,10 @@ const ProductDetail = ({ car }: { car?: TCar }) => {
   const router = useRouter();
   const { stateModalPicture, showPictureModal } = useModal();
 
-
-
   return (
     <>
       {stateModalPicture && <Modal/>}
-      <div className="flex z-10 flex-col gap-3 sm:w-2/3" >
+      <div className="flex z-10 flex-col md:w-2/3 md:pr-5 gap-5" >
         <div className="bg-grey-10 rounded" onClick={() => showPictureModal(<ModalPhoto car={car} /> , "Imagem do veículo") }>
           <img
             src={car?.cover_image}
