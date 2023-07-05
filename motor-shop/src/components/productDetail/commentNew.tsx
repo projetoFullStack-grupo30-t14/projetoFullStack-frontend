@@ -59,7 +59,7 @@ export const NewComment = () => {
                 placeholder='Digite aqui seu comentário'
                 label=''
                 onChange={(e) => setValue("content", e.target.value)}
-                className='w-full h-32 resize-none px-7 py-8 rounded-[4px] border-solid border-2 border-grey-7 placeholder:text-grey-3 text-gray-7 transition ease-in-out delay-300 outline-none focus:border-grey-3'
+                className='w-full h-32 resize-none px-7 py-8 rounded-[4px] border-solid border-2 border-grey-7 placeholder:text-grey-3 placeholder:px-0.5 placeholder:py-2.5 text-gray-7 transition ease-in-out delay-300 outline-none focus:border-brand-1'
               />
               <button
                 type='submit'

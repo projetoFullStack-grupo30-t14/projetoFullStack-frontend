@@ -136,7 +136,7 @@ export const EditAdForm = ({ id }: EditAdFormProps) => {
       <div className="flex justify-center items-center h-full">
         <div className="z-10 max-h-[550px] overflow-auto scrollbar lg:w-[410px] max-w-full font-medium bg-grey-whiteFixed space-y-8 sm:min-w-max">
           <form
-            className="flex flex-col overflow-auto scrollbar"
+            className="flex flex-col pr-2"
             onSubmit={handleSubmit(editCar)}
           >
             <p className="text-body2 font-inter my-4 pb-4">
@@ -377,7 +377,7 @@ export const EditAdForm = ({ id }: EditAdFormProps) => {
                   closeModal();
                   showModal(<ConfirmAdDelete id={id} />, "Excluir anúncio");
                 }}
-                className="btn-big btn-negative transition ease-in-out lg:w-[55%]"
+                className="btn-big btn-negative transition ease-in-out lg:w-[50%]"
                 type="button"
               >
                 Excluir anúncio
