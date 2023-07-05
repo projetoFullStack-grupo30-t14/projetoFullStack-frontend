@@ -26,6 +26,7 @@ const Product = () => {
     };
     fetchData();
   }, []);
+  console.log(listOneCar)
 
   return (
     <>
