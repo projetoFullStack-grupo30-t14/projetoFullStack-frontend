@@ -5,11 +5,9 @@ import { Header } from "@/components/headerAndFooter/header";
 import InfoSellerProfile from "@/components/infoSellerProfile";
 import ListCards from "@/components/listCards";
 import { useCars } from "@/contexts/carContext";
-import { UserContext } from "@/contexts/userContext";
-import { UserType } from "@/schemas";
 import { TCar } from "@/schemas/car.schema";
 import { useRouter } from "next/router";
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 
 const Profiles = () => {
   const router = useRouter();

@@ -7,7 +7,6 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import Modal from '../modal/modal';
 
-
 const ProductDetail = ({ car }: { car?: TCar }) => {
   const { currUser } = useContext(UserContext);
   const router = useRouter();

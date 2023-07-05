@@ -30,14 +30,14 @@ const Product = () => {
     <>
       <Header/>
       <main className="pb-11 bg-gradient-to-b from-brand-1 from-30% to-grey-8 to-30%">
-          <div className="lg:px-44 px-5 ">
-            <section className="md:flex justify-stretch py-9 gap-7">
+          <div className="lg:px-44 px-5">
+            <section className="md:flex md:justify-between py-9">
               <ProductDetail car={listOneCar}/>
               <Aside car={listOneCar}/>
             </section>
+            <div className="md:w-2/3 md:pr-3">
               <CommentList />
               <NewComment />
-            <div className="relative z-10 hidden h-0 m-0">
             </div>
           </div>
       </main>
