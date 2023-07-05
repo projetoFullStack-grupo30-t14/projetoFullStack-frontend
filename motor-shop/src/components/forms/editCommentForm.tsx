@@ -6,13 +6,14 @@ import { useComments } from "@/contexts/commentContext"
 import { useModal } from "@/contexts/modalContext"
 
 interface UpdateCommentProps {
-    commentId: string
-    content: string
+  commentId: string;
+  content: string;
+  fetchData: () => Promise<void>;
 }
 
-export default function EditCommentForm ({content, commentId}: UpdateCommentProps) {
+export default function EditCommentForm ({content, commentId, fetchData}: UpdateCommentProps) {
     const { updateComment } = useComments()
-    const { closeProductModal } = useModal()
+    const { closeCommentModal } = useModal()
     const {
         handleSubmit,
         register,
@@ -25,7 +26,8 @@ export default function EditCommentForm ({content, commentId}: UpdateCommentProp
 
     function onSubmit(data: commentUpdateType) {
         updateComment(commentId, data)
-        closeProductModal()
+        fetchData()
+        closeCommentModal()
     }
     return (
         <form

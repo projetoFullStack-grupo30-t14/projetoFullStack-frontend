@@ -100,7 +100,7 @@ export const NewComment = () => {
               <textarea
                 disabled
                 id="comment"
-                placeholder="Digitar comentário"
+                placeholder="Faça seu login para deixar um comentário"
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 className="w-full h-32 resize-none px-7 py-8 rounded-[4px] border-solid border-2 border-grey-7 placeholder:text-grey-3 text-gray-7 transition ease-in-out delay-300 outline-none focus:border-grey-3"

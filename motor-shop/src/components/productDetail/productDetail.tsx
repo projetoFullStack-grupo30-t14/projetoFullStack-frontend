@@ -5,23 +5,22 @@ import { ModalPhoto } from "./modalPhoto";
 import { UserContext } from '@/contexts/userContext';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import Modal from '../modal/modal';
 
 const ProductDetail = ({ car }: { car?: TCar }) => {
   const { currUser } = useContext(UserContext);
   const router = useRouter();
-  const { showModal } = useModal();
-
-
+  const {  showModal } = useModal();
 
   return (
     <>
-
-      <div className="flex flex-col gap-3 " >
-        <div className="bg-grey-10 rounded" onClick={() => showModal(<ModalPhoto car={car} /> , "") }>
+   
+      <div className="flex z-10 flex-col md:w-2/3 md:pr-5 gap-5" >
+        <div className="bg-grey-10 rounded min-h-[400px] " onClick={() => showModal(<ModalPhoto car={car} /> , "Imagem do veículo") }>
           <img
             src={car?.cover_image}
             alt={car?.model}
-            className="md:px-16 md:py-8 cursor-pointer"
+            className="sm:px-16 md:py-8 cursor-pointer"
           />
         </div>
 
