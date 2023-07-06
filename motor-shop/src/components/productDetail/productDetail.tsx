@@ -1,11 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { TCar } from "@/schemas/car.schema";
 import { useModal } from "@/contexts/modalContext";
 import { ModalPhoto } from "./modalPhoto";
 import { UserContext } from "@/contexts/userContext";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import Modal from "../modal/modal";
 
 const ProductDetail = ({ car }: { car?: TCar }) => {
   const { currUser } = useContext(UserContext);
@@ -16,7 +15,7 @@ const ProductDetail = ({ car }: { car?: TCar }) => {
     <>
       <div className="flex z-10 flex-col md:w-2/3 md:pr-5 gap-5">
         <div
-          className="bg-grey-10 rounded min-h-[400px] "
+          className="bg-grey-10 rounded md:min-h-[400px] "
           onClick={() =>
             showModal(
               <ModalPhoto car={car!} image={car!.cover_image} />,
@@ -27,7 +26,7 @@ const ProductDetail = ({ car }: { car?: TCar }) => {
           <img
             src={car?.cover_image}
             alt={car?.model}
-            className="sm:px-16 md:py-8 rounded cursor-pointer"
+            className="sm:px-16 md:py-8 rounded cursor-pointer object-cover"
           />
         </div>
 
@@ -67,7 +66,7 @@ const ProductDetail = ({ car }: { car?: TCar }) => {
           )}
         </div>
 
-        <div className="bg-grey-10 rounded py-7 px-11">
+        <div className="bg-grey-10 rounded py-7 px-11 flex flex-col gap-3 min-h-max">
           <h5 className="heading-6-600">Descrição</h5>
           <p className="body-1-400 max-h-20">{car?.description}</p>
         </div>
