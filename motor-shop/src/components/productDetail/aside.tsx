@@ -13,7 +13,7 @@ const Aside = ({ car }: { car?: TCar }) => {
     <div className="flex flex-col gap-5 md:w-1/3">
       <div className="bg-grey-10 flex flex-col rounded p-5 gap-5 z-10">
         <h4 className="heading-6-600">Fotos</h4>
-        <ul className="grid grid-cols-3 gap-2 ">
+        <ul className="grid grid-cols-3 gap-2 max-h-[175px] overflow-auto scrollbar ">
           {car?.car_gallery.map((photo) => (
             <li onClick={() => showModal(<ModalPhoto car={car} image={photo.image}/>, "Imagem do veículo")}>
               <Image
@@ -22,7 +22,7 @@ const Aside = ({ car }: { car?: TCar }) => {
                 height={186}
                 src={photo.image}
                 alt={car.model}
-                className=" bg-grey-8 rounded cursor-pointer"
+                className="object-cover h-16 bg-grey-8 rounded cursor-pointer"
               />
             </li>
           ))}
