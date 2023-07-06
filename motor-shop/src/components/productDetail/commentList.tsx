@@ -1,15 +1,15 @@
-import dayjs from 'dayjs';
-import relativeTime from 'dayjs/plugin/relativeTime';
-import ptBr from 'dayjs/locale/pt-br';
-import { useComments } from '@/contexts/commentContext';
-import { useContext, useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
-import { getInitials } from '../utils';
-import { FiEdit, FiDelete } from 'react-icons/fi';
-import { useModal } from '@/contexts/modalContext';
-import Modal from '../modal/modal';
-import EditCommentForm from '../forms/editCommentForm';
-import { UserContext } from '@/contexts/userContext';
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+import ptBr from "dayjs/locale/pt-br";
+import { useComments } from "@/contexts/commentContext";
+import { useContext, useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import { getInitials } from "../utils";
+import { FiEdit, FiDelete } from "react-icons/fi";
+import { useModal } from "@/contexts/modalContext";
+import Modal from "../modal/modal";
+import EditCommentForm from "../forms/editCommentForm";
+import { UserContext } from "@/contexts/userContext";
 
 export const CommentList = () => {
   const router = useRouter();
@@ -24,7 +24,7 @@ export const CommentList = () => {
 
   const fetchData = async () => {
     try {
-      if (typeof carId === 'string') {
+      if (typeof carId === "string") {
         await getAllComments(carId);
       }
     } catch (error) {
@@ -47,7 +47,7 @@ export const CommentList = () => {
   return (
     <>
       {stateModalComment && <Modal />}
-      <div className="py-9 px-11 rounded-[4px] mb-8 bg-grey-whiteFixed">
+      <div className="py-9 px-11 rounded-[4px] mb-6 bg-grey-whiteFixed">
         <h2 className="heading-6-600 mb-5">Comentários</h2>
         <ul className="comment-list flex flex-col gap-5 max-h-[400px] overflow-y-auto mr-[-10px]">
           {comments && comments.length > 0 ? (
@@ -61,9 +61,7 @@ export const CommentList = () => {
                     <div className="bg-random-1 w-8 h-8 flex items-center justify-center rounded-full text-grey-whiteFixed body-2-500 font-inter">
                       {getInitials(comment.user.name)}
                     </div>
-                    <p className="body-2-500 font-inter">
-                      {comment.user.name}
-                    </p>
+                    <p className="body-2-500 font-inter">{comment.user.name}</p>
                     <p className="text-grey-4">•</p>
                     <p className="text-grey-3 body-2-400">
                       {!loading
@@ -71,10 +69,8 @@ export const CommentList = () => {
                           ? `${dayjs(comment.created_at)
                               .locale(ptBr)
                               .fromNow()} `
-                          : `${dayjs(comment.updatedAt)
-                              .locale(ptBr)
-                              .fromNow()}`
-                        : ''}
+                          : `${dayjs(comment.updatedAt).locale(ptBr).fromNow()}`
+                        : ""}
                     </p>
                   </div>
                   <p className="text-grey-2 body-2-400 text-justify mt-4 mr-2">
@@ -91,7 +87,7 @@ export const CommentList = () => {
                             commentId={comment.id}
                             fetchData={fetchData}
                           />,
-                          'Editar comentário'
+                          "Editar comentário"
                         )
                       }
                       className="btn-medium btn-brand-outline-brand1"
