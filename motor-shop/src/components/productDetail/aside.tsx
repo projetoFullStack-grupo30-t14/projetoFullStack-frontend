@@ -11,16 +11,16 @@ const Aside = ({ car }: { car?: TCar }) => {
   const { showModal } = useModal();
   return (
     <div className="flex flex-col gap-5 md:w-1/3">
-      <div className="bg-grey-10 flex flex-col rounded p-5 gap-5">
+      <div className="bg-grey-10 flex flex-col rounded p-5 gap-5 z-10">
         <h4 className="heading-6-600">Fotos</h4>
         <ul className="grid grid-cols-3 gap-2 ">
           {car?.car_gallery.map((photo) => (
-            <li onClick={() => showModal(<ModalPhoto car={car} />, "Imagem do veículo")}>
+            <li onClick={() => showModal(<ModalPhoto car={car} image={photo.image}/>, "Imagem do veículo")}>
               <Image
                 key={car.id}
                 width={400}
                 height={186}
-                src={`/${photo.image}`}
+                src={photo.image}
                 alt={car.model}
                 className=" bg-grey-8 rounded cursor-pointer"
               />
