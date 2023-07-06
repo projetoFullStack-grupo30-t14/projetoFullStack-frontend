@@ -88,7 +88,6 @@ export const NewComment = () => {
                   Recomendarei para meus amigos!
                 </button>
               </div>
-              <p className="body-2-500">{currUser?.name}</p>
             </div>
           </>
         ) : (
