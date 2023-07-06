@@ -124,6 +124,7 @@ export function UserProvider({ children }: Props) {
       ).data;
 
       setCurrUser(updatedUser);
+    toast.success('usuario atualizado')
       return updatedUser;
     } catch (error) {
       if (error instanceof AxiosError) {
