@@ -69,21 +69,21 @@ export const NewComment = () => {
                 <button
                   type='button'
                   className="bg-grey-7 textarea text-grey-3 rounded-full h-7 px-3 font-medium mr-4"
-                  // onClick={() => setValue('content', "Gostei muito!")}
+                  onClick={() => setValue('content', "Gostei muito!")}
                 >
                   Gostei muito!
                 </button>
                 <button
                   type='button'
                   className="bg-grey-7 text-grey-3 rounded-full h-7 px-3 font-medium mr-4"
-                  // onClick={() => setValue('content', "Incrível!")}
+                  onClick={() => setValue('content', "Incrível!")}
                 >
                   Incrível!
                 </button>
                 <button
                   type='button'
                   className="bg-grey-7 text-grey-3 rounded-full h-7 px-3 font-medium mr-4"
-                  // onClick={() => setValue('content', "Recomendarei para os meus amigos!")}
+                  onClick={() => setValue('content', "Recomendarei para os meus amigos!")}
                 >
                   Recomendarei para meus amigos!
                 </button>
