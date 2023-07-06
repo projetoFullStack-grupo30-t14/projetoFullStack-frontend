@@ -57,6 +57,8 @@ export const EditAdForm = ({ id }: EditAdFormProps) => {
 
   const [published, setPublished] = useState(listOneCar?.is_active);
 
+  const [fipeReturn, setFipeReturn] = useState<number | string | undefined>();
+
   const [
     wBrand,
     wModel,
@@ -94,6 +96,40 @@ export const EditAdForm = ({ id }: EditAdFormProps) => {
     setModels([""]);
     closeModal();
   };
+
+  if (wBrand && wModel && wYear && wFuel) {
+    let fuelToApi: number;
+
+    switch (wFuel) {
+      case "flex":
+        fuelToApi = 1;
+        break;
+      case "hybrid":
+        fuelToApi = 2;
+        break;
+      case "electric":
+        fuelToApi = 3;
+        break;
+    }
+
+    let url = `https://kenzie-kars.herokuapp.com/cars/unique?brand=${wBrand}&name=${wModel}&year=${wYear}&fuel=${fuelToApi}`;
+
+    const getFipe = async () => {
+      await fetch(url)
+        .then((response) => response.json())
+        .then((res) => {
+          res.value
+            ? setFipeReturn(res.value)
+            : setFipeReturn("Carro não encontrado");
+        })
+        .catch((err) => {
+          console.log(err);
+          setFipeReturn("Carro não encontrado");
+        });
+    };
+
+    getFipe();
+  }
 
   return carLoading ? (
     <main className="bg-grey-8">
@@ -215,11 +251,11 @@ export const EditAdForm = ({ id }: EditAdFormProps) => {
               <div className="flex flex-col mb-4">
                 <Field
                   id="fipePrice"
-                  type="number"
+                  type="text"
                   placeholder=""
                   label="Preço tabela FIPE"
                   disabled={true}
-                  defaultValue={listOneCar?.price_FIPE}
+                  defaultValue={fipeReturn}
                   className={"text-grey-3"}
                 />
               </div>
