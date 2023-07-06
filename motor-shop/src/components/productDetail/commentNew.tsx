@@ -32,7 +32,6 @@ export const NewComment = () => {
     if (typeof carId === "string"){
       createComment(carId, data)
       reset()
-      // getAllComments(carId)
     }
   }
 
@@ -59,7 +58,7 @@ export const NewComment = () => {
                 placeholder='Digite aqui seu comentário'
                 label=''
                 onChange={(e) => setValue("content", e.target.value)}
-                className='w-full h-32 resize-none px-7 py-8 rounded-[4px] border-solid border-2 border-grey-7 placeholder:text-grey-3 placeholder:px-0.5 placeholder:py-2.5 text-gray-7 transition ease-in-out delay-300 outline-none focus:border-brand-1'
+                className='w-full h-32 resize-none px-7 py-8 rounded-[4px] border-solid border-2 border-grey-7 text-gray-7 transition ease-in-out delay-300 outline-none focus:border-brand-1'
               />
               <button
                 type='submit'
@@ -68,24 +67,24 @@ export const NewComment = () => {
                 Comentar
               </button>
             </form>
-            <div className="space-x-4 space-y-2">
+            <div className="space-y-2">
               <button
                 type='button'
-                className="bg-grey-7 textarea text-grey-3 rounded-full h-7 px-3 font-medium"
+                className="bg-grey-7 textarea text-grey-3 rounded-full h-7 px-3 font-medium mr-4"
                 onClick={() => setValue('content', "Gostei muito!")}
               >
                 Gostei muito!
               </button>
               <button
                 type='button'
-                className="bg-grey-7 text-grey-3 rounded-full h-7 px-3 font-medium"
+                className="bg-grey-7 text-grey-3 rounded-full h-7 px-3 font-medium mr-4"
                 onClick={() => setValue('content', "Incrível!")}
               >
                 Incrível!
               </button>
               <button
                 type='button'
-                className="bg-grey-7 text-grey-3 rounded-full h-7 px-3 font-medium"
+                className="bg-grey-7 text-grey-3 rounded-full h-7 px-3 font-medium mr-4"
                 onClick={() =>
                   setValue('content', "Recomendarei para os meus amigos!")
                 }

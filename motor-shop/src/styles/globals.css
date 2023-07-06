@@ -218,6 +218,10 @@
     @apply input-place-text;
   }
 
+  textarea::placeholder {
+    @apply py-3 px-0.5;
+  }
+
   textarea:focus,
   input:focus {
     @apply outline-none border-brand-1;
@@ -295,9 +299,9 @@
 
 /* SCROLLBAR E INPUT TIPO NUMBER */
 @layer utilities {
-  input[type="number"]::-webkit-outer-spin-button,
-  input[type="number"]::-webkit-inner-spin-button,
-  input[type="number"] {
+  input[type='number']::-webkit-outer-spin-button,
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number'] {
     -webkit-appearance: none;
     margin: 0;
     -moz-appearance: textfield !important;
@@ -329,16 +333,20 @@
     @apply bg-brand-3;
   }
 
-  input[type="date"]::-webkit-calendar-picker-indicator {
+  input[type='date']::-webkit-calendar-picker-indicator {
     /* COR DO ÍCONE DE CALENDÁRIO DO INPUT TIPO DATE */
     filter: invert(20%) sepia(94%) saturate(2948%) hue-rotate(245deg)
       brightness(85%) contrast(116%);
     @apply mr-3 hover:cursor-pointer;
   }
 
-  input[type="date"]:invalid::-webkit-datetime-edit {
+  input[type='date']:invalid::-webkit-datetime-edit {
     /* PLACEHOLDER DO INPUT TIPO DATE */
     @apply font-normal text-grey-3;
+  }
+
+  .filled {
+    -webkit-text-fill-color: #868e96;
   }
 
   textarea::placeholder {
