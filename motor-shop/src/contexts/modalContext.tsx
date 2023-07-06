@@ -34,6 +34,7 @@ export default function ModalProvider({ children }: iModalProviderProps) {
     setStateModal(true);
     setModalTitle(title);
     setChildrenModal(children);
+    scrollToTop()
   };
 
   const showCommentModal = (children: React.ReactNode, title: string) => {

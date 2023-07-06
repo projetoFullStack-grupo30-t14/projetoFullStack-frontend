@@ -60,7 +60,7 @@ export default function RegisterPage() {
         <title>MotorShop - Registro</title>
       </Head>
       <Header />
-      {stateModal && <Modal />}
+      {/* {stateModal && <Modal />} */}
       <main className="bg-grey-8 py-12 px-4 w-screen">
         <div className="flex justify-center items-center h-full">
           <div className="z-10 py-11 px-[8%] h-full sm:px-12 max-w-[410px] font-medium bg-grey-whiteFixed space-y-8 rounded">
