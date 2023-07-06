@@ -56,7 +56,7 @@ export const NewComment = () => {
                   type='text'
                   placeholder='Digite aqui seu comentário'
                   label=''
-                  onChange={(e) => setValue("content", e.target.value)}
+                  // onChange={(e) => setValue("content", e.target.value)}
                   className='w-full h-32 resize-none px-7 py-8 rounded-[4px] border-solid border-2 border-grey-7 text-gray-7 transition ease-in-out delay-300 outline-none focus:border-brand-1' />
                 <button
                   type='submit'
@@ -69,64 +69,26 @@ export const NewComment = () => {
                 <button
                   type='button'
                   className="bg-grey-7 textarea text-grey-3 rounded-full h-7 px-3 font-medium mr-4"
-                  onClick={() => setValue('content', "Gostei muito!")}
+                  // onClick={() => setValue('content', "Gostei muito!")}
                 >
                   Gostei muito!
                 </button>
                 <button
                   type='button'
                   className="bg-grey-7 text-grey-3 rounded-full h-7 px-3 font-medium mr-4"
-                  onClick={() => setValue('content', "Incrível!")}
+                  // onClick={() => setValue('content', "Incrível!")}
                 >
                   Incrível!
                 </button>
                 <button
                   type='button'
                   className="bg-grey-7 text-grey-3 rounded-full h-7 px-3 font-medium mr-4"
-                  onClick={() => setValue('content', "Recomendarei para os meus amigos!")}
+                  // onClick={() => setValue('content', "Recomendarei para os meus amigos!")}
                 >
                   Recomendarei para meus amigos!
                 </button>
               </div>
               <p className="body-2-500">{currUser?.name}</p>
-            </div><form onSubmit={handleSubmit(onSubmit)} className="relative">
-              <Field
-                id="comment"
-                register={register("content")}
-                textarea={true}
-                type="text"
-                placeholder="Digite aqui seu comentário"
-                label=""
-                onChange={(e) => setValue("content", e.target.value)}
-                className="w-full h-32 resize-none px-7 py-8 rounded-[4px] border-solid border-2 border-grey-7 placeholder:text-grey-3 placeholder:px-0.5 placeholder:py-2.5 text-gray-7 transition ease-in-out delay-300 outline-none focus:border-brand-1" />
-              <button
-                type="submit"
-                className="mb-7 btn-medium bg-brand-1 text-grey-whiteFixed rounded p-5 font-semibold absolute bottom-5 right-4 transition ease-in-out delay-300 hover:bg-brand-2"
-              >
-                Comentar
-              </button>
-            </form><div className="space-x-4 space-y-2">
-              <button
-                type="button"
-                className="bg-grey-7 textarea text-grey-3 rounded-full h-7 px-3 font-medium"
-                onClick={() => setValue("content", "Gostei muito!")}
-              >
-                Gostei muito!
-              </button>
-              <button
-                type="button"
-                className="bg-grey-7 text-grey-3 rounded-full h-7 px-3 font-medium"
-                onClick={() => setValue("content", "Incrível!")}
-              >
-                Incrível!
-              </button>
-              <button
-                type="button"
-                className="bg-grey-7 text-grey-3 rounded-full h-7 px-3 font-medium"
-                onClick={() => setValue("content", "Recomendarei para os meus amigos!")}
-              >
-                Recomendarei para meus amigos!
-              </button>
             </div>
           </>
         ) : (
