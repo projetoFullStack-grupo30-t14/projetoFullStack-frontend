@@ -22,7 +22,7 @@ const Aside = ({ car }: { car?: TCar }) => {
                 height={186}
                 src={photo.image}
                 alt={car.model}
-                className="md:h-16 bg-grey-8 rounded cursor-pointer"
+                className="object-cover h-16 bg-grey-8 rounded cursor-pointer"
               />
             </li>
           ))}
